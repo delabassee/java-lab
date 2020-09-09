@@ -3,20 +3,11 @@
 ## Overview
 
 
-In this section, you will get some hands-on experiences with the Java SE *Preview Feature* mechanism.
+This  5-minutes lab will give you an introduction the the Java SE *Preview Feature* mechanism.
 
 The Preview Feature mechanism enables to add non-final, fully specified, and implemented features into the Java platform. The goal is to allow developers to use those non-final features, to gather feedback, and to make necessary changes if needed before those features are made final and permanent into the Java platform.
 
 ⚠️ Preview Features should be confused with Experimental Features or with Incubator Modules. For details, please check this [article](https://blogs.oracle.com/javamagazine/the-role-of-previews-in-java-14-java-15-java-16-and-beyond). 
-
-
-* Preview Features, for new Java platform features fully specified and implemented but yet subject to adjustments
-
-* Experimental Features: mainly for new features in the HotSpot JVM
-
-* Incubator Modules, for potentially new APIs and JDK tools
-
-For more details, please check this [article](https://blogs.oracle.com/javamagazine/the-role-of-previews-in-java-14-java-15-java-16-and-beyond). 
 
 
 ## Hello Preview 

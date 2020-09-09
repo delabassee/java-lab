@@ -2,7 +2,7 @@
 
 ## Overview
 
-In the section, you will use *Records*, a Java language feature going through a second preview round in JDK 15.
+In this 10-minutes lab, you will use *Records*, a Java language feature going through a second preview round in JDK 15.
 
 Records provide a compact syntax for declaring classes which are transparent holders for shallowly immutable data.
 A record can be best thought of as a nominal tuple that enables us to easily and quickly model immutable "plain data" aggregates.

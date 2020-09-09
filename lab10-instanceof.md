@@ -2,10 +2,7 @@
 
 ## Overview
 
-
-
-[Pattern Matching for instanceof (Second Preview)](https://openjdk.java.net/jeps/375) is previewed for the second time in JDK 15. This feature enhances the Java programming language with pattern matching for the instanceof operator. Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely.
-
+In this 10-minutes lab, you will get some hands-on expereince with the *pattern Matching for instanceof* feature previewed in JDK 15. This feature enhances the Java programming language with pattern matching for the instanceof operator. Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely.
 
 
 ## Using 'pattern matching for instanceof'
@@ -181,7 +178,7 @@ If you test the application now, you should session details varying depending on
 
 ## Wrap-up
 
-In this exercice, you have used the 'pattern matching for instanceof' feature currently previewed in JDK 15 and slated to be made standard and permanent in JDK 16.
+In this exercice, you have used the 'pattern matching for instanceof' feature currently previewed in JDK 15 (2nd preview) and slated to be made standard and permanent in JDK 16.
 For more details, please check [Pattern Matching for instanceof (Second Preview)](https://openjdk.java.net/jeps/375).
 
 Do note that although the 'pattern matching for instanceof' feature unarguably simplifies the code, this method is still verbose. For example, the "`if … else if …`" chain makes this code a bit repetitive, wouldn't be nice to use a `switch` instead?  In fact, the 'pattern matching for instanceof' feature along with the Switch Expression (see Lab 9) will enable, in the future, full pattern matching support in the Java platform! 

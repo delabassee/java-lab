@@ -3,7 +3,9 @@
 ## Overview
 
 
-In this section, you will clone and build a Helidon application that will be used to test some of the recent Java features. This simple application is themed around conferences, it provides a simple REST endpoint that lists speakers and a basic web user interface.
+In this 5-minutes lab, you will clone and build a Helidon application that will be used to test some of the recent Java features.
+
+This simple application is themed around 'conferences', it provides a simple REST endpoint that lists speakers and a basic web user interface.
 
 ⚠️ For the sake of brevity and clarity, this application takes some shortcuts and does not necessarily implement all the best practices recommended for an application that would go into production. Typically, you would have to think about concerns such as security, synchronization, testing, data validation, availability, scaling, etc. none of which are relevant in the context of today's lab!
 

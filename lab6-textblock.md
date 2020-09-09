@@ -2,7 +2,7 @@
 
 ## Overview
 
-In the section, you will use *Text Blocks*, a new Java 15 standard feature.
+In this 10-minutes lab, you will use *Text Blocks*, a new Java 15 standard feature.
 
 A text block is a multi-line string literal that avoids the need for most escape sequences, automatically formats the string predictably, and gives the developer control over format when desired. The Text Blocks feature has been previewed in Java 13 and Java 14, and is now a final and permanent feature in Java 15.
 

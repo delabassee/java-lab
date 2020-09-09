@@ -3,7 +3,7 @@
 ## Overview
 
 
-In this 10-miutesn lab, you will prepare your Oracle Cloud environment to run the rest of the lab.
+In this 10-minutes lab, you will prepare your Oracle Cloud environment to run the rest of the lab.
 
  
 ## Create a Virtual Cloud Network

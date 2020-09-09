@@ -2,9 +2,9 @@
 
 ## Overview
 
-In this section, you will create a simple Microservices exposing a REST endpoint using Helidon SE. The goal is to have some initial exposure to Helidon, gain some high-level understandings of Helidon and its development workflow.
+In this 5-minutes lab, you will create a simple Microservices exposing a REST endpoint using Helidon SE. The goal is to have some initial exposure to Helidon, gain some high-level understandings of Helidon and its development workflow.
 
-Helidon is an open-source Java-based collection of libraries that one can use to develop lightweight Microservices, it offers 2 programming models:
+*Helidon* is an open-source Java-based collection of libraries that one can use to develop lightweight Microservices, it offers 2 programming models:
 - Helidon MP: MicroProfile APIs declarative, Java EE/Jakarta EE style (JAX-RS, CDI, etc.).
 - Helidon SE: functional style, transparent, no magic (ex. injection).
 
@@ -27,7 +27,7 @@ If you check the newly generated project (`tree -C myproject`), you will notice 
 
 ![](./images/lab3-2.png " ")
 
-## Build and test the Helidon project
+## Build and test an Helidon project
 
 You can build the Helidon project using the `mvn package` command in the `myproject` directory. 
 
