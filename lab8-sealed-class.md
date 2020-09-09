@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this section, you will get some hands-on experiences with _Sealed Classes_ (JEP 360), a preview feature of JDK 15. Sealed classes and interfaces restrict which other classes or interfaces may extend or implement them.
+In this 10-minutes lab, you will get some hands-on experiences with _Sealed Classes_ (JEP 360), a preview feature of JDK 15. Sealed classes and interfaces restrict which other classes or interfaces may extend or implement them.
 
 💡 Despite its name, the *Sealed Classes* feature applies to both **classes** and **interfaces**.
 

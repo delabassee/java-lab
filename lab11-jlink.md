@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this exercise, you will use *`jlink`*, a tool that can assemble and optimize a set of modules and their dependencies to create a custom, i.e. optimized, run-time Java image. 
+This 5-mintes lab will show you how simple it is to use *`jlink`* and its benefits.
 
 In a nutshell, `jlink` is a tool that can create custom Java runtime that includes only the modules required by an application. Reducing the numbers of modules will reduce the overall size of that custom Java runtime image, a concern especially important when a Java application runs within a container. `jlink` has been part of the JDK tooling since JDK 9.
 
@@ -72,7 +72,7 @@ conference-app/bin/start --help
 
 ## Wrap-up
 
-`jlink` enables to create custom Java runtime image carrying only the modules required to run a given application. Reducing the overall size of a Java runtime is critical when a Java application is embedded with this same Java runtime into a container. Reducing the overall container image size will improve the startup time of this container. Moreover, smaller container leads to better resource utilization of the container platform.  It should be mentioned that to use `jlink` the application does not need to be modularized! Moreover, `jlink` has been part of the JDK since JDK 9 so today, there is no valid reason to not leverage `jlink`!
+`jlink` is a tool that can assemble and optimize a set of modules and their dependencies to create a custom, i.e. optimized, run-time Java image. Optimizing the size of a Java runtime is critical when an Java application is embedded with its Java runtime into a container. Reducing the overall container image size will improve the startup time of this container. Moreover, smaller container leads to better resource utilization of the container platform.  It should be mentioned that to use `jlink` the application does not need to be modularized! Moreover, `jlink` is available since JDK 9 so there is no valid reason to not leverage `jlink` today!
 
 **More ressources**
 * [JEP 282: `jlink`](https://openjdk.java.net/jeps/282)

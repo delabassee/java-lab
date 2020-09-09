@@ -2,9 +2,14 @@
 
 ## Overview
 
-The *Switch Expression* feature is a standard and permanent feature of Java 14. It augments the traditional Switch Statement to address some of its irregularities and annoyances including the well known 'fall through' problem, the support for multiple constants per case, the ability to enforce exhaustiveness, an improving scoping, etc.
 
-The Switch Expression introduces a new form of switch label, "`case L ->…`" to signify that only the code to the right of the label is to be executed if the label is matched (without fall through!). Also, it is now possible to support allow multiple constants per case (ex. "`case L, M, N ->…`"). And contrary to a Switch Statement, a Switch Expression can produce values.  For example, the following Switch Expression returns the length of a day using an enum.
+This 10-minutes lab will introduce you to the *Switch Expression* feature, a standard and permanent feature of Java 14. 
+
+The *Switch Expression* augments the traditional Switch Statement to address some of its irregularities and annoyances including the well known 'fall through' problem, the support for multiple constants per case, the ability to enforce exhaustiveness, an improved scoping, etc.
+
+## Switch Expressions in more details
+
+The Switch Expression feature introduces a new form of switch label, "`case L ->…`" to signify that only the code to the right of the label is to be executed if the label is matched (without fall through!). Also, it is now possible to support allow multiple constants per case (ex. "`case L, M, N ->…`"). And contrary to a Switch Statement, a Switch Expression can produce values.  For example, the following Switch Expression returns the length of a day using an enum.
 
 ```
 int numLetters = switch (day) {
