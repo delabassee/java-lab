@@ -2,11 +2,11 @@
 
 ## Overview
 
-In this lab, you will get some hands-on experiences with _Sealed Classes_ (JEP 360), a preview feature of JDK 15. Sealed classes and interfaces restrict which other classes or interfaces may extend or implement them.
+In this section, you will get some hands-on experiences with _Sealed Classes_ (JEP 360), a preview feature of JDK 15. Sealed classes and interfaces restrict which other classes or interfaces may extend or implement them.
 
-💡 Although its name, the *Sealed Classes* feature applies to both **classes** and **interfaces**.
+💡 Despite its name, the *Sealed Classes* feature applies to both **classes** and **interfaces**.
 
-## Restricting  Class Hierarchies
+## Restricted  Class Hierarchies
 
 In Java, a class hierarchy enables the reuse of code via inheritance: The methods of a superclass can be inherited (and thus reused) by many subclasses. However, the purpose of a class hierarchy is not always to reuse code. Sometimes, its purpose is to model the various possibilities that exist in a domain, such as the kinds of shapes supported by a graphics library or the kinds of loans supported by a financial application. When the class hierarchy is used in this way, restricting the set of subclasses can streamline the modeling, that is what Sealed Classes enable.
 
@@ -23,14 +23,14 @@ For the sake of this exercise, let us suppose that the conference application ne
 
 Broadly speaking, the conference has the following sessions :
 
-* **Breakout** session, each have a **virtualRoom** 
-	* Lecture : a traditional conference session
-	* Lab : a hands-on lab
+* **Breakout** session, each has a virtual room
+	* Lecture: a traditional conference session
+	* Lab: a hands-on lab
 * **Keynote** session, a traditional general session
 
-All extends the **Session** abstract class.
+All extends the **Session** abstract class
 
-1. Create a `session` directory and create the abstract sealed `Session.java` super class.
+1. Create a `session` directory and create the abstract sealed `Session.java` superclass.
 
 ```
 package conference.session;
@@ -62,7 +62,7 @@ permits Keynote, Breakout {
 🔎 `permits Keynote, Breakout …` ➞ explicitly declares that only the `Keynote` and the `Breakout` classes can extend it.
 
 
-2. Now you need to create both `Keynote.java` and `Breakout.java`
+2. Now you need to create both `Keynote.java` and `Breakout.java` classes
 
 ```
 package conference.session;
@@ -77,7 +77,7 @@ final public class Keynote extends Session {
     }
 }
 ```
-🔎 `Keynote.java` is **final** , it can't be extended.
+🔎 `Keynote.java` is **final**, it can't be extended.
 
 ```
 package conference.session;
@@ -152,7 +152,7 @@ final public class Lab extends Breakout {
 
 🔎 Both classes are `final`.
 
-4. Create `AgendaService.java`
+4. Create `AgendaService.java` (check the package!)
 
 ```
 package conference;
@@ -232,7 +232,7 @@ public final class AgendaRepository {
 }
 ```
 
-6. Update the 'createRouting' method in `Main.java` to instanciate the AgendaService and register its handler under the "/sessions" path.
+6. Update the `createRouting` method in `Main.java` to instantiate the AgendaService and register its handler under the "/sessions" path.
 
 
 ```
@@ -251,7 +251,7 @@ return Routing.builder()
 
 ## Wrap-up
 
-In this exercice, you have used Sealed Classes. 
+In this exercise, you have used Sealed Classes. 
 
 Sealed Classes is a new feature that enables a developer to define a restricted class hierarchy, i.e. a developer has now the ability to explicitly states for a given class (or an interface) which classes (or interfaces) may extend (or implement) it. Sealed Classes is a previewed feature in JDK 15.
 

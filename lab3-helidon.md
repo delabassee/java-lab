@@ -2,15 +2,15 @@
 
 ## Overview
 
-In this Lab, you will create a simple Microservices exposing a REST endpoint using Helidon SE. The goal is to have some initial exposure to Helidon, gain some high-level understandings of Helidon and its development workflow.
+In this section, you will create a simple Microservices exposing a REST endpoint using Helidon SE. The goal is to have some initial exposure to Helidon, gain some high-level understandings of Helidon and its development workflow.
 
-Helidon is an open-source Java-based collection of libraries that one can use to develop lightweight Microservices. Helidon offers 2 programming models:
+Helidon is an open-source Java-based collection of libraries that one can use to develop lightweight Microservices, it offers 2 programming models:
 - Helidon MP: MicroProfile APIs declarative, Java EE/Jakarta EE style (JAX-RS, CDI, etc.).
 - Helidon SE: functional style, transparent, no magic (ex. injection).
 
 For more information, please check [https://helidon.io/](https://helidon.io/).
 
-💡 This lab is using Helidon as it is simple, lightweight and fast but obviously, all the Java features discussed in this HoL can be used with any framework supporting the latest version of Java. Moreover, this lab is only using a small set of Helidon's capabilities.
+💡 This lab is using Helidon SE as it is simple, lightweight, and fast. Obviously, all the Java features discussed in this HoL can be used with any framework supporting the latest version of Java. Moreover, this lab is only using a small fraction of Helidon's capabilities.
  
 ## Initialize a Helidon project
 
@@ -20,16 +20,16 @@ Run `helidon init`, and select the suggested options (**SE flavor**, **bare Mini
 
 ![](./images/lab3-1.png " ")
 
-Quicky check the newly generated project (`tree -C myproject`), you can notice it is a Maven project:
+If you check the newly generated project (`tree -C myproject`), you will notice it is a Maven project:
 * there is `pom.xml`,
 * sources are located in `src/main/java/mypackage`,
-* tests are located in `src/test/java/mypackage`.
+* tests are located in `src/test/java/mypackage`, etc.
 
 ![](./images/lab3-2.png " ")
 
 ## Build and test the Helidon project
 
-You can build the project using the `mvn package` command in the `myproject` directory. 
+You can build the Helidon project using the `mvn package` command in the `myproject` directory. 
 
 ![](./images/lab3-3.png " ")
 
@@ -45,13 +45,13 @@ To run the application, simply use `java -jar target/myartifactid.jar`
 
 The sample service is now accessible on locally port 8080 and given that you have configured earlier the VCN and the instance firewall to allow incoming traffic on port 8080, it should also be accessible via your instance public IP address. 
 
-Invoke the endpoint using either `curl` or a web browser and its public IP address (`http://{public-ip-address}:8080/greet`), it should return the `{"message":"Hello World!"}` json payload.
+Invoke the endpoint using either `curl` or a web browser and its public IP address (`http://{public-ip}:8080/greet`), it should return the `{"message":"Hello World!"}` json payload.
 
 💡 You might want to use Firefox during this lab as it formats nicely any returned JSON payload.
 
 ## Check the source code
 
-Let's try to grasp how things work by checking the sources.
+Let's now try to grasp how things work by checking the sources.
 
 #### _Main.java_
 
@@ -74,7 +74,7 @@ WebServer server = WebServer.builder(createRouting(config))
 
 The `startServer` method also invokes the `createRouting` method which amongst other things
 * instantiates `GreetService`,
-* adds the greetService instance as the handler under the "/greet" path,
+* adds the `greetService instance as the handler under the "/greet" path,
 * builds the updated route object and returns it to the `startServer` method.
 
 ```java
@@ -123,11 +123,9 @@ private void getDefaultMessageHandler(ServerRequest request, ServerResponse resp
 ```
 
 See [here](https://helidon.io/docs/v2/#/se/webserver/01_introduction) for more details but at a very high level, to create REST end-points using Helidon:
-* a web server is configured and instantiated,
-* using this web server, route(s) can be defined,
+* a webserver is configured and instantiated,
+* using this webserver, route(s) can be defined,
 * each route should have at least one handler that will process the request(s).
-
-You now know some basic concepts of Helidon. You can move to the next lab to discover some new Java SE features.
 
 ## Helidon CLI devloop
 
@@ -138,7 +136,7 @@ The Helidon CLI also enables a convenient development loop (aka 'devloop'). In a
 To use the 'devloop' approach, simply go in the project directory and run `helidon dev`.
 
 
-💡 You can either run the 'devloop' in the background or run it in a separate shell. The latter approach enables to easily see any potential errors as they happen.
+💡 You can either run the 'devloop' in the background or run it in a separate shell. The latter approach enables you to easily see any potential errors as they happen.
 
 * Open a 2nd SSh connection and run `helidon dev`
 
@@ -146,6 +144,6 @@ To use the 'devloop' approach, simply go in the project directory and run `helid
 
 ## Wrap-up
 
-In this Lab, you had some initial exposure to Helidon, just enough to use Helidon in the context of this lab. Do keep in mind that only a small fraction of Helidon's features will be used and that all Java features discussed during this lab apply to all Java-based frameworks/programs.
+This section gave you some basic exposure to Helidon, just enough to use Helidon in the context of the rest of the lab. Do keep in mind that only a small fraction of Helidon's features will be used and that all Java features pesented during this lab apply to all Java-based frameworks/programs.
 
 For more information, please check [https://helidon.io/](https://helidon.io/).

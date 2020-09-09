@@ -2,9 +2,7 @@
 
 ## Overview
 
-The Switch Expression feature is a standard and permanent feature of Java 14. 
-
-The Switch Expression extends the traditional Switch Statement to address some of its irregularities and annoyances including the well known 'fall through' problem, the support for multiple constants per case, the ability to enforce exhaustiveness, an improving scoping, etc.
+The *Switch Expression* feature is a standard and permanent feature of Java 14. It augments the traditional Switch Statement to address some of its irregularities and annoyances including the well known 'fall through' problem, the support for multiple constants per case, the ability to enforce exhaustiveness, an improving scoping, etc.
 
 The Switch Expression introduces a new form of switch label, "`case L ->…`" to signify that only the code to the right of the label is to be executed if the label is matched (without fall through!). Also, it is now possible to support allow multiple constants per case (ex. "`case L, M, N ->…`"). And contrary to a Switch Statement, a Switch Expression can produce values.  For example, the following Switch Expression returns the length of a day using an enum.
 
@@ -111,11 +109,11 @@ case MYSQL :
 …
 ```
 
-Given there is no break, the "JAVA" case will "fall through" to the next case until it reaches a `break`. That explains why we see the "MySQL" for all speakers from the Java track. You can easily solve this bug by adding a `break` for the "JAVA" case. 
+Given there is no `break`, the "JAVA" case will "fall through" to the next case until it reaches a `break`. That explains why we see the "MySQL" for all speakers from the Java track. You can easily solve this bug by adding a `break` for the "JAVA" case. 
 
-The second issue is tied to the "default" case. Given that the `Track.java` enumeration has only 3 possibles values and that those 3 values are actually tested in the swicth, there's no point in having a "default" case as it is unreachable. You can fix by simply removing this "default" branch.
+The second issue is tied to the "default" case. Given that the `Track.java` enumeration has only 3 possibles values and that those 3 values are actually tested in the switch, there's no point in having a "default" case as it is unreachable. You can fix by simply removing this "default" branch.
 
-The last problem is tied to the fact that this code is quite repetitive and verbose (ex. we assign a different value to the `trackDetail` string in all the branches, we must make to not forget any `break`) and also quite error prone (ex. you know what it's like to forget a `break`)!
+The last problem is tied to the fact that this code is quite repetitive and verbose (ex. we assign a different value to the `trackDetail` string in all the branches, we must make to not forget any `break`) and also quite error-prone (ex. you know what it's like to forget a `break`)!
 
 You can solve this by replacing that Switch statement with the Swith Expression below.
 
@@ -140,7 +138,7 @@ A few things to note:
 
 * There is no fall through in Switch Expression, and hence no `break`.
 
-* This example uses the simplified `case L -> value_to_return;` notation. The new `yield` statement can also be used to to yield a value (see example below).
+* This example uses the simplified `case L -> value_to_return;` notation. The new `yield` statement can also be used to yield a value (see example below).
 
 ```
 private String getTrackDetail(Speaker speaker) {
@@ -172,7 +170,7 @@ var trackDetail = switch (speaker.track()) {
 ```
 ## Wrap-up
 
-In this exercice, you have used Switch Expression, a standard feature since Java 14.
+In this exercise, you have used Switch Expression, a standard feature since Java 14.
 
 Switch expressions complement nicely the traditional Swith statement by enabling to easily write less error-prone Switch cases. Moreover, the produced code is also more readable! For additional details, please check [JEP 361: Switch Expressions (Standard)](https://openjdk.java.net/jeps/361).
 

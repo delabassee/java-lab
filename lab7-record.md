@@ -2,22 +2,21 @@
 
 ## Overview
 
-In the lab, you will play *Records*, a Java language feature going through a second preview round in JDK 15.
+In the section, you will use *Records*, a Java language feature going through a second preview round in JDK 15.
 
 Records provide a compact syntax for declaring classes which are transparent holders for shallowly immutable data.
-A record can be best thought of as a nominal tuple that enable to easily and quickly model immutable "plain data" aggregates.
-
+A record can be best thought of as a nominal tuple that enables us to easily and quickly model immutable "plain data" aggregates.
 
 ## A simple Record
 
-💡 Make sure that Preview Features are enabled (see [Lab 4](/?lab=lab-4-java-se-preview-features))!
+💡 Make sure that Preview Features are enabled, see [Lab 4](/?lab=lab-4-java-se-preview-features).
 
 
 Similar to enums, Records are technically a special form of classes optimized for certain specific situations.
 
-1. Create a Preson record
+1. Create a Person record
 
-Create a file named `Person.java` with the following conntent.
+Create a file named `Person.java` with the following content.
 
 ```
 public record Person(String lastname, String firstname) {}
@@ -25,7 +24,7 @@ public record Person(String lastname, String firstname) {}
 
 2. Compile the Person record
 
-Given Records are still in preview, make sure to enable preview feature at compile time.
+Given Records are still in preview, make sure to enable Preview Feature at compile time.
 
 ```
 javac --enable-preview --release 15 Person.java
@@ -60,7 +59,7 @@ This Record has
 
 You can also observe that the Person record extends the [`java.lang.Record`](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/Record.html) abstract class.
 
-To use the Record simply create the a simple `TestRecord.java` class.
+To use the Record simply create a simple `TestRecord.java` class.
 
 ```
 class TestRecord {
@@ -83,7 +82,7 @@ Note: Recompile with -Xlint:preview for details.
 Person[lastname=Doe, firstname=Jane]
 ```
 
-Any of the generated implmentations can be overriden. For example, change the record as follow...
+Do note that the generated implementations can be overridden. For example, change the record as follow...
 
 ```
 public record Person(String lastname, String firstname) {
@@ -107,7 +106,7 @@ Person{firstname=Jane, lastname=Doe}
 
 
 
-The Conference application exposes simple REST endpoints to get speaker related information.
+The Conference application exposes simple REST endpoints to get speaker-related information.
 
 * http://{public-ip-address}:8080/ ➞ Get all speakers 
 
@@ -127,7 +126,7 @@ Browse the source code to understand how things work.
 
 * `SpeakerService.java` defines the various handlers under the "/speakers" path.
 
-The `Speaker.java` class is interesting as it models the Speaker type with all its details (lastname, firstname, etc.), i.e. it is data aggregate that represent a speaker. Once created a speaker is effectively immutable as the class is `final', moreover there is no way to change the fields (ex. private fields, no setters).
+The `Speaker.java` class is interesting as it models the Speaker type with all its details (last name, first name, etc.), i.e. it is data aggregate that represents a speaker. Once created a speaker is effectively immutable as the class is `final', moreover there is no way to change the fields (ex. private fields, no setters).
 
 Migrating this regular class into a Record is straightforward. Just replace the `Record.java` class content with the definition of the Speaker record. That definition should include the various components related to a speaker. 
 
@@ -140,9 +139,10 @@ public record Speaker (String id,
                        Track track) {}
 ```
 
-💡 The Java compiler will automatically generate a default constructor implementation. If needed, this constructor can be customized. In addition, a `toString`, an `equals` and an `hashCode` default implementations will be generated. If required, those implementations can be overridden. Finally, the Java compiler will also generate accessor methods for each component of the Record.
+💡 The Java compiler will automatically generate a default constructor implementation. If needed, this constructor can be customized. Also, a `toString`, an `equals`, and a `hashCode` default implementations will be generated. If required, those implementations can be overridden. Finally, the Java compiler will also generate accessor methods for each component of the Record.
 
-If you now compile the application, you will get mutliple errors. Can you guess why?
+
+If you now compile the application, you will get multiple errors. Can you guess why?
 
 ```
 …src/main/java/conference/SpeakerRepository.java:[52,69] cannot find symbol
@@ -154,8 +154,7 @@ If you now compile the application, you will get mutliple errors. Can you guess 
 …
 ```
 
-Those errors make sense as the (old) `Speaker.java` class was using the Javabean getter convention to provide access its priavte field.
-Records on the other hand rely on (automatically generated) accessor methods to enable access to its various components. So that needs to be fixed in the conference application code! Go through the `SpeakerRepositotory.java` class and make sure to use accessor methods for accessing components instead of getters. This needs to be fixed code accessing any components of the Speaker record (lastName, company, etc.).
+Those errors make sense as the (old) `Speaker.java` class was using the Javabean getter convention to provide access to its private field. Records on the other hand rely on (automatically generated) accessor methods to enable access to its various components. So that needs to be fixed in the conference application code! Go through the `SpeakerRepositotory.java` class and make sure to use accessor methods for accessing components instead of getters. This needs to be fixed code accessing any components of the Speaker record (lastName, company, etc.).
 
 For example, change 
 ```
@@ -198,7 +197,7 @@ JsonObject toJson() {
 }
 ```
 
-💡 Make sure to update the imports accordingly
+💡 Make sure to update the `import`'s accordingly.
 
 ```
 import javax.json.Json;
@@ -215,7 +214,7 @@ if (allSpeakers.size() > 0)
    response.send(allSpeakers);
 else sendError(response, 400, "getAll - no speaker found!?");
 ```
-to use the Streams API and the newly added `toJson` method to return List of `JsonObject` as follow. 
+to use the Streams API and the newly added `toJson` method to return a `List` of `JsonObject` as follow. 
 ```
 List<Speaker> allSpeakers = this.speakers.getAll();
 if (allSpeakers.size() > 0) {
@@ -227,7 +226,7 @@ if (allSpeakers.size() > 0) {
 
 If you build and test the application, it should behave like before.
 
-We can observe that using Records leads to a more concise, more readable code when it comes to model data aggregates! Shortly, when JSONB frameworks will support Records, the marshaling/unmarshaling between JSON payload and Records will be transparent. That will again simplify things as we won't have to use the JSONP API to add to the Record, a method to return its JSON representation!
+You can notice that using Records leads to a more concise, more readable code when it comes to model data aggregates! Shortly, when JSONB frameworks will support Records, the marshaling/unmarshaling between JSON payload and Records will be transparent. That will again simplify things as we won't have to use the JSONP API to add to the Record, a method to return its JSON representation!
 
 📝 Make sure to add support Records to all `SpeakerService.java` methods (`getByCompany`, `getByTrack`, `getSpeakersById`) as you just did for the `getAll` method.
 
@@ -235,7 +234,7 @@ We can observe that using Records leads to a more concise, more readable code wh
 ## Local Records
 
 
-When you are developing applications, think how many times you are creating intermediate values that are a simple group of variables? That should be very frequent! The Record feature is perfect to cope with such use-case..
+When you are developing applications, think how many times you are creating intermediate values that are a simple group of variables? That should be very frequent! The Record feature is perfect to cope with such use-case.
 
 Local Record is a feature introduced in the second Record preview in JDK 15. Local Records offer a convenient option to declare a record inside a method, close to the code which manipulates the variables.
 
@@ -273,17 +272,17 @@ if (allSpeakers.size() > 0) {
 } else sendError(response, 400, "getAll - no speaker found!?");
 ```
 
-If you now test the endpoint, you will get the shorter speaker representation (see right colunmn below).
+If you now test the endpoint, you will get the shorter speaker representation (see the right column below).
 
 ![](./images/lab7-1.png " ")
 
 
-📝 Make sure to update all `SpeakerService.java` methods for the new `SpeakerSummary` record. As an additional exercice, try to create differents Records.
+📝 Make sure to update all `SpeakerService.java` methods for the new `SpeakerSummary` record. As an additional exercise, try to create different Records.
 
 
 ## Wrap-up
 
-In this exercice, you have used Records.
+In this exercise, you have used Records. 
 
 Records allow to easily and quickly create immutable data aggregates. Records are currently in a preview feature in JDK 15 (second preview round) and are slated to be made final and permanent in Java 16, in March 2021.
 
@@ -291,7 +290,6 @@ For more details on Records, please check the following resources.
 
 * [JEP 384: Records (2nd Preview)](https://openjdk.java.net/jeps/384)
 * [Java Feature Spotlight: Records](https://inside.java/2020/02/04/spotlightrecords/)
-
 
 
 

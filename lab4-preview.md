@@ -3,9 +3,12 @@
 ## Overview
 
 
-In this lab, you will get some hands-on experiences with the Java SE *Preview Feature* mechanism.
+In this section, you will get some hands-on experiences with the Java SE *Preview Feature* mechanism.
 
-Preview Feature is one of the 3 mechanisms to add non-final features into the Java platform. The goal is to allow developers to use those non-final features in order to gather feedback and make necessary changes if needed before those features are made final and permanent into the Java platform.
+The Preview Feature mechanism enables to add non-final, fully specified, and implemented features into the Java platform. The goal is to allow developers to use those non-final features, to gather feedback, and to make necessary changes if needed before those features are made final and permanent into the Java platform.
+
+⚠️ Preview Features should be confused with Experimental Features or with Incubator Modules. For details, please check this [article](https://blogs.oracle.com/javamagazine/the-role-of-previews-in-java-14-java-15-java-16-and-beyond). 
+
 
 * Preview Features, for new Java platform features fully specified and implemented but yet subject to adjustments
 
@@ -67,11 +70,11 @@ It now works!
 
 ## Preview Features & Helidon
 
-To use Preview Feature in Helidon, those should be enabled at both compile-time and runtime.
+Likewise, to use Preview Feature in Helidon, those should be enabled at both compile-time and runtime.
 
 #### Compile time configuration
 
-In an Helidon project's `pom.xml`, simply configure the Java compiler plugin to enable Preview Feature.
+In an Helidon project's `pom.xml`, configure the Java compiler plugin to enable Preview Feature.
 
 ```xml
 …
@@ -105,37 +108,26 @@ helidon dev --app-jvm-args "--enable-preview"
 
 ## Wrap-up
 
-In this lab, you have used Record which is a Preview Feature in Java 15. You have also seen how to use Preview Features in Helidon applications.
+In this section, you have used Records, a Preview Feature in Java 15. You have also seen how to enable Preview Features in Helidon applications.
 
 In summary, the _Preview Feature_ mechanism:
 
 * allows introducing non-final features into the Java platform (ex. Language Feature)
 
-* allow developers to use those, and provide feedback
+* allow developers to use those and provide feedback
 
 * enables Oracle to gather that feedback and make changes if needed
 
-* Preview Features are disabled by default, they should explicitly be enabled at both compile time and runtime
+* Preview Features are disabled by default, they should explicitly be enabled at both compile-time and runtime
 
 * a given Preview Feature is specific to a given Java version
 
-
 <br>
-Java 15 includes multiple *Preview Features* which will be discussed in upcoming labs.
+Java 15 includes several *Preview Features* which will be discussed in upcoming sections.
 
-* Sealed Classes (Preview) : JEP 360
+* JEP 360: Sealed Classes (Preview)
 
-* Pattern Matching for instanceof (Second Preview) : JEP 375
+* JEP 375: Pattern Matching for instanceof (Second Preview)
 
-* Records (Second Preview) : JEP 384
-
+* JEP 384: Records (Second Preview)
  
-
- 
-
-
-
-
-
-
-

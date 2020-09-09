@@ -2,14 +2,13 @@
 
 ## Overview
 
-In the lab, you will use *Text Blocks*, a with a new Java 15 standard feature.
+In the section, you will use *Text Blocks*, a new Java 15 standard feature.
 
-A text block is a multi-line string literal that avoids the need for most escape sequences, automatically formats the string in a predictable way, and gives the developer control over format when desired. The Text Blocks feature has been previewed in Java 13 and Java 14, and is now a final and permament feature in Java 15.
-
+A text block is a multi-line string literal that avoids the need for most escape sequences, automatically formats the string predictably, and gives the developer control over format when desired. The Text Blocks feature has been previewed in Java 13 and Java 14, and is now a final and permanent feature in Java 15.
 
 ## Text Blocks in more details
 
-Text blocks enable to easily embed string literals spanning multiple lines (ex. structured languages such as JSON, XML, etc.) into Java source code while preserving the formatting but also the Java code readability.
+Text blocks enable us to easily embed string literals spanning multiple lines (ex. structured languages such as JSON, XML, etc.) into Java source code while preserving the formatting but also the Java code readability.
 
 For example, imagine that you have to embed in your Java code an HTML snippet that displays _All I want to see is a "_. Before Text Blocks, you would write something like
 
@@ -19,7 +18,7 @@ var element = "<p id=\"p1\">All I want to see is a \"</p>";
 
 Notice that the HTML _id_ element attribute above requires its value to be enclosed in double-quotes, so those double quotes need to be escaped in the Java code. 
 
-Things get worst if you want to preserve the readability and the formatting of the snippet. For example, to embed the following basic HTML list in Java code
+Things get worst if you want to preserve the readability and the formatting of the snippet. For example, to embed the following basic HTML list in Java code.
 
 ```
 <ul id="example">
@@ -39,7 +38,7 @@ var example =  "<ul id=\"example\">\n" +
 
 Not only such code is not easily readable, but it is hard to write and error-prone! 
 
-Thanks to Text Block, it is now a lot easier! A Text Block is simply a [String](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/String.html) literal delimited with the new triple-quote delimiter (`"""`) instead of the traditional double quoted delimiter (`"`).
+Thanks to Text Blocks, it is now a lot easier! A text block is simply a [String](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/String.html) literal delimited with the new triple-quote delimiter (`"""`) instead of the traditional double-quote delimiter (`"`).
 
 ```
 var element = """
@@ -61,7 +60,7 @@ As you can see from the example below
 
 To preserve formatting while improving code readability, Text Blocks differentiate incidental white space, from essential white spaces. Incidental white spaces are only useful to improve code formating, they will be stripped away automatically by the Java compiler.
 
-The following example is identical to the previous example but it doesn't use incidental white space, this impacts the code formating and hence its readability.
+The following example is identical to the previous one but it doesn't use incidental white space, this impacts the code formating and hence its readability.
 
 ```
 var element = """
@@ -71,7 +70,7 @@ var element = """
 </ul>
 """; 
 ```
-The triple-quote closing delimiter defines the the how incidental white spaces will be handled. You can check the resources at the end for more details on those rules.
+The triple-quote closing delimiter defines how incidental white spaces will be handled. You can check the resources at the end for more details on those rules.
 
 
 ## Add Text Blocks support
@@ -100,7 +99,7 @@ If you access the root path, you will get en error as there is no handler define
 To fix this, any HTTP request to the `/` path should be forwarded to the `/public` path.
 
 
-1. Define a Text Block that embeds some HTML content that will trigger a client side forward to the `/public` path.
+1. Define a Text Block that embeds some HTML content that will trigger a client-side forward to the `/public` path.
 
 ```
 var snippet = """
@@ -141,12 +140,12 @@ It defines a [handler](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/i
 
 3. Test the application
 
-Compile and access the application from a browser, `http://{public-ip-address}:8080/`
+Compile, and access the application from a browser, `http://{public-ip-address}:8080/`
 
 
 ![](./images/lab5-3.png " ") 
 
-You can notice that the HTML formatting has been preserved which is good but that is not really what we expected as the HTML is not rendered. To understand the issue, use `curl -v` to get more details on the HTTP request/response.
+You can notice that the HTML formatting has been preserved which is good but that is not really what we expected as the HTML is not rendered! To understand the issue, use `curl` to get more details on the HTTP request/response.
 
 
 ```
@@ -172,7 +171,7 @@ Now when you access the root path, your browser should be automatically redirect
 
 4. Understand how Text Block works.
 
-Remove `<meta http-equiv="refresh" content="0; url=/public/" />` from the Text Block. Tweak and try mutilple variations of the HTML snippet to understand how the incidental spaces are handled. 
+Remove `<meta http-equiv="refresh" content="0; url=/public/" />` from the text block. Tweak and try mutilple variations of the HTML snippet to understand how the incidental spaces are handled. 
 
 💡 You might want to check the resources suggested in the next section to understand some behaviors.
 
@@ -206,9 +205,9 @@ message = """
 ## Wrap-up
 
 
-In this exercice, you have used text block, a standard Java 15 feature, to easily embed HTML into Java code. 
+In this exercise, you have used text block, a standard Java 15 feature, to easily embed HTML into Java code. 
 
-Simply put, text blocks enable use to easily embed string literals spanning multiple lines into Java source code while preserving the original formatting but also the Java code readability. Text blocks are handy to deal with structured languages (ex. HTML, JSON, XML, etc.) without having to worry about escaping special characters (ex. new line, double quote) nor altering the original formatting.
+Simply put, text blocks enable developers to easily embed string literals spanning multiple lines into Java source code while preserving the original formatting but also the Java code readability. Text blocks are handy to deal with structured languages (ex. HTML, JSON, XML, etc.) without having to worry about escaping special characters (ex. new line, double quote) nor altering the original formatting.
 
 You can check the following resources for more details on Text Blocks.
 

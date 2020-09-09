@@ -3,9 +3,9 @@
 ## Overview
 
 
-In this Lab, you will clone and build a Helidon application that will be used to test some of the recent Java features. This simple application is themed around conferences, it provides a simple REST endpoint that lists speakers and a basic web user interface.
+In this section, you will clone and build a Helidon application that will be used to test some of the recent Java features. This simple application is themed around conferences, it provides a simple REST endpoint that lists speakers and a basic web user interface.
 
-⚠️ For the sake of brevity and clarity, this application takes some shortcuts and does not necessarily implements all the best practices recommended for an application that would go into production. Typically, you would have to think about concerns such as security, synchronization, testing, data validation, availability, scaling, etc. none of which are relevant in the context of this lab!
+⚠️ For the sake of brevity and clarity, this application takes some shortcuts and does not necessarily implement all the best practices recommended for an application that would go into production. Typically, you would have to think about concerns such as security, synchronization, testing, data validation, availability, scaling, etc. none of which are relevant in the context of today's lab!
 
 
 ## The Conference Application ⛔
@@ -27,14 +27,14 @@ The repository has multiple branches
 * `lab10` : lab 10 starting point, including the lab 4 to 9 solutions
 * `lab11` : all solutions from lab 4 to 10 included
 
-💡 `lab11` is optional and doesn't require code change so there's no 'solution' for this lab.
+💡 `lab11` is optional and does not require any code update so there's no 'solution' for this lab.
 
 Switch to the starting point:
 ```
 git checkout lab4
 ```
 
-Update the project's `pom.xml` to enable Preview Features as described in the previous Lab.
+Update the project's `pom.xml` to enable Preview Features as described in the previous section.
 
 ## Build and test the Application
 
@@ -57,7 +57,7 @@ helidon dev --app-jvm-args "--enable-preview"
 #helidon dev --app-jvm-args "--enable-preview"
 ```
 
-The Conference application exposes simple REST endpoints to get speaker related information.
+The Conference application exposes simple REST endpoints to get speaker-related information.
 
 * http://{public-ip}:8080/ ➞ Get all speakers
 * http://{public-ip}:8080/speakers/company/{company} ➞ Get speakers for a given company
@@ -75,15 +75,17 @@ Once the application is running, you can test it.
 
 Here are some simple tips that might be useful in the course of this Lab.
 
+* The left bar is used to navigate within the current exercise. The right bar is used to navigate between exercises. If it is too obtrusive, just hide it.
+
 * To switch between branches, use `git branch checkout {target-branch}`, ex. `git branch checkout lab10`
 
 * To list branches: `git branch -a`
 
-* A branch contains the solution of the preceding Lab. If you are lost just checkout the n+1 branch and check your code.
+* Any given branch contains the solutions of the preceding exercises. If you are lost just checkout the n+1 branch and check your code.
 
 * You can also browse branches' content directly on [GitHub](https://github.com/delabassee/odl-java-hol/branches)⛔ (make repo public!)
 
-* During this lab, you will do simple Java coding so you won't use a Java IDE. Instead you will use the simple `nano` texteditor.
+* During this lab, you will only do simple Java coding so you won't use a Java IDE. Instead, you will use the versatile `nano` text editor. Here are some of its important key shortcuts.
 
 	* <kbd>Control</kbd> <kbd>x</kbd> : Exit
 	* <kbd>Control</kbd> <kbd>o</kbd> : Save
@@ -96,3 +98,5 @@ Here are some simple tips that might be useful in the course of this Lab.
 * If you get errors while using Helidon's devloop, you might want to re-build the project using Maven to get additional details on those error(s).
 
 * For brevity, packages will sometimes be omitted from code snippets, they are obviously required. If you are not sure, simply check the solution.
+
+* To view files, you can use `bat` as it offers syntax highlighting.
