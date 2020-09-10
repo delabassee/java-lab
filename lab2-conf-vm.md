@@ -47,6 +47,7 @@ You still need to do one thing, i.e. configure a security rule to allow requests
 
 2. Click on the default security list and **Add Ingress Rules**.
 
+![](./images/lab2-7pre.png " ")
 ![](./images/lab2-7.png " ")
 
 3. Fill in the **Source CIDR** and the **Destination port** as follow, and click **Add Ingress Rules**.
@@ -71,7 +72,7 @@ For this lab, you will configure a VM based instance using the a _VM shape_ and 
 
 2. Keep the default OS image, i.e. _Oracle Linux 7.8_.
 
-![](./images/lab2-9.png " ")
+![](./images/lab2-9A.png " ")
 
 
 3. Select a Virtual Machine shape: **Show Shape, Network, Storage Options ➡ Change Shape ➡ Virtual Machine**, pick **VM.Standard2.1** or any similarly sized **VM.Standardx.x** shape as it is more than enough to run the lab. You can now confirm with  **Select Shape**.

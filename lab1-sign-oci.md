@@ -1,6 +1,6 @@
 # Lab 1: Sign Up for Free OCI Trial
 
-## Introduction
+## Overview
 
 This 5-minute lab walks you through the steps of getting an Oracle Cloud Free Tier account and signing in.  
 
