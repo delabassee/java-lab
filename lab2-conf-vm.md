@@ -58,11 +58,11 @@ You now have a VNC properly confugired, you can move on to the next step.
 
 ## Provision a Compute Instance
 
-In this step, you will configure and provision a new *Compute Instance* that will be used to test new Java features.
+In this step, you will configure and provision a *Compute Instance* that will be used to test new Java features.
 
 Compute Instances can be physical (bare metal) or virtual, they come in different shapes (memory, CPUs, storage, network, GPUs…). You can also choose between different OS…
 
-For this lab, you will configure a VM based instance using the a _VM shape_ and the _Oracle Linux 7.8_ (OEL) image.
+For this lab, you will configure a _VM_ based instance using the _Oracle Linux 7.8_ (OEL) image.
 
 1. From the top left hamburger menu, select **Core Infrastructure** ➡ **Compute** ➡ **Instances**, click **Create Instance**.
 

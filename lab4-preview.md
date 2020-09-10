@@ -15,7 +15,13 @@ The Preview Feature mechanism enables to add non-final, fully specified, and imp
 
 1. Create a basic application
 
-In a directory, create a simple _Hello.java_ application.
+In a new directory, create a simple _Hello.java_ application:
+
+`
+nano Hello.java
+`
+
+with the following content:
 
 ```java
 class Hello {
@@ -25,7 +31,9 @@ class Hello {
 }
 
 record Attendee(String first, String last) {}
+
 ```
+
 
 2. Compile it
 
@@ -34,7 +42,7 @@ record Attendee(String first, String last) {}
 ![](./images/lab4-1.png " ")
 
 
-This simple application uses a Record (see Lab 6) which is a Preview Feature in Java 15. That error simply informs you that preview features are disabled by default. To use those you need to explicitly enable them using the `--enable-preview` java compiler flag. Note that, you also need to confirm to the Java compiler which version of the Preview Feature you are using (ex. using the `--release` flag). 
+This simple application uses a Record (see Lab 7) which is a Preview Feature in Java 15. This error simply informs you that preview features are disabled by default. To use those, you need to explicitly enable them using the `--enable-preview` java compiler flag. Note that, you also need to confirm to the Java compiler which version of the Preview Feature you are using (ex. using the `--release` flag). 
 
 ` javac --enable-preview --release 15 Hello.java`
 

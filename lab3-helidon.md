@@ -96,7 +96,11 @@ server.start();
 
 #### _GreetService.java_
 
-Let's now look at the 2nd class (`bat src/main/java/com/devlive/GreetService.java`), we notice that this class implements the [io.helidon.webserver.Service](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Service.html) functional interface which has the `update` method.
+Let's now look at the 2nd class:
+
+`bat src/main/java/com/devlive/GreetService.java`
+
+We can notice that this class implements the [io.helidon.webserver.Service](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Service.html) functional interface which has the `update` method.
 ```Java
 public class GreetService implements Service …
 ```

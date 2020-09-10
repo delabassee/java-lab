@@ -15,9 +15,11 @@ This simple application is themed around 'conferences', it provides a simple RES
 The application is hosted on GitHub, just clone its repository:
 
 ```
-git clone git@github.com:delabassee/odl-java-hol.git
+cd ~
+git clone https://github.com/delabassee/odl-java-hol.git
 cd odl-java-hol
 ```
+
 
 The repository has multiple branches
 
@@ -61,7 +63,7 @@ helidon dev --app-jvm-args "--enable-preview"
 
 The Conference application exposes simple REST endpoints to get speaker-related information.
 
-* http://{public-ip}:8080/ ➞ Get all speakers
+* http://{public-ip}:8080/speakers ➞ Get all speakers
 * http://{public-ip}:8080/speakers/company/{company} ➞ Get speakers for a given company
 * http://{public-ip}:8080/speakers/lastname/{name} ➞ Get speaker by its lastname
 * http://{public-ip}:8080/speakers/track/{track} ➞ Get speakers for a given track
@@ -102,3 +104,5 @@ Here are some simple tips that might be useful in the course of this Lab.
 * For brevity, packages will sometimes be omitted from code snippets, they are obviously required. If you are not sure, simply check the solution.
 
 * To view files, you can use `bat` as it offers syntax highlighting.
+
+* If you are using the Helidon `devloop`, make sure to enbale preview features! `helidon dev --app-jvm-args "--enable-preview"`

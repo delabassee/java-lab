@@ -58,7 +58,7 @@ As you can see from the example below
 - the original formatting is preserved
 - the code readability is improved
 
-To preserve formatting while improving code readability, Text Blocks differentiate incidental white space, from essential white spaces. Incidental white spaces are only useful to improve code formating, they will be stripped away automatically by the Java compiler.
+To preserve formatting while improving code readability, Text Blocks differentiate incidental white space, from essential white spaces. Incidental white spaces are only useful to improve code readability, they will be stripped away automatically by the Java compiler.
 
 The following example is identical to the previous one but it doesn't use incidental white space, this impacts the code formating and hence its readability.
 
@@ -70,13 +70,14 @@ var element = """
 </ul>
 """; 
 ```
-The triple-quote closing delimiter defines how incidental white spaces will be handled. You can check the resources at the end for more details on those rules.
+The triple-quote closing delimiter defines how incidental white spaces are handled. You can check the resources at the end for more details on those rules.
 
 
 ## Add Text Blocks support
 
 In the `Main.java` class, you can notice when in the routings that the application uses Helidon's Web Server [Static Content support](https://helidon.io/docs/v2/#/se/webserver/06_static-content-support) to expose some static content.
 
+`nano src/main/java/conference/Main.java`
 
 ```
 Routing.builder()
@@ -88,7 +89,7 @@ Routing.builder()
 
 This static content is exposed under the `/public` path, and is served from the `/public` directory in the `/ressources` directory of the application. `index.html`is the default file served.
 
-Run the application and access from your browser the `/public` url, ex. `http://{public-ip-address}:8080/public`. You should get a basic UI to list speakers.
+Run the application and access from your browser the `/public` url, ex. `http://{public-ip}:8080/public`. You should get a basic UI to list speakers.
 ![](./images/lab5-1.png " ") 
 
 If you access the root path, you will get en error as there is no handler defined to handle this path. 
@@ -99,7 +100,10 @@ If you access the root path, you will get en error as there is no handler define
 To fix this, any HTTP request to the `/` path should be forwarded to the `/public` path.
 
 
-1. Define a Text Block that embeds some HTML content that will trigger a client-side forward to the `/public` path.
+1. In the `createRouting` method, define a Text Block that embeds some HTML content that will trigger a client-side forward to the `/public` path.
+
+
+`nano src/main/java/conference/Main.java`
 
 ```
 var snippet = """
@@ -131,7 +135,7 @@ Let's check the following snippet
 
 ```
 .get("/", (req, res) -> {
-        res.send(message);})
+        res.send(snippet);})
 ```
 
 It defines a [handler](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Handler.html) for any HTTP GET requests under the `/` path.  It has one method ([accept](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/BiConsumer.html?is-external=true#accept(T,U))) that takes a `BiConsumer<ServerRequest, ServerResponse>` to handle the request. In this case, we pass it a Lambda expression that sends the HTML snippet that will trigger the forward on the client-side.
@@ -140,7 +144,7 @@ It defines a [handler](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/i
 
 3. Test the application
 
-Compile, and access the application from a browser, `http://{public-ip-address}:8080/`
+Compile, and access the application from a browser, `http://{public-ip}:8080/`
 
 
 ![](./images/lab5-3.png " ") 
@@ -149,7 +153,7 @@ You can notice that the HTML formatting has been preserved which is good but tha
 
 
 ```
-> curl -v http://{public-ip-address}:8080
+> curl -v http://{public-ip}:8080
 ...
 < HTTP/1.1 200 OK
 < Content-Type: text/plain
