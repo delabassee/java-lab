@@ -1,4 +1,4 @@
-# Lab 5: The Conference Application ⛔
+# Lab 5: The Conference Application
 
 ## Overview
 
@@ -10,30 +10,30 @@ This simple application is themed around 'conferences', it provides a simple RES
 ⚠️ For the sake of brevity and clarity, this application takes some shortcuts and does not necessarily implement all the best practices recommended for an application that would go into production. Typically, you would have to think about concerns such as security, synchronization, testing, data validation, availability, scaling, etc. none of which are relevant in the context of today's lab!
 
 
-## The Conference Application ⛔
+## The Conference Application
 
 The application is hosted on GitHub, just clone its repository:
 
 ```
-git clone git@github.com:delabassee/odl-java-hol.git⛔
+git clone git@github.com:delabassee/odl-java-hol.git
 cd odl-java-hol
 ```
 
 The repository has multiple branches
 
-* `lab4` : starting point
-* `lab6` : lab 6 starting point, including the lab 4 and 5 solution
-* `lab7` : lab 7 starting point, including the lab 4 to 6 solution
-* `lab8` : lab 8 starting point, including the lab 4 to 7 solutions
-* `lab9` : lab 9 starting point, including the lab 4 to 8 solutions
-* `lab10` : lab 10 starting point, including the lab 4 to 9 solutions
-* `lab11` : all solutions from lab 4 to 10 included
+* `lab5` : starting point
+* `lab6` : lab 6 starting point, including the lab 5 solution
+* `lab7` : lab 7 starting point, including the lab 5 and 6 solution
+* `lab8` : lab 8 starting point, including the lab 5 to 7 solutions
+* `lab9` : lab 9 starting point, including the lab 5 to 8 solutions
+* `lab10` : lab 10 starting point, including the lab 5 to 9 solutions
+* `lab11` : all solutions from lab 5 to 10 included
 
-💡 `lab11` is optional and does not require any code update so there's no 'solution' for this lab.
+💡 `lab11` is optional and does not require any code update so there's no solution for this lab.
 
 Switch to the starting point:
 ```
-git checkout lab4
+git checkout lab5
 ```
 
 Update the project's `pom.xml` to enable Preview Features as described in the previous section.
@@ -73,7 +73,7 @@ Once the application is running, you can test it.
 * http://{public_ip}:8080/speakers/company/oracle
 * http://{public_ip}:8080/speakers/track/db
 
-## Lab Navigation & Tips⛔
+## Lab Navigation & Tips
 
 Here are some simple tips that might be useful in the course of this Lab.
 
