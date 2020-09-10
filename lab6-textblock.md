@@ -213,7 +213,7 @@ In this exercise, you have used text block, a standard Java 15 feature, to easil
 
 Simply put, text blocks enable developers to easily embed string literals spanning multiple lines into Java source code while preserving the original formatting but also the Java code readability. Text blocks are handy to deal with structured languages (ex. HTML, JSON, XML, etc.) without having to worry about escaping special characters (ex. new line, double quote) nor altering the original formatting.
 
-You can check the following resources for more details on Text Blocks.
+Check the following resources for more details on Text Blocks.
 
 * [JEP 378: Text Blocks](https://openjdk.java.net/jeps/378)
 * [Programmer's Guide To Text Blocks](https://inside.java/2019/08/06/text-blocks-guide/)

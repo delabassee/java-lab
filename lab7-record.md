@@ -16,7 +16,9 @@ Similar to enums, Records are technically a special form of classes optimized fo
 
 1. Create a Person record
 
-Create a file named `Person.java` with the following content.
+Create a `Person.java` class with the following content.
+
+`cd ~ && nano Person.java`
 
 ```
 public record Person(String lastname, String firstname) {}
@@ -61,6 +63,8 @@ You can also observe that the Person record extends the [`java.lang.Record`](htt
 
 To use the Record simply create a simple `TestRecord.java` class.
 
+`nano TestRecord.java`
+
 ```
 class TestRecord {
 
@@ -97,6 +101,7 @@ public record Person(String lastname, String firstname) {
 Compile and run the test class.
 
 ```
+> javac --enable-preview --source 15 TestRecord.java
 ...
 > java --enable-preview TestRecord
 Person{firstname=Jane, lastname=Doe}
@@ -104,11 +109,9 @@ Person{firstname=Jane, lastname=Doe}
 
 ## A Speaker Record
 
+Back to the Conference application (`cd ~/odl-java-hol`), it exposes simple REST endpoints to get speaker-related information.
 
-
-The Conference application exposes simple REST endpoints to get speaker-related information.
-
-* http://{public-ip-address}:8080/ ➞ Get all speakers 
+* http://{public-ip-address}:8080/speakers ➞ Get all speakers 
 
 * http://{public-ip-address}:8080/speakers/company/oracle ➞ Get speakers for a given company
 
@@ -130,7 +133,10 @@ The `Speaker.java` class is interesting as it models the Speaker type with all i
 
 Migrating this regular class into a Record is straightforward. Just replace the `Record.java` class content with the definition of the Speaker record. That definition should include the various components related to a speaker. 
 
+`nano src/main/java/conference/Speaker.java`
+
 ```
+package conference;
 public record Speaker (String id,
                        String firstName,
                        String lastName,
@@ -157,6 +163,9 @@ If you now compile the application, you will get multiple errors. Can you guess 
 Those errors make sense as the (old) `Speaker.java` class was using the Javabean getter convention to provide access to its private field. Records on the other hand rely on (automatically generated) accessor methods to enable access to its various components. So that needs to be fixed in the conference application code! Go through the `SpeakerRepositotory.java` class and make sure to use accessor methods for accessing components instead of getters. This needs to be fixed code accessing any components of the Speaker record (lastName, company, etc.).
 
 For example, change 
+
+`nano src/main/java/conference/SpeakerRepository.java`
+
 ```
 public List<Speaker> getAll() {
    List<Speaker> allSpeakers = speakers.stream()
@@ -176,12 +185,14 @@ public List<Speaker> getAll() {
 ```
 The application will now compile fine but if you test it, you will not get any result!
 
-The (old) `Speaker.java` class was relying on Helidon JSONB support. The issue you are facing is that Record is a fairly recent feature, and not all JSONB frameworks support them. The good news is that things are changing rapidly, ex. Apache Johnson and Jackson will soon offer full Record support.
+The (old) `Speaker.java` class was relying on Helidon JSONB support. The issue you are facing is that Record is a fairly recent feature, and not all JSONB frameworks support them. The good news is that things are changing rapidly, ex. Apache Johnson, and Jackson will soon offer full Record support.
 
 In the meantime, we can easily fix this by updating the Speaker record to return, using the JSONP API, a JSON representation of its various components.
 
 
 1. Add the following `toJson` method to the `Speaker.java` record.
+
+`nano src/main/java/conference/Speaker.java`
 
 ```
 JsonObject toJson() {
@@ -206,7 +217,9 @@ import javax.json.JsonObject;
 
 2. Update the code to return a List of `JsonObject` instead of List of `Speaker`.	
 
-For example, update update the `getAll` method in the the `SpeakerService.java` class 
+For example, update update the `getAll` method in the the `SpeakerService.java` class
+
+`nano src/main/java/conference/SpeakerService.java` 
 
 ```
 List<Speaker> allSpeakers = this.speakers.getAll();
@@ -231,7 +244,7 @@ You can notice that using Records leads to a more concise, more readable code wh
 📝 Make sure to add support Records to all `SpeakerService.java` methods (`getByCompany`, `getByTrack`, `getSpeakersById`) as you just did for the `getAll` method.
 
 
-## Local Records
+## Local Records (optional)
 
 
 When you are developing applications, think how many times you are creating intermediate values that are a simple group of variables? That should be very frequent! The Record feature is perfect to cope with such use-case.

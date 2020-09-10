@@ -93,6 +93,7 @@ Here are some simple tips that might be useful in the course of this Lab.
 
 	* <kbd>Control</kbd> <kbd>x</kbd> : Exit
 	* <kbd>Control</kbd> <kbd>o</kbd> : Save
+	* <kbd>Control</kbd> <kbd>k</kbd> : Delete Line
 	* <kbd>Control</kbd> <kbd>g</kbd> : Help
 	* <kbd>Control</kbd> <kbd>y</kbd> : Page Up
 	* <kbd>Control</kbd> <kbd>v</kbd> : Page Down
