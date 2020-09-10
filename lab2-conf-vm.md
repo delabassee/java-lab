@@ -74,15 +74,21 @@ For this lab, you will configure a VM based instance using the a _VM shape_ and 
 ![](./images/lab2-9.png " ")
 
 
-3. Select a Virtual Machine shape: **Show Shape, Network, Storage Options ➡ Change Shape ➡ Virtual Machine**, pick **VM.Standard2.1** or any similarly sized shape as it is more than enough to run the lab. You can now confirm with  **Select Shape**.
+3. Select a Virtual Machine shape: **Show Shape, Network, Storage Options ➡ Change Shape ➡ Virtual Machine**, pick **VM.Standard2.1** or any similarly sized **VM.Standardx.x** shape as it is more than enough to run the lab. You can now confirm with  **Select Shape**.
 
 ![](./images/lab2-9bis.png " ")
 
+
+4. Check the network settings. By default, the network should be configured to use your VNC with a public IP address.
+
+![](./images/lab2-9ter.png " ")
+
+
 ⚠️ OCI will generate the SSH keys pair required to authenticate in this new instance.
-You must save the generated private key on your machine. Without it, your instance will be useless as you won't be able to log in! The generated public key will be automatically configured in the instance during the provisioning.
+You must save the generated private key on your machine. Without it, your instance will be useless as you won't be able to log in! The generated public key will be automatically configured in the instance during its provisioning.
 
 
-3. Hit **Save Private Key**. Depending on your browser, the private key will either be downloaded and saved on your machine (ex. in the `~/Downloads` folder) or you might get a prompt asking where it should be saved.
+4. Hit **Save Private Key**. Depending on your browser, the private key will either be downloaded and saved on your machine (ex. in the `~/Downloads` folder) or you might get a prompt asking where it should be saved.
 
 ![](./images/lab2-10.png " ") 
 
@@ -103,11 +109,11 @@ In a shell on your computer, use `ssh` to connect to the instance on OCI: `ssh {
 The default OEL username is **opc**. You also need to specify the path of the private key using the `-i` flag.
 The final command should look like :
 
-`ssh -i ~/Downloads/ssh-key-2020-09-xx.key opc@158.xxx.xxx.xxx`.
+`ssh -i ~/Downloads/ssh-key-2020-09-xx.key -o IdentityAgent=none opc@158.xxx.xxx.xxx`
 
 💡 Some OS (ex. OSX) might refuse to establish the conncetion, and complain about your private key's permissions being too loose (ex. "WARNING: UNPROTECTED PRIVATE KEY FILE!"). If that's the case, make sure to adjust your private key's permissions so that it can't be read by others:
 
- `chmod 700 ssh-key-2020-xxx.key`
+ `chmod 400 ~/Downloads/ssh-key-2020-xxx.key`
 
 You will get a message saying "The authenticity of host '158.xxx.xxx.xxx' can't be established…", you can ignore it by typing **yes**. You are now connected to your OCI instance!
 
@@ -123,7 +129,7 @@ You know have a VM running Linux on OCI. Next, you will install the latest versi
 In your instance, run the following command:
 
 ```
-source <(curl -L https://gist.githubusercontent.com/delabassee/a11e09dcf5a85dae87a5fd6a96ce77ea/raw/73f8fa49b1e717b96192c3a7c6398c72fe26fe48/vm-setup.sh)
+source <(curl -L https://gist.githubusercontent.com/delabassee/a11e09dcf5a85dae87a5fd6a96ce77ea/raw/f93751cdce3451b2aee6ba468dd5964c74571258/vm-setup.sh)
 ```
 
 The script should take around ~90 seconds. In the meantime, you can check what it is doing by typing its URL (https://gist.githubusercontent.com/delabassee/...) in a browser. In a nutshell, the script: 

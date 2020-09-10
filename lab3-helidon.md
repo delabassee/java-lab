@@ -10,7 +10,7 @@ In this 5-minutes lab, you will create a simple Microservices exposing a REST en
 
 For more information, please check [https://helidon.io/](https://helidon.io/).
 
-💡 This lab is using Helidon SE as it is simple, lightweight, and fast. Obviously, all the Java features discussed in this HoL can be used with any framework supporting the latest version of Java. Moreover, this lab is only using a small fraction of Helidon's capabilities.
+💡 This lab is using Helidon SE as it is simple, lightweight, and fast. Obviously, all the Java features discussed can be used with any framework supporting the latest version of Java. Moreover, this lab is only using a small fraction of Helidon's capabilities.
  
 ## Initialize a Helidon project
 
@@ -20,16 +20,16 @@ Run `helidon init`, and select the suggested options (**SE flavor**, **bare Mini
 
 ![](./images/lab3-1.png " ")
 
-If you check the newly generated project (`tree -C myproject`), you will notice it is a Maven project:
+Go into the project directory (`cd java-devlive`), and check the newly generated project (`tree -C .`). You should notice it is a Maven project:
 * there is `pom.xml`,
-* sources are located in `src/main/java/mypackage`,
-* tests are located in `src/test/java/mypackage`, etc.
+* sources are located in `src/main/java/com/devlive/`,
+* tests are located in `src/test/java/com/devlive/`, etc.
 
 ![](./images/lab3-2.png " ")
 
 ## Build and test an Helidon project
 
-You can build the Helidon project using the `mvn package` command in the `myproject` directory. 
+You can build the Helidon project using the `mvn package` command in the `java-devlive` directory. 
 
 ![](./images/lab3-3.png " ")
 
@@ -39,7 +39,7 @@ You can now check the project's target directory (`tree -C target`), it contains
 
 ![](./images/lab3-4.png " ")
 
-To run the application, simply use `java -jar target/myartifactid.jar`
+To run the application, simply use `java -jar target/java-devlive.jar`
 
 ![](./images/lab3-5.png " ")
 
@@ -55,7 +55,7 @@ Let's now try to grasp how things work by checking the sources.
 
 #### _Main.java_
 
-`bat src/main/java/mypackage/Main.java`
+`bat src/main/java/com/devlive/Main.java`
 
 This is the main class of the application. Amongst other things, its `startServer` method
 * creates a Webserver instance,
@@ -96,7 +96,7 @@ server.start();
 
 #### _GreetService.java_
 
-Let's now look at _src/main/java/mypackage/GreetService.java_, we notice that this class implements the [io.helidon.webserver.Service](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Service.html) functional interface which has the `update` method.
+Let's now look at the 2nd class (`bat src/main/java/com/devlive/GreetService.java`), we notice that this class implements the [io.helidon.webserver.Service](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Service.html) functional interface which has the `update` method.
 ```Java
 public class GreetService implements Service …
 ```
