@@ -187,7 +187,7 @@ The application will now compile fine but if you test it, you will not get any r
 
 The (old) `Speaker.java` class was relying on Helidon JSONB support. The issue you are facing is that Record is a fairly recent feature, and not all JSONB frameworks support them. The good news is that things are changing rapidly, ex. Apache Johnson, and Jackson will soon offer full Record support.
 
-In the meantime, we can easily fix this by updating the Speaker record to return, using the JSONP API, a JSON representation of its various components.
+In the meantime, you can easily fix this by updating the Speaker record to return, using the JSONP API, a JSON representation of its various components.
 
 
 1. Add the following `toJson` method to the `Speaker.java` record.
@@ -239,7 +239,7 @@ if (allSpeakers.size() > 0) {
 
 If you build and test the application, it should behave like before.
 
-You can notice that using Records leads to a more concise, more readable code when it comes to model data aggregates! Shortly, when JSONB frameworks will support Records, the marshaling/unmarshaling between JSON payload and Records will be transparent. That will again simplify things as we won't have to use the JSONP API to add to the Record, a method to return its JSON representation!
+You can notice that using Records leads to a more concise, more readable code when it comes to model data aggregates! Shortly, when JSONB frameworks will support Records, the marshaling/unmarshaling between JSON payload and Records will be transparent. That will again simplify things as you won't have to use the JSONP API to add to the Record, a method to return its JSON representation!
 
 📝 Make sure to add support Records to all `SpeakerService.java` methods (`getByCompany`, `getByTrack`, `getSpeakersById`) as you just did for the `getAll` method.
 
@@ -251,15 +251,17 @@ When you are developing applications, think how many times you are creating inte
 
 Local Record is a feature introduced in the second Record preview in JDK 15. Local Records offer a convenient option to declare a record inside a method, close to the code which manipulates the variables.
 
-For this exercise, let's pretend that we want to return a simpler form of Speaker, ex. just the last name/first name pair and the company.
+For this exercise, let's pretend that you want to return a simpler form of Speaker, ex. just the last name/first name pair and the company.
 
 1. Update the `getAll` method to include a local Record, i.e. within the body of the method!
+
+`nano src/main/java/conference/SpeakerService.java`
 
 ```
 record SpeakerSummary(String last, String first, String company) {}
 ```
 
-2. Add it a `toJson` method JSONP 
+2. Add it a `toJson` method 
 
 ```
 record SpeakerSummary(String last, String first, String company) {
@@ -273,7 +275,7 @@ record SpeakerSummary(String last, String first, String company) {
 }
 ```
 
-3. Adapt the the`getAll` method to create, using the Streams API, a list of SpeakerSummary instead of a list of Speaker. 
+3. Adapt the the `getAll` method to create, using the Streams API, a list of `SpeakerSummary` instead of a list of `Speaker`. 
 
 
 ```
@@ -286,6 +288,8 @@ if (allSpeakers.size() > 0) {
 ```
 
 If you now test the endpoint, you will get the shorter speaker representation (see the right column below).
+
+💡 Use `curl` or FireFox to test this, not the Web UI as it needs to updated to cope with the updated JSON payload.
 
 ![](./images/lab7-1.png " ")
 
