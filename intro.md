@@ -13,7 +13,7 @@ To achieve this, you will use
 
 * the Oracle Cloud Infrastructure (OCI).
 
-It is expected that you have Java knowledge and some basic Linux skills (ex. how to edit files). During this HoL, we will also use Maven and Git. The only thing you need on your side is an SSH client, a web browser, and a direct Internet connection.
+It is expected that you have Java knowledge and some basic Linux skills (ex. edit files). During this HoL, you will also use Maven and Git. The only thing you need on your side is an SSH client, a web browser, and a direct Internet connection.
 
 You will use Helidon as it is easy, simple, and fast but obviously, all the Java features discussed in this HoL can be used with any framework supporting the latest version of Java.
 
@@ -22,4 +22,4 @@ You will use Helidon as it is easy, simple, and fast but obviously, all the Java
 **Acknowledgements**
 
  - Author: [David Delabassee](https://delabassee.com)
- - Last updated By: David Delabassee, Sept 8 2020
+ - Last updated By: David Delabassee, Sept 9 2020

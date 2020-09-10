@@ -12,7 +12,7 @@ Oracle Cloud Free Tier allows you to sign up for an Oracle Cloud account which p
 
 ### Prerequisites
 
-* A valid email address
+* A valid email address, make sure to use the address you have used to registered for this event!
 * Ability to receive SMS text verification (only if your email isn't recognized)
 
 ## Create Your Free Trial Account
@@ -66,7 +66,7 @@ If you've signed out of the Oracle Cloud, use these steps to sign back in.
 
   ![](images/lab1-oci-console-home-page.png " ")
 
-You may now *proceed to the next lab*.
+You may now proceed to the next lab.
 
 ## Acknowledgements
 
