@@ -45,12 +45,12 @@ You still need to do one thing, i.e. configure a security rule to allow requests
 
 ![](./images/lab2-6.png " ")
 
-2. Click on the default security list and **Add Ingress Rules**.
+3. Click on the default security list and **Add Ingress Rules**.
 
 ![](./images/lab2-7pre.png " ")
 ![](./images/lab2-7.png " ")
 
-3. Fill in the **Source CIDR** and the **Destination port** as follow, and click **Add Ingress Rules**.
+4. Fill in the **Source CIDR** and the **Destination port** as follow, and click **Add Ingress Rules**.
 
 ![](./images/lab2-8.png " ")
 
@@ -89,11 +89,11 @@ For this lab, you will configure a VM based instance using the a _VM shape_ and 
 You must save the generated private key on your machine. Without it, your instance will be useless as you won't be able to log in! The generated public key will be automatically configured in the instance during its provisioning.
 
 
-4. Hit **Save Private Key**. Depending on your browser, the private key will either be downloaded and saved on your machine (ex. in the `~/Downloads` folder) or you might get a prompt asking where it should be saved.
+5. Hit **Save Private Key**. Depending on your browser, the private key will either be downloaded and saved on your machine (ex. in the `~/Downloads` folder) or you might get a prompt asking where it should be saved.
 
 ![](./images/lab2-10.png " ") 
 
-4. You can now click **Create**.
+6. You can now click **Create**.
 
 After 60~90 seconds, the big left square will switch from the **PROVISIONING** state (orange) to the **RUNNING** state (green). That means that your instance is up and running.
 
@@ -145,8 +145,5 @@ The script should take around ~90 seconds. In the meantime, you can check what i
 Once the script has been executed, you can test your instance by issuing, for example, `java -version`.
 
 Congratulations, everything is now correctly set-up! You can proceed to the next lab…
-
-
-
 
 
