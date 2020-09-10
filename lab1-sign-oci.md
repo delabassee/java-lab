@@ -1,4 +1,4 @@
-# Sign Up for Free OCI Trial
+# Lab 1: Sign Up for Free OCI Trial
 
 ## Introduction
 
