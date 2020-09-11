@@ -30,7 +30,9 @@ Broadly speaking, the conference has the following sessions :
 
 All extends the **Session** abstract class
 
-1. Create a `session` directory and create the abstract sealed `Session.java` superclass.
+1. Create a `session` directory (`mkdir src/main/java/conference/session/`) and create the abstract sealed `Session.java` superclass.
+
+`nano src/main/java/conference/session/Session.java`
 
 ```
 package conference.session;
@@ -64,6 +66,8 @@ permits Keynote, Breakout {
 
 2. Now you need to create both `Keynote.java` and `Breakout.java` classes
 
+`nano src/main/java/conference/session/Keynote.java`
+
 ```
 package conference.session;
 
@@ -78,6 +82,9 @@ final public class Keynote extends Session {
 }
 ```
 🔎 `Keynote.java` is **final**, it can't be extended.
+
+
+`nano src/main/java/conference/session/Breakout.java`
 
 ```
 package conference.session;
@@ -110,6 +117,8 @@ permits Lab, Lecture {
 
 3. Create the `Lecture.java` and `Lab.java` classes
 
+`nano src/main/java/conference/session/Lecture.java`
+
 ```
 package conference.session;
 
@@ -130,6 +139,7 @@ final public class Lecture extends Breakout {
 
 ```
 
+`nano src/main/java/conference/session/Lab.java`
 ```
 package conference.session;
 
@@ -152,7 +162,51 @@ final public class Lab extends Breakout {
 
 🔎 Both classes are `final`.
 
-4. Create `AgendaService.java` (check the package!)
+
+4. Create a fictional 'AgendaRepository.java' class
+
+`nano src/main/java/conference/AgendaRepository.java`
+
+```
+package conference;
+
+import conference.session.Keynote;
+import conference.session.Lab;
+import conference.session.Lecture;
+import conference.session.Session;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public final class AgendaRepository {
+
+   private List<Session> sessionList;
+
+   public AgendaRepository() {
+
+      var keynote = new Keynote("Georges", "The Future of Java Is Now");
+      var s1 = new Lecture("Java Language Futures - Mid 2020 Edition", "Brian", "http://speakerdeck/s1");
+      var s2 = new Lecture("ZGC: The Next Generation Low-Latency Garbage Collector", "Per", "http://slideshare/s2");
+      var s3 = new Lecture("Continuous Monitoring with JDK Flight Recorder (JFR)", "Mikael", "http://speakerdeck/");
+      var h1 = new Lab("Building Java Cloud Native Applications with Micronaut and OCI", "Graeme", "http://github.com/micronaut");
+      var h2 = new Lab("Using OCI to Build a Java Application", "David", "http://github.com/xyz");
+
+      sessionList = List.of(keynote, s1, s2, s3, h1, h2);
+   }
+
+  public List<Session> getAll() {
+
+      List<Session> allSessions = sessionList.stream()
+              .collect(Collectors.toList());
+      return allSessions;
+    }
+    
+}
+```
+
+5. Create `AgendaService.java`
+
+`nano src/main/java/conference/AgendaService.java`
 
 ```
 package conference;
@@ -193,47 +247,11 @@ public class AgendaService implements Service {
 }
 ```
 
-5. Create a fictional 'AgendaRepository.java' class
-
-```
-package conference;
-
-import conference.session.Keynote;
-import conference.session.Lab;
-import conference.session.Lecture;
-import conference.session.Session;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-public final class AgendaRepository {
-
-   private List<Session> sessionList;
-
-   public AgendaRepository() {
-
-      var keynote = new Keynote("Georges", "The Future of Java Is Now");
-      var s1 = new Lecture("Java Language Futures - Mid 2020 Edition", "Brian", "http://speakerdeck/s1");
-      var s2 = new Lecture("ZGC: The Next Generation Low-Latency Garbage Collector", "Per", "http://slideshare/s2");
-      var s3 = new Lecture("Continuous Monitoring with JDK Flight Recorder (JFR)", "Mikael", "http://speakerdeck/");
-      var h1 = new Lab("Building Java Cloud Native Applications with Micronaut and OCI", "Graeme", "http://github.com/micronaut");
-      var h2 = new Lab("Using OCI to Build a Java Application", "David", "http://github.com/xyz");
-
-      sessionList = List.of(keynote, s1, s2, s3, h1, h2);
-   }
-
-  public List<Session> getAll() {
-
-      List<Session> allSessions = sessionList.stream()
-              .collect(Collectors.toList());
-      return allSessions;
-    }
-    
-}
-```
 
 6. Update the `createRouting` method in `Main.java` to instantiate the AgendaService and register its handler under the "/sessions" path.
 
+
+`nano src/main/java/conference/Main.java`
 
 ```
 …
@@ -245,8 +263,14 @@ return Routing.builder()
       .register("/sessions", sessionsService)
       .build();
 
-
 ```
+
+This new endpoint can new be accessed via `{public_ip}:8080/sessions`, it exposes sessions details. 
+
+
+7. Create a new session type.
+
+You should now try to create an additional session type, ex. a `Quickie` session type that extends `Breakout`. Given that only `Lab` and `Lecture` are permitted to extend `Breakout`, the Java compiler will simply refuse that `Quickie` tries to extends `Breakout` but you should be able to fix this.
 
 
 ## Wrap-up
