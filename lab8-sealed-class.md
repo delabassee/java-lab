@@ -37,24 +37,29 @@ All extends the **Session** abstract class
 ```
 package conference.session;
 
+import conference.Track;
+
+import java.util.UUID;
+
 sealed public abstract class Session
 permits Keynote, Breakout {
 
-   private String uid;
-   private String title;
+    private String id;
+    private String title;
 
-   public Session(String title) {
-      this.title = title;
-      this.id= id;
-   }
+    public Session(String id, String title) {
+        this.title = title;
+        //uid = UUID.randomUUID().toString();
+        this.id= id;
+    }
 
-   public String getUid() {
-      return uid;
-   }
+    public String getId() {
+        return id;
+    }
 
-   public String getTitle() {
-      return title;
-   }
+    public String getTitle() {
+        return title;
+    }
 }
 ```
 
@@ -72,10 +77,14 @@ package conference.session;
 
 final public class Keynote extends Session {
 
+    public String getKeynoteSpeaker() {
+        return keynoteSpeaker;
+    }
+
     String keynoteSpeaker;
 
-    public Keynote(String keynoteSpeaker, String title) {
-        super(title);
+    public Keynote(String id, String keynoteSpeaker, String title) {
+        super(id, title);
         this.keynoteSpeaker = keynoteSpeaker;
     }
 }
@@ -96,10 +105,10 @@ permits Lab, Lecture {
     private String speaker;
     private int virtualRoom;
 
-    public Breakout(String title, String speaker) {
-        super(title);
+    public Breakout(String id, String title, String speaker) {
+        super(id, title);
         this.speaker = speaker;
-        this.virtualRoom = new Random().nextInt(3) + 1; // random room
+        this.virtualRoom = new Random().nextInt(3) + 1; // session will be randomly assigned to room 1, 2 or 3
     }
 
     public String getSpeaker() {
@@ -109,7 +118,6 @@ permits Lab, Lecture {
     public int getVirtualRoom() {
         return virtualRoom;
     }
-
 }
 ```
 🔎 `Breakout.java` is also **sealed**, it **permits** both the `Lab` and the `Lecture` classes to extend it.
@@ -125,20 +133,19 @@ final public class Lecture extends Breakout {
 
     String slidesUrl;
 
-    public Lecture(String title, String speaker, String slidesUrl) {
-        super(title, speaker);
+    public Lecture(String id, String title, String speaker, String slidesUrl) {
+        super(id, title, speaker);
         this.slidesUrl = slidesUrl;
     }
 
     public String getslidesUrl() {
         return slidesUrl;
     }
-
 }
-
 ```
 
 `nano src/main/java/conference/session/Lab.java`
+
 ```
 package conference.session;
 
@@ -146,17 +153,15 @@ final public class Lab extends Breakout {
 
     String labUrl;
 
-    public Lab(String title, String speaker, String labUrl) {
-        super(title, speaker);
+    public Lab(String id, String title, String speaker, String labUrl) {
+        super(id, title, speaker);
         this.labUrl = labUrl;
     }
 
     public String getLabUrl() {
         return labUrl;
     }
-
 }
-
 ```
 
 🔎 Both classes are `final`.
@@ -175,31 +180,43 @@ import conference.session.Lecture;
 import conference.session.Session;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public final class AgendaRepository {
 
-   private List<Session> sessionList;
+    private final List<Session> sessionList;
 
-   public AgendaRepository() {
+    public AgendaRepository() {
 
-      var keynote = new Keynote("Georges", "The Future of Java Is Now");
-      var s1 = new Lecture("Java Language Futures - Mid 2020 Edition", "Brian", "http://speakerdeck/s1");
-      var s2 = new Lecture("ZGC: The Next Generation Low-Latency Garbage Collector", "Per", "http://slideshare/s2");
-      var s3 = new Lecture("Continuous Monitoring with JDK Flight Recorder (JFR)", "Mikael", "http://speakerdeck/");
-      var h1 = new Lab("Building Java Cloud Native Applications with Micronaut and OCI", "Graeme", "http://github.com/micronaut");
-      var h2 = new Lab("Using OCI to Build a Java Application", "David", "http://github.com/xyz");
+        var keynote = new Keynote("001", "007", "The Future of Java Is Now");
+        var s1 = new Lecture("005", "Java Language Futures - Mid 2020 Edition", "021", "https://speakerdeck/s1");
+        var s2 = new Lecture("006", "ZGC: The Next Generation Low-Latency Garbage Collector", "005", "https://slideshare/s2");
+        var s3 = new Lecture("007", "Continuous Monitoring with JDK Flight Recorder (JFR)", "010", "https://speakerdeck/007");
+        var hol1 = new Lab("010", "Building Java Cloud Native Applications with Micronaut and OCI", "030", "https://github.com/micronaut");
+        var hol2 = new Lab("011", "Using OCI to Build a Java Application", "019", "https://github.com/011");
 
-      sessionList = List.of(keynote, s1, s2, s3, h1, h2);
-   }
-
-  public List<Session> getAll() {
-
-      List<Session> allSessions = sessionList.stream()
-              .collect(Collectors.toList());
-      return allSessions;
+        sessionList = List.of(keynote, s1, s2, s3, hol1, hol2);
     }
-    
+
+
+    public List<Session> getAll() {
+
+        List<Session> allSessions = sessionList.stream()
+                .collect(Collectors.toList());
+        return allSessions;
+    }
+
+
+    public Optional<Session> getBySessionId(String sessionId) {
+
+        Optional<Session> session = sessionList.stream()
+                .filter(s -> s.getId().equals(sessionId))
+                .findFirst();
+        return session;
+    }
+
+
 }
 ```
 
