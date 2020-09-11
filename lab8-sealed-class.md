@@ -36,26 +36,25 @@ All extends the **Session** abstract class
 
 ```
 package conference.session;
-import java.util.UUID;
 
 sealed public abstract class Session
 permits Keynote, Breakout {
 
-    private String uid;
-    private String title;
+   private String uid;
+   private String title;
 
-    public Session(String title) {
-        this.title = title;
-        uid = UUID.randomUUID().toString();
-    }
+   public Session(String title) {
+      this.title = title;
+      this.id= id;
+   }
 
-    public String getUid() {
-        return uid;
-    }
+   public String getUid() {
+      return uid;
+   }
 
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle() {
+      return title;
+   }
 }
 ```
 
