@@ -1,4 +1,7 @@
-# java-lab
-ODL Java Hands-On Lab - September 2020
+## Using OCI to Build a Java Application 
 
-Codes: https://github.com/delabassee/odl-java-hol
+*ODL Hands-on Lab - September 2020*
+
+http://delabassee.com/lab/
+
+https://github.com/delabassee/odl-java-hol
