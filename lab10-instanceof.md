@@ -10,7 +10,7 @@ In this 10-minutes lab, you will get some hands-on expereince with the *pattern 
 💡 Make sure to checkout the lab10 branch as it introduces 2 new classes to the project: `AgendaRepository.java` and `AgendaService.java`
 
 ```
-git checkout lab10
+git checkout -f lab10
 ```
 
 Chek those 2 new classes. `AgendaService.java` introduces a new "/sessions" endpoint that returns the details of the sessions. The sessions are stored in `AgendaRepository.java` using a simple `List<Session>`. The `Session` type has been introduced in Lab 8, it is a sealed abstract class that can only be extended by a given set of classes (check Lab 8 for details).
@@ -23,8 +23,9 @@ Build and test the application, `curl {public_ip}:8080/sessions`
 
 Let's pretend that the displyed details vary based on the session type.
 
+Add the following `getSessionDetails` method to the "AgendaServoce".
 
-Add the following `getSessionDetails` method.
+`nano src/main/java/conference/AgendaService.java`
 
 ```
 private void getSessionDetails(final ServerRequest request, final ServerResponse response) {
@@ -109,8 +110,7 @@ public void update(Routing.Rules rules) {
 }
 ```
 
-
-Although a bit lengthy, the `getSessionDetails`is easy to grasp. 
+Although a bit long, the `getSessionDetails` method is easy to grasp. 
 
 
 ```

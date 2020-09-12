@@ -99,7 +99,7 @@ private void getSpeakersById(ServerRequest request, ServerResponse response) {
 
 This method is simple. It first defines a new "Speaker" local record, and then if a speaker for a given ID is found, it creates a record for that speaker. Note that the new `getTrackDetail` is being used to fill the record track component. Finally, it simply sends the JSON representation of this speaker record back to the client.
 
-When you now request speaker details via an ID (ex. `curl http://{public_ip}:8080/speakers/006`), you will get all details including a better track name.
+When you now request speaker details via an ID (ex. `curl http://{public_ip}:8080/speakers/010`), you will get all details including a better track name.
 
 Now there are multiple issues with this code!
 
