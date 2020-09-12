@@ -13,6 +13,12 @@ First create a basic application and compile it.
 
 
 ```
+mkdir ~/jlink-test && cd ~/jlink-test
+nano Test.java
+javac Test.java
+```
+
+```
 class Test {
    public static void main(String args[]) {
      System.out.println("Hello jlink!");
@@ -24,7 +30,7 @@ You then need to know which module(s) this application requires to run. For that
 
 `jdeps Test.class`
 
-You can see that in this case only the `java.base` module is required. You can now create a custom runtime by passing to `jlink` the target location of the custom runtime and the list of module(s) to include in it.
+You can see that in this case only the `java.base` module is required. Using this information, you can create a custom runtime by passing to `jlink` the target location of the custom runtime and the list of module(s) to include in it.
 
 ```
 jlink --output custom-runtime --add-modules java.base
@@ -36,7 +42,7 @@ You can now check the size of the generated Java runtime image.
 du -chs custom-runtime
 ```
 
-This small (>40MB!) custom Java runtime is limited but it can, nevertheless, runs any application that only require the `java.base` module such the example above.
+This small (<50MB!) custom Java runtime is limited but it can, nevertheless, runs any application that only require the `java.base` module such the example above.
 
 
 ## Using `jlink` with Helidon applications 
@@ -47,12 +53,13 @@ The previous example could not be more simple! As such, it does not reflect the 
 To create a jlink based custom Java runtime image, Helidon is using a Maven profile. To use it, simply issue the following Maven command from the project directory.
 
 ```
+cd ~/odl-java-hol
 mvn package -Pjlink-image -Djlink.image.defaultJvmOptions="--enable-preview"
 ```
 
 ![](./images/lab11-1.png " ")
 
-The result are impressive as the total size (JDK, the application and its dependcies) went from ~320MB to ~75MB, a +75% gain!
+The result are impressive as the total size (JDK, the application and its dependcies) went from ~320MB to ~80MB, a ~75% gain!
 
 💡 The Helidon `jlink` Maven profile also creates, by default, a CDS (Class Data Sharing) archive. CDS is a JDK feature that helps reduce the startup time and memory footprints of Java applications. Check [here]((https://docs.oracle.com/en/java/javase/14/vm/class-data-sharing.html#GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91) from additional details.
 
@@ -67,7 +74,7 @@ To get additional details, just use its help.
 conference-app/bin/start --help
 ```
 
-
+As you can see, using `jlink` with Helidon is simple and straight forward!
 
 
 ## Wrap-up
