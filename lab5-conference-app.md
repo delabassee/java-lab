@@ -81,7 +81,7 @@ Here are some simple tips that might be useful in the course of this Lab.
 
 * The left bar is used to navigate within the current exercise. The right bar is used to navigate between exercises. If it is too obtrusive, just hide it.
 
-* To switch between branches, use `git branch checkout {target-branch}`, ex. `git branch checkout lab10`
+* To switch between branches, use `git branch checkout {target-branch}`, ex. `git checkout -f lab10`
 
 * To list branches: `git branch -a`
 
