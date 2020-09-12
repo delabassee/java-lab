@@ -108,7 +108,7 @@ permits Lab, Lecture {
     public Breakout(String id, String title, String speaker) {
         super(id, title);
         this.speaker = speaker;
-        this.virtualRoom = new Random().nextInt(3) + 1; // session will be randomly assigned to room 1, 2 or 3
+        this.virtualRoom = new Random().nextInt(3) + 1; // randomly assign a room
     }
 
     public String getSpeaker() {
@@ -215,8 +215,6 @@ public final class AgendaRepository {
                 .findFirst();
         return session;
     }
-
-
 }
 ```
 
@@ -280,23 +278,21 @@ return Routing.builder()
       .build();
 
 ```
-
-This new endpoint can new be accessed via `{public_ip}:8080/sessions`, it exposes sessions details. 
+As you have probably guessed, you have just created an endpoint to exposes sessions details
+It can be accessed via `{public_ip}:8080/sessions`.
 
 
 7. Create a new session type.
 
-You should now try to create an additional session type, ex. a `Quickie` session type that extends `Breakout`. Given that only `Lab` and `Lecture` are permitted to extend `Breakout`, the Java compiler will simply refuse that `Quickie` tries to extends `Breakout` but you should be able to fix this.
-
+The interesting part of the lab is the restricted Session classes hierarchy that you have created at the beginning. You can challenge it by creating, for example, a new session type (ex. `Quickie`) type that extends `Breakout`. Given that only `Lab` and `Lecture` are permitted to extend `Breakout`, the Java compiler will simply refuse that `Quickie` tries to extends `Breakout` but you should be able to fix this.
 
 ## Wrap-up
 
 In this exercise, you have used Sealed Classes. 
 
-Sealed Classes is a new feature that enables a developer to define a restricted class hierarchy, i.e. a developer has now the ability to explicitly states for a given class (or an interface) which classes (or interfaces) may extend (or implement) it. Sealed Classes is a previewed feature in JDK 15.
+Sealed Classes is a new feature that enables a developer to define a restricted classes hierarchy, i.e. a developer has now the ability to explicitly states for a given class (or an interface) which classes (or interfaces) may extend (or implement) it. Sealed Classes is a previewed feature in JDK 15.
 
-For more details, please check [JEP 360: Sealed Classes (Preview)](https://openjdk.java.net/jeps/360)
-and [Java Feature Spotlight: Sealed Classes](https://www.infoq.com/articles/java-sealed-classes/).
+For more details, please check [JEP 360: Sealed Classes (Preview)](https://openjdk.java.net/jeps/360) and [Java Feature Spotlight: Sealed Classes](https://www.infoq.com/articles/java-sealed-classes/).
 
 
 
