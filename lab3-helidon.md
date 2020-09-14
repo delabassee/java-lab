@@ -87,7 +87,7 @@ return Routing.builder()
 ```
 
 
-The webserer is then started.
+The webserver is then started.
 ```java
 …
 server.start();

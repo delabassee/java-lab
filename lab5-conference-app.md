@@ -48,9 +48,9 @@ Either using Maven:
 
 ```
 mvn clean package
-java -java -jar target/conference-app.jar
+java -jar target/conference-app.jar
 # When using preview features… 
-#java --enable-preview -java -jar target/conference-app.jar
+#java --enable-preview -jar target/conference-app.jar
 ```
 
 or using the Helidon CLI devloop:
