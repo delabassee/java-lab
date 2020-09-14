@@ -160,7 +160,7 @@ If you now compile the application, you will get multiple errors. Can you guess 
 …
 ```
 
-Those errors make sense as the (old) `Speaker.java` class was using the Javabean getter convention to provide access to its private field. Records on the other hand rely on (automatically generated) accessor methods to enable access to its various components. So that needs to be fixed in the conference application code! Go through the `SpeakerRepositotory.java` class and make sure to use accessor methods for accessing components instead of getters. This needs to be fixed code accessing any components of the Speaker record (lastName, company, etc.).
+Those errors make sense as the (old) `Speaker.java` class was using the Javabean getter convention to provide access to its private field. Records on the other hand rely on (automatically generated) accessor methods to enable access to its various components. So that needs to be fixed in the conference application code! Go through the `SpeakerRepository.java` class and make sure to use accessor methods for accessing components instead of getters. This needs to be fixed code accessing any components of the Speaker record (lastName, company, etc.).
 
 For example, change 
 
