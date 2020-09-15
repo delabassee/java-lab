@@ -1,4 +1,4 @@
-# Lab 10: Pattern Matching for instanceof ⛔
+# Lab 10: Pattern Matching for instanceof
 
 ## Overview
 

@@ -87,7 +87,7 @@ Here are some simple tips that might be useful in the course of this Lab.
 
 * Any given branch contains the solutions of the preceding exercises. If you are lost just checkout the n+1 branch and check your code.
 
-* You can also browse branches' content directly on [GitHub](https://github.com/delabassee/odl-java-hol/branches)⛔ (make repo public!)
+* You can also browse branches' content directly on [GitHub](https://github.com/delabassee/odl-java-hol/branches)
 
 * During this lab, you will only do simple Java coding so you won't use a Java IDE. Instead, you will use the versatile `nano` text editor. Here are some of its important key shortcuts.
 
