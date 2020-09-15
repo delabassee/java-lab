@@ -6,7 +6,7 @@ This 5-minute lab walks you through the steps of getting an Oracle Cloud Free Ti
 
 ### Two Cloud Offers in One
 
-Oracle Cloud Free Tier allows you to sign up for an Oracle Cloud account which provides a number of Always Free services and a Free Trial with US$500 of free credit to use on all eligible Oracle Cloud Infrastructure services for up to 30 days. The Always Free services are available for an unlimited period of time. The Free Trial services may be used until your US$500 of free credits are consumed or the 30 days has expired, whichever comes first.
+Oracle Cloud Free Tier allows you to sign up for an Oracle Cloud account which provides a number of Always Free services and a Free Trial with US$300 of free credit to use on all eligible Oracle Cloud Infrastructure services for up to 30 days. The Always Free services are available for an unlimited period of time. The Free Trial services may be used until your US$300 of free credits are consumed or the 30 days has expired, whichever comes first.
 
 ![](images/lab1-freetrial.png " ")
 
@@ -17,7 +17,7 @@ Oracle Cloud Free Tier allows you to sign up for an Oracle Cloud account which p
 
 ## Create Your Free Trial Account
 
-In this section, you will fill out the registration form at [oracle.com/cloud/free](https://myservices.us.oraclecloud.com/mycloud/signup?language=en).
+In this section, you will fill out the registration form at [https://oracle.com/devlivejava915](https://oracle.com/devlivejava915).
 
 1.  Click on the "Start for free" button and enter the appropriate information to create your account.
     * Enter the same **email address** you used to register for Oracle Open World / Oracle Code One. A popup should appear recognizing your email. If not, the registration form will ask for additional information later.
