@@ -107,6 +107,8 @@ In a shell on your computer, use `ssh` to connect to the instance on OCI: `ssh {
 
 💡 If you are on Windows, check [here](https://docs.cloud.oracle.com/en-us/iaas/Content/Compute/Tasks/accessinginstance.htm#linux) how to use OpenSSH or PuTTY.
 
+💡 If you have issue (ex. you are unable to alter key permissions), you can try to use [Chrome Secure Shell Extension](https://delabassee.com/ssh-OCI-Chrome/).
+
 The default OEL username is **opc**. You also need to specify the path of the private key using the `-i` flag.
 The final command should look like :
 

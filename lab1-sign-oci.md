@@ -17,7 +17,7 @@ Oracle Cloud Free Tier allows you to sign up for an Oracle Cloud account which p
 
 ## Create Your Free Trial Account
 
-In this section, you will fill out the registration form at [https://oracle.com/devlivejava915](https://oracle.com/devlivejava915).
+In this section, you will fill out the registration form at [https://oracle.com/devlivejava917](https://oracle.com/devlivejava917).
 
 1.  Click on the "Start for free" button and enter the appropriate information to create your account.
     * Enter the same **email address** you used to register for Oracle Open World / Oracle Code One. A popup should appear recognizing your email. If not, the registration form will ask for additional information later.
