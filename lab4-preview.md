@@ -73,7 +73,7 @@ Likewise, to use Preview Feature in Helidon, those should be enabled at both com
 
 #### Compile time configuration
 
-In an Helidon project's `pom.xml`, configure the Java compiler plugin to enable Preview Feature.
+In an Helidon project's `pom.xml`, configure the Java compiler plugin to enable Preview Feature. You will have to do this in Lab 5.
 
 ```xml
 …

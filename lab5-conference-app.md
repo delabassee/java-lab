@@ -48,17 +48,17 @@ Either using Maven:
 
 ```
 mvn clean package
-java -jar target/conference-app.jar
-# When using preview features… 
-# java --enable-preview -jar target/conference-app.jar
+java --enable-preview -jar target/conference-app.jar
+# When the app is not using any preview features… 
+# java -jar target/conference-app.jar
 ```
 
 or using the Helidon CLI devloop:
 
 ```
-helidon dev
-# When using preview features…
-# helidon dev --app-jvm-args "--enable-preview"
+helidon dev --app-jvm-args "--enable-preview"
+# When the app is not using any preview features… 
+# helidon dev
 ```
 
 The Conference application exposes simple REST endpoints to get speaker-related information.
