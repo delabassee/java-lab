@@ -225,7 +225,7 @@ For example, update update the `getAll` method in the the `SpeakerService.java` 
 List<Speaker> allSpeakers = this.speakers.getAll();
 if (allSpeakers.size() > 0)
    response.send(allSpeakers);
-else sendError(response, 400, "getAll - no speaker found!?");
+else Util.sendError(response, 400, "getAll - no speaker found!?");
 ```
 to use the Streams API and the newly added `toJson` method to return a `List` of `JsonObject` as follow. 
 ```
@@ -284,7 +284,7 @@ if (allSpeakers.size() > 0) {
    response.send(allSpeakers.stream()
               .map(s -> new SpeakerSummary(s.lastName(), s.firstName(), s.company()).toJson())
               .collect(Collectors.toList()));
-} else sendError(response, 400, "getAll - no speaker found!?");
+} else Util.sendError(response, 400, "getAll - no speaker found!?");
 ```
 
 If you now test the endpoint, you will get the shorter speaker representation (see the right column below).
