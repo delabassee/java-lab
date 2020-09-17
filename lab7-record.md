@@ -131,7 +131,7 @@ Browse the source code to understand how things work.
 
 The `Speaker.java` class is interesting as it models the Speaker type with all its details (last name, first name, etc.), i.e. it is data aggregate that represents a speaker. Once created a speaker is effectively immutable as the class is `final', moreover there is no way to change the fields (ex. private fields, no setters).
 
-Migrating this regular class into a Record is straightforward. Just replace the `Record.java` class content with the definition of the Speaker record. That definition should include the various components related to a speaker. 
+Migrating this regular class into a Record is straightforward. Just replace the `Speaker.java` class content with the definition of the Speaker record. That definition should include the various components related to a speaker. 
 
 `nano src/main/java/conference/Speaker.java`
 
