@@ -7,7 +7,7 @@ The goal of this Hands-on-Lab is to allow you to discover, on Oracle Cloud, some
 
 To achieve this, you will use 
 
-* Java SE 15 which has been released a few hours ago,
+* Java SE 15, released in September 2020,
 
 * Helidon, a collection of Java libraries for writing microservices,
 
@@ -19,7 +19,7 @@ You will use Helidon as it is easy, simple, and fast but obviously, all the Java
 
 💡 The left bar is used to navigate within the current exercise. The right bar is used to navigate between exercises. If it is too obtrusive, just hide it temporarily.
 
-**Acknowledgements**
+**Acknowledgments**
 
  - Author: [David Delabassee](https://delabassee.com)
- - Last updated By: David Delabassee, Sept 17 2020
+ - Last updated By: David Delabassee, January 22 2021
