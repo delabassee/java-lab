@@ -1,18 +1,19 @@
-# Lab 5: The Conference Application
+# Lab 5: The Sample Application
 
-## Overview
+## Overview 
 
 
-In this 5-minutes lab, you will clone and build a Helidon application that will be used to test some of the recent Java features.
+In this 5-minutes lab, you will clone and build an Helidon application that will be used to test some of the recent Java features.
 
 This simple application is themed around 'conferences', it provides a simple REST endpoint that lists speakers and a basic web user interface.
 
 ⚠️ For the sake of brevity and clarity, this application takes some shortcuts and does not necessarily implement all the best practices recommended for an application that would go into production. Typically, you would have to think about concerns such as security, synchronization, testing, data validation, availability, scaling, etc. none of which are relevant in the context of today's lab!
 
 
-## The Conference Application
+## The Sample Application
 
-The application is hosted on GitHub, just clone its repository:
+
+The application source is hosted on GitHub, just clone its repository:
 
 ```
 cd ~
@@ -21,7 +22,7 @@ cd odl-java-hol
 ```
 
 
-The repository has multiple branches
+The repository has several branches (`git branch -a`).&nbsp;
 
 * `lab5` : starting point
 * `lab6` : lab 6 starting point, including the lab 5 solution
@@ -40,28 +41,33 @@ git checkout lab5
 
 Update the project's `pom.xml` to enable Preview Features as described in the previous section.
 
-## Build and test the Application
+## Build and test the application
 
 By now, you should know how to build and test an Helidon application. 
 
 Either using Maven:
 
 ```
-mvn clean package
+mvn package
+
+# for an application that is not using any preview features
+java -jar target/conference-app.jar
+
+# for an application that is using preview features
 java --enable-preview -jar target/conference-app.jar
-# When the app is not using any preview features… 
-# java -jar target/conference-app.jar
 ```
 
 or using the Helidon CLI devloop:
 
 ```
+# for an application that is not using any preview features
+helidon dev
+
+# for an application that is using preview features
 helidon dev --app-jvm-args "--enable-preview"
-# When the app is not using any preview features… 
-# helidon dev
 ```
 
-The Conference application exposes simple REST endpoints to get speaker-related information.
+The sample application exposes simple REST endpoints to get speaker-related information.
 
 * http://{public-ip}:8080/speakers ➞ Get all speakers
 * http://{public-ip}:8080/speakers/company/{company} ➞ Get speakers for a given company
@@ -77,7 +83,7 @@ Once the application is running, you can test it.
 
 ## Lab Navigation & Tips
 
-Here are some simple tips that might be useful in the course of this Lab.
+Here are a few tips that might be useful in the course of this Lab.
 
 * The left bar is used to navigate within the current exercise. The right bar is used to navigate between exercises. If it is too obtrusive, just hide it.
 
@@ -91,19 +97,19 @@ Here are some simple tips that might be useful in the course of this Lab.
 
 * During this lab, you will only do simple Java coding so you won't use a Java IDE. Instead, you will use the versatile `nano` text editor. Here are some of its important key shortcuts.
 
-	* <kbd>Control</kbd> <kbd>x</kbd> : Exit
-	* <kbd>Control</kbd> <kbd>o</kbd> : Save
-	* <kbd>Control</kbd> <kbd>k</kbd> : Delete Line
-	* <kbd>Control</kbd> <kbd>g</kbd> : Help
-	* <kbd>Control</kbd> <kbd>y</kbd> : Page Up
-	* <kbd>Control</kbd> <kbd>v</kbd> : Page Down
+	* <kbd>[Control]</kbd> <kbd>[x]</kbd> : Exit
+	* <kbd>[Control]</kbd> <kbd>[o]</kbd> : Save
+	* <kbd>[Control]</kbd> <kbd>[k]</kbd> : Delete Line
+	* <kbd>[Control]</kbd> <kbd>[g]</kbd> : Help
+	* <kbd>[Control]</kbd> <kbd>[y]</kbd> : Page Up
+	* <kbd>[Control]</kbd> <kbd>[v]</kbd> : Page Down
 
 * It is recommended to use Firefox to test REST endpoints as it renders nicely the returned JSON payload. If you are comfortable with CLI, you can also use `curl` in combination with `jq` to format JSON responses.
 
-* If you get errors while using Helidon's devloop, you might want to re-build the project using Maven to get additional details on those error(s).
+* If you get errors while using Helidon's devloop, you might want to re-build the project using Maven to get additional details on those errors.
 
 * For brevity, packages will sometimes be omitted from code snippets, they are obviously required. If you are not sure, simply check the solution.
 
 * To view files, you can use `bat` as it offers syntax highlighting.
 
-* If you are using the Helidon `devloop`, make sure to enbale preview features! `helidon dev --app-jvm-args "--enable-preview"`
+* If you are using the Helidon `devloop`, make sure to enable preview features! `helidon dev --app-jvm-args "--enable-preview"`

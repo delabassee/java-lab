@@ -15,7 +15,7 @@ The Preview Feature mechanism enables to add non-final, fully specified, and imp
 
 1. Create a Sealed class hierarchy
 
-In a new directory, create a simple _Vehcile.java_ abstract class with a nested _Car_ class in it:
+In a new directory, create a simple _Vehicle.java_ abstract class with 2 auxiliary classes, _Car_ and _Bike_:
 
 `
 nano Vehicle.java
@@ -29,6 +29,10 @@ abstract sealed class Vehicle {
 final class Car extends Vehicle {
 
 }
+
+final class Bike extends Vehicle {
+
+}
 ```
 
 ⚠️ This example uses the Sealed class feature (see Lab 8) to define a basic sealed classes hierarchy, it's sole purpose is to introduce the concept of Preview Feature.
@@ -40,7 +44,7 @@ final class Car extends Vehicle {
 ![](./images/lab4-1.png " ")
 
 
- This error simply informs you that you are trying to use the Sealed class feature which is a preview feature in Java 16, and that those are disabled by default. To use those, you need to explicitly enable them using the `--enable-preview` java compiler flag. Note that, you also need to confirm to the Java compiler which version of the Preview Feature you are using (ex. using the `--release` flag). 
+ This error simply informs you that you are trying to use the Sealed class feature which is a preview feature in Java 16, and that those are disabled by default. To use preview features, you need to explicitly enable them, at compile-time, using the `--enable-preview` flag. Note that, you also need to confirm to the Java compiler which version of the Preview Feature you are using (ex. using the `--release` flag). 
 
 `javac --enable-preview --release 16 Vehicle.java`
 
@@ -54,15 +58,15 @@ To run code that uses Preview Feature, you would face the same safeguard as Prev
 
 `java --enable-preview SomePreviewTest`
 
-💡 Running this particular class doesn't make sense as it is empty.
+💡 Running this particular example doesn't make sense as it is empty.
 
 ## Preview Features & Helidon
 
 Likewise, to use Preview Feature in Helidon, those should be enabled at both compile-time and runtime.
 
-#### Compile time configuration
+#### Compile-time configuration
 
-In an Helidon project's `pom.xml`, configure the Java compiler plugin to enable Preview Feature. You will have to do this in Lab 5.
+In an Helidon project's `pom.xml`, configure the Java compiler plugin to Java 16 **and** to enable Preview Features.
 
 ```xml
 …
@@ -73,8 +77,8 @@ In an Helidon project's `pom.xml`, configure the Java compiler plugin to enable 
       <artifactId>maven-compiler-plugin</artifactId>
       <version>3.8.0</version>
       <configuration>
+        <release>16</release>
         <compilerArgs>--enable-preview</compilerArgs>
-        <release>15</release>
       </configuration>
    </plugin>
 </plugins>
@@ -96,7 +100,7 @@ helidon dev --app-jvm-args "--enable-preview"
 
 ## Wrap-up
 
-In this section, you have used Records, a Preview Feature in Java 15. You have also seen how to enable Preview Features in Helidon applications.
+In this section, you have used Sealed Classes, a Preview Feature in Java 16. You have also seen how to enable Preview Features in Helidon applications.
 
 In summary, the _Preview Feature_ mechanism:
 
@@ -111,11 +115,7 @@ In summary, the _Preview Feature_ mechanism:
 * a given Preview Feature is specific to a given Java version
 
 <br>
-Java 15 includes several *Preview Features* which will be discussed in upcoming sections.
+Java 16 includes Sealed Classes (JEP 397 - Second Preview), a *Preview Feature* that will be discussed in an upcoming section.
 
-* JEP 360: Sealed Classes (Preview)
 
-* JEP 375: Pattern Matching for instanceof (Second Preview)
-
-* JEP 384: Records (Second Preview)
  
