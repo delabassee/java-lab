@@ -98,6 +98,9 @@ Similarly, to use Preview Features via the Helidon CLI 'devloop', you need to pa
 helidon dev --app-jvm-args "--enable-preview"
 ```
 
+⚠️ If during this lab, Helidon hangs while starting ('devloop'), double-check that you have effectively enabled preview features! 
+
+
 ## Wrap-up
 
 In this section, you have used Sealed Classes, a Preview Feature in Java 16. You have also seen how to enable Preview Features in Helidon applications.

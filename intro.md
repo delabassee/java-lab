@@ -5,9 +5,9 @@
 
 The goal of this Hands-on-Lab is to allow you to discover, on Oracle Cloud, some key features recently added to the Java platform.
 
-To achieve this, you will use 
+To achieve this, you will use :
 
-* Java SE 15, released in September 2020,
+* Java SE 16, currently in 'Release Candidate' phase and slated to be released mid-March 2021.
 
 * Helidon, a collection of Java libraries for writing microservices,
 
