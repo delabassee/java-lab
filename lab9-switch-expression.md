@@ -66,38 +66,29 @@ private void getSpeakersById(ServerRequest request, ServerResponse response) {
 
     String id = request.path().param("id").trim();
 
-    record Speaker(String id, String name, String title, String company, String trackName) {
-        JsonObject toJson() {
-            return Json.createObjectBuilder()
-                    .add("id", id)
-                    .add("name", name)
-                    .add("title", title)
-                    .add("company", company)
-                    .add("trackName", trackName)
-                    .build();
-        }
-    }
+    record SpeakrDetails(String id, String name, String title, String company, String trackName) {}
 
     try {
         if (Util.isValidQueryStr(response, id)) {
             var match = this.speakers.getById(id);
             if (match.isPresent()) {
                 var s = match.get();
-                var speaker = new Speaker(s.id(),
-                        s.firstName() + " " + s.lastName(),
-                        s.title(),
-                        s.company(),
-                        getTrackDetail(match.get()));
-                response.send(speaker.toJson());
+                response.send(new SpeakrDetails(s.id(),
+                                s.firstName() + " " + s.lastName(),
+                                s.title(),
+                                s.company(),
+                                getTrackDetail(match.get())
+                        )
+                );
             } else Util.sendError(response, 400, "getSpeakersById - not found: " + id);
         }
-   } catch (Exception e) {
+    } catch (Exception e) {
         Util.sendError(response, 500, "Internal error! getSpeakersById : " + e.getMessage());
-   }
+    }
 }
 ```
 
-This method is simple. It first defines a new "Speaker" local record, and then if a speaker for a given ID is found, it creates a record for that speaker. Note that the new `getTrackDetail` is being used to fill the record track component. Finally, it simply sends the JSON representation of this speaker record back to the client.
+This method is simple. It first defines a new "SpeakrDetails" local record, and then if a speaker for a given ID is found, it creates a record for that speaker. Note that the new `getTrackDetail` is being used to fill the record track component. Finally, it simply sends the JSON representation of this speaker record back to the client.
 
 When you now request speaker details via an ID (ex. `curl http://{public_ip}:8080/speakers/010`), you will get all details including a better track name.
 

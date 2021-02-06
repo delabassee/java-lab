@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this 10-minutes lab, you will get some hands-on expereince with the *pattern Matching for instanceof* feature previewed in JDK 15. This feature enhances the Java programming language with pattern matching for the instanceof operator. Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely.
+In this 10-minutes lab, you will get some hands-on experience with the *pattern Matching for instanceof* feature previewed in JDK 16 (2nd preview). This feature enhances the Java programming language with pattern matching for the instanceof operator. Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely.
 
 
 ## Using 'pattern matching for instanceof'
@@ -13,7 +13,7 @@ In this 10-minutes lab, you will get some hands-on expereince with the *pattern 
 git checkout -f lab10
 ```
 
-Chek those 2 new classes. `AgendaService.java` introduces a new "/sessions" endpoint that returns the details of the sessions. The sessions are stored in `AgendaRepository.java` using a simple `List<Session>`. The `Session` type has been introduced in Lab 8, it is a sealed abstract class that can only be extended by a given set of classes (check Lab 8 for details).
+Check those 2 new classes. `AgendaService.java` introduces a new "/sessions" endpoint that returns the details of the sessions. The sessions are stored in `AgendaRepository.java` using a simple `List<Session>`. The `Session` type has been introduced in Lab 8, it is a sealed abstract class that can only be extended by a given set of classes (check Lab 8 for details).
 
 Build and test the application, `curl {public_ip}:8080/sessions`
 
@@ -21,9 +21,9 @@ Build and test the application, `curl {public_ip}:8080/sessions`
 
 
 
-Let's pretend that the displyed details vary based on the session type.
+Let's pretend that the displayed details should vary based on the session type.
 
-Add the following `getSessionDetails` method to the "AgendaServoce".
+Add the following `getSessionDetails` method to the "AgendaService".
 
 `nano src/main/java/conference/AgendaService.java`
 
@@ -37,19 +37,9 @@ private void getSessionDetails(final ServerRequest request, final ServerResponse
 
    if (session.isPresent()) {
 
-       record SessionDetail(String title, String speaker, String location, String type) {
-           JsonObject toJson() {
-              JsonObject payload = Json.createObjectBuilder()
-                      .add("session", title)
-                      .add("speaker", speaker)
-                      .add("virtual_room", location)
-                      .add("type", type)
-                      .build();
-               return payload;
-           }
-       }
+       record SessionDetail(String title, String speaker, String location, String type) {}
 
-       var speakerDetail = "speaker TBC!";
+       var detail = "speaker TBC!";
        var s = session.get();
 
        if (s instanceof Keynote) {
@@ -59,11 +49,11 @@ private void getSessionDetails(final ServerRequest request, final ServerResponse
            var ks = speakers.getById(k.getKeynoteSpeaker());
            if (ks.isPresent()) {
                var spk = ks.get();
-               speakerDetail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
-           } else speakerDetail = "Keynote speaker to be announced!";
+               detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+           } else detail = "Keynote speaker to be announced!";
 
            var keynote = new SessionDetail("Keynote: " + k.getTitle(), speakerDetail, "Virtual Keynote hall", "General session");
-           response.send(keynote.toJson());
+           response.send(keynote);
 
        } else if (s instanceof Lecture) {
 
@@ -72,11 +62,11 @@ private void getSessionDetails(final ServerRequest request, final ServerResponse
            var speaker = speakers.getById(l.getSpeaker());
            if (speaker.isPresent()) {
                var spk = speaker.get();
-               speakerDetail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+               detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
            }
 
            var lecture = new SessionDetail(l.getTitle(), speakerDetail, String.valueOf(l.getVirtualRoom()), "Conference session");
-           response.send(lecture.toJson());
+           response.send(lecture);
 
        } else if (s instanceof Lab) {
 
@@ -85,11 +75,11 @@ private void getSessionDetails(final ServerRequest request, final ServerResponse
            var speaker = speakers.getById(l.getSpeaker());
            if (speaker.isPresent()) {
                var spk = speaker.get();
-               speakerDetail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+               dtail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
            }
 
            var lab = new SessionDetail(l.getTitle(), speakerDetail, String.valueOf(l.getVirtualRoom()), "Hands on Lab");
-           response.send(lab.toJson());
+           response.send(lab);
        }
 
     } else {
