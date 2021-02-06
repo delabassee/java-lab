@@ -3,7 +3,7 @@
 ## Overview
 
 
-This 10-minutes lab will introduce you to the *Switch Expression* feature, a standard and permanent feature of Java 14. 
+This 10-minute lab will introduce you to the *Switch Expression* feature, a standard and permanent feature of Java 14. 
 
 The *Switch Expression* augments the traditional Switch Statement to address some of its irregularities and annoyances including the well known 'fall through' problem, the support for multiple constants per case, the ability to enforce exhaustiveness, an improved scoping, etc.
 

@@ -333,6 +333,8 @@ If you now test the endpoint, you will get the shorter speaker representation (s
 
 📝 Make sure to update all `SpeakerService.java` methods for the new `SpeakerSummary` record. As an additional exercise, try to create different Records.
 
+💡 FYI. This change will impact the main Web page of the application. It won't be able to display all the speaker's details.
+
 
 ## Stream.toList()
 

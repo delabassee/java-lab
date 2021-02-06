@@ -183,7 +183,6 @@ Remove the `res.headers().contentType(MediaType.TEXT_HTML);` line to bypass HTML
 
 💡 You might want to check the resources suggested in the next section to understand some behaviors.
 
-```
 
 ```
 message = """
@@ -207,7 +206,7 @@ message = """
 
 message = """And what about this?""";
 ```
-
+```
 
 ## Wrap-up
 
