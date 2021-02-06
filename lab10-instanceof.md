@@ -4,7 +4,6 @@
 
 In this 10-minutes lab, you will get some hands-on experience with the *pattern Matching for instanceof* feature previewed in JDK 16 (2nd preview). This feature enhances the Java programming language with pattern matching for the instanceof operator. Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely.
 
-
 ## Using 'pattern matching for instanceof'
 
 💡 Make sure to checkout the lab10 branch as it introduces 2 new classes to the project: `AgendaRepository.java` and `AgendaService.java`
@@ -29,61 +28,61 @@ Add the following `getSessionDetails` method to the "AgendaService".
 
 ```
 private void getSessionDetails(final ServerRequest request, final ServerResponse response) {
-   LOGGER.fine("getSessionDetails");
+    LOGGER.fine("getSessionDetails");
 
-   var sessionId = request.path().param("sessionId").trim();
+    var sessionId = request.path().param("sessionId").trim();
 
-   Optional<Session> session = sessions.getBySessionId(sessionId);
+    Optional<Session> session = sessions.getBySessionId(sessionId);
 
-   if (session.isPresent()) {
+    if (session.isPresent()) {
 
-       record SessionDetail(String title, String speaker, String location, String type) {}
+        record SessionDetail(String title, String speaker, String location, String type) {}
 
-       var detail = "speaker TBC!";
-       var s = session.get();
+        var detail = "speaker TBC!";
+        var s = session.get();
 
-       if (s instanceof Keynote) {
+        if (s instanceof Keynote) {
 
-           Keynote k = (Keynote) s;
+            Keynote k = (Keynote) s;
 
-           var ks = speakers.getById(k.getKeynoteSpeaker());
-           if (ks.isPresent()) {
-               var spk = ks.get();
-               detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
-           } else detail = "Keynote speaker to be announced!";
+            var ks = speakers.getById(k.getKeynoteSpeaker());
+            if (ks.isPresent()) {
+                var spk = ks.get();
+                detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+            } else detail = "Keynote speaker to be announced!";
 
-           var keynote = new SessionDetail("Keynote: " + k.getTitle(), speakerDetail, "Virtual Keynote hall", "General session");
-           response.send(keynote);
+            var keynote = new SessionDetail("Keynote: " + k.getTitle(), detail, "Virtual Keynote hall", "General session");
+            response.send(keynote);
 
-       } else if (s instanceof Lecture) {
+        } else if (s instanceof Lecture) {
 
-           Lecture l = (Lecture) s;
+            Lecture l = (Lecture) s;
 
-           var speaker = speakers.getById(l.getSpeaker());
-           if (speaker.isPresent()) {
-               var spk = speaker.get();
-               detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
-           }
+            var speaker = speakers.getById(l.getSpeaker());
+            if (speaker.isPresent()) {
+                var spk = speaker.get();
+                detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+            }
 
-           var lecture = new SessionDetail(l.getTitle(), speakerDetail, String.valueOf(l.getVirtualRoom()), "Conference session");
-           response.send(lecture);
+            var lecture = new SessionDetail(l.getTitle(), detail, String.valueOf(l.getVirtualRoom()), "Conference session");
+            response.send(lecture);
 
-       } else if (s instanceof Lab) {
+        } else if (s instanceof Lab) {
 
-           Lab l = (Lab) s;
+            Lab l = (Lab) s;
 
-           var speaker = speakers.getById(l.getSpeaker());
-           if (speaker.isPresent()) {
-               var spk = speaker.get();
-               dtail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
-           }
+            var speaker = speakers.getById(l.getSpeaker());
+            if (speaker.isPresent()) {
+                var spk = speaker.get();
+                detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+            }
 
-           var lab = new SessionDetail(l.getTitle(), speakerDetail, String.valueOf(l.getVirtualRoom()), "Hands on Lab");
-           response.send(lab);
-       }
+            var lab = new SessionDetail(l.getTitle(), detail, String.valueOf(l.getVirtualRoom()), "Hands on Lab");
+            response.send(lab);
+        }
 
     } else {
-       Util.sendError(response, 400, "SessionId not found : " + sessionId);
+        Util.sendError(response, 400, "SessionId not found : " + sessionId);
     }
 }
 ```
@@ -106,7 +105,7 @@ Although a bit long, the `getSessionDetails` method is easy to grasp.
 ```
 Optional<Session> session = sessions.getBySessionId(sessionId);
 if (session.isPresent()) {
-   record SessionDetail(String title, String speaker, String location, String type) {
+   record SessionDetail(String title, String speaker, String location, String type) {}
    …
 ```
 
@@ -120,10 +119,10 @@ if (s instanceof Keynote) {
    var speaker = speakers.getById(k.getKeynoteSpeaker());
    if (speaker.isPresent()) {
       var spk = speaker.get();
-      speakerDetail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+      detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
    } else speakerDetail = "Keynote speaker to be announced!";
 
-   var keynote = new SessionDetail("Keynote: " + k.getTitle(), speakerDetail, "Virtual Keynote hall", "General session");
+   var keynote = new SessionDetail("Keynote: " + k.getTitle(), detail, "Virtual Keynote hall", "General session");
    response.send(keynote);
 ```
 
@@ -164,7 +163,11 @@ if (s instanceof Keynote k) {
 }
 ```
 
-If you test the application now, you should session details varying depending on the session type.
+If you test the application, you should session details varying depending on the session type.
+
+`curl {public_ip}:8080/sessions/detail/001`
+`curl {public_ip}:8080/sessions/detail/010`
+
 
 ## Wrap-up
 
