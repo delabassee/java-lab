@@ -67,7 +67,7 @@ helidon dev
 helidon dev --app-jvm-args "--enable-preview"
 ```
 
-The sample application exposes simple REST endpoints to get speaker-related information.
+The sample application offers a simple Web user interface (http://{public-ip}:8080/public/), and exposes mutliple REST endpoints to get speaker-related information.
 
 * http://{public-ip}:8080/speakers ➞ Get all speakers
 * http://{public-ip}:8080/speakers/company/{company} ➞ Get speakers for a given company
@@ -110,6 +110,6 @@ Here are a few tips that might be useful in the course of this Lab.
 
 * For brevity, packages will sometimes be omitted from code snippets, they are obviously required. If you are not sure, simply check the solution.
 
-* To view files, you can use `bat` as it offers syntax highlighting.
+* To view files, you can use the '`bat`' tool as it offers syntax highlighting.
 
 * If you are using the Helidon `devloop`, make sure to enable preview features! `helidon dev --app-jvm-args "--enable-preview"`

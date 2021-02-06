@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this 10-minutes lab, you will get some hands-on experiences with _Sealed Classes_ (JEP 360), a preview feature of JDK 15. Sealed classes and interfaces restrict which other classes or interfaces may extend or implement them.
+In this 10-minutes lab, you will get some hands-on experiences with _Sealed Classes_ (JEP 397), a preview feature (2nd round in Java 16). This new feature enables to create restricted classes hierarchy. , i.e. restrict which other classes or interfaces may extend or implement them. It applies to both classes and interfaces.
 
 💡 Despite its name, the *Sealed Classes* feature applies to both **classes** and **interfaces**.
 
@@ -17,7 +17,7 @@ A Sealed Class (or interface) can be extended (or implemented) only by those cla
 
 ## Your first Sealed Classes
 
-💡 "Sealed Classes" is a preview feature in JDK 15 so make sure that preview features are enabled both at compile time and run time.
+💡 "Sealed Classes" is a preview feature in JDK 16 so make sure that preview features are enabled both at compile time and run time.
 
 For the sake of this exercise, let us suppose that the conference application needs to deal with sessions. 
 
