@@ -32,9 +32,10 @@ The repository has several branches (`git branch -a`).&nbsp;
 * `lab10` : lab 10 starting point, including the lab 5 to 9 solutions
 * `lab11` : all solutions from lab 5 to 10 included
 
-💡 `lab11` is optional and does not require any code update so there's no solution for this lab.
+💡 Lab 11 and 12 are not based on the sample application.
 
-Switch to the starting point:
+Switch to the starting point
+
 ```
 git checkout lab5
 ```
@@ -112,4 +113,8 @@ Here are a few tips that might be useful in the course of this Lab.
 
 * To view files, you can use the '`bat`' tool as it offers syntax highlighting.
 
-* If you are using the Helidon `devloop`, make sure to enable preview features! `helidon dev --app-jvm-args "--enable-preview"`
+* If you are using the Helidon `devloop`, make sure to enable preview features!
+
+```
+helidon dev --app-jvm-args "--enable-preview"
+```

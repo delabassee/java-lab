@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this 10-minutes lab, you will use *Records*, a new Java language feature that went through 2 preview rounds (JDK 14, JDK 15), and is, starting Java 16, a final and permanent feature.
+In this 10-minutes lab, you will use **Records**, a new Java language feature that went through 2 preview rounds (JDK 14, JDK 15), and is, starting Java 16, a final and permanent feature.
 
 Records provide a compact syntax for declaring classes which are transparent holders for shallowly immutable data. A record can be best thought of as a nominal tuple that enables us to easily and quickly model immutable "plain data" aggregates.
 
@@ -13,10 +13,12 @@ Similar to enums, Records are technically a special form of classes optimized fo
 
 1. Create a Person record
 
-Create a `Person.java` class with the following content.
+Create a `Person.java` class 
 
-➥ `cd ~ && nano Person.java`
-
+```
+cd ~ && nano Person.java
+```
+with the following content.
 ```
 public record Person(String lastname, String firstname) {}
 ```
@@ -24,7 +26,9 @@ public record Person(String lastname, String firstname) {}
 2. Compile the Person record
 
 
-➥ `javac Person.java`
+```
+javac Person.java
+```
 
 3. Decompile the Person record
 
@@ -57,7 +61,10 @@ In addtion, we can see that the Person record extends the [`java.lang.Record`](h
 
 To use the Record simply create a simple `TestRecord.java` class.
 
-➥ `nano TestRecord.java`
+
+```
+nano TestRecord.java
+```
 
 ```
 class TestRecord {
@@ -125,7 +132,9 @@ The `Speaker.java` class is interesting as it models the Speaker type with all i
 
 Migrating this regular class into a Record is straightforward. Just replace the `Speaker.java` class content with the definition of the Speaker record. That definition should include the different components related to a speaker. 
 
-➥ `nano src/main/java/conference/Speaker.java`
+```
+nano src/main/java/conference/Speaker.java
+```
 
 ```
 package conference;
@@ -155,7 +164,10 @@ If you now compile the application (`mvn package`), you will get multiple errors
 Those errors make sense as the `Speaker.java` class is using the old [JavaBeans](https://docs.oracle.com/javase/tutorial/javabeans/writing/properties.html) getter convention to provide access to its private fields. Records on the other hand rely on (automatically generated) accessor methods to enable access to its various (immutable) components. So that needs to be fixed in the conference application code! Go through the `SpeakerRepository.java` class and make sure to use accessor methods for accessing components instead of getters. This needs to be fixed for all components of the Speaker record (lastName, company, etc.).
 
 
-➥ `nano src/main/java/conference/SpeakerRepository.java`
+```
+nano src/main/java/conference/SpeakerRepository.java
+```
+
 For example, change 
 ```
 public List<Speaker> getAll() {
@@ -216,7 +228,9 @@ Add the following Jackson dependency in the `pom.xml`
 
 The last thing you need to do is instructing the application to use Jackson as its JSONB provider. 
 
-➥ `nano src/main/java/conference/Main.java`
+```
+nano src/main/java/conference/Main.java
+```
 
 Simply replace
 ``` 
@@ -243,7 +257,9 @@ In the previous exercise, we have used Jackson for its ability to automatically 
 
 This can be done by adding the following `toJson` method to the `Speaker.java` record.
 
-➥ `nano src/main/java/conference/Speaker.java`
+```
+nano src/main/java/conference/Speaker.java
+```
 
 ```
 JsonObject toJson() {
@@ -270,7 +286,10 @@ and update the code to return a List of `JsonObject` instead of List of `Speaker
 
 For example, update update the `getAll` method in the the `SpeakerService.java` class
 
-➥ `nano src/main/java/conference/SpeakerService.java` 
+```
+nano src/main/java/conference/SpeakerService.java
+```
+ 
 
 ```
 List<Speaker> allSpeakers = this.speakers.getAll();
@@ -304,10 +323,12 @@ Local Record is a feature introduced in the second Record preview in JDK 15. Loc
 
 For this exercise, let's pretend that you want to return a simpler form of Speaker, ex. just the last name/first name pair and the company.
 
-1. Update the `getAll` method to include a local Record, i.e. within the body of the method!
+1. Update the `getAll` method
 
-`nano src/main/java/conference/SpeakerService.java`
-
+```
+nano src/main/java/conference/SpeakerService.java
+```
+to include a local Record, i.e. within the body of the method!
 ```
 record SpeakerSummary(String last, String first, String company) {}
 ```
@@ -342,7 +363,9 @@ Each new Java release comes with a set of new Java language features (ex. Record
 
 One example is the new [java.util.stream.toList()](https://download.java.net/java/early_access/jdk16/docs/api/java.base/java/util/stream/Stream.html#toList()) method introduced in Java 16 which returns an immutable List containing the elements of a stream.
 
-`nano src/main/java/conference/SpeakerService.java`
+```
+nano src/main/java/conference/SpeakerService.java
+```
 
 For example, we could replace the terminal operation 
 

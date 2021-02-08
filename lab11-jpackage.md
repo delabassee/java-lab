@@ -2,91 +2,152 @@
 
 ## Overview
 
-This 5-mintes optional lab will introduce you to *`jpackage`*, a new tool made permanent in JDK 16. 
+This 10-minute optional lab will introduce you to **`jpackage`**, a tool that has started to incubate in JDK 14, and will be made a production-ready feature in JDK 16.
 
-In a nutshell, `jlink` is a tool that can create custom Java runtimes that include only the modules required by an application. Reducing the numbers of modules will reduce the overall size of that custom Java runtime image, a concern especially important when a Java application runs within a container. `jlink` has been part of the JDK since JDK 9.
+The `jpackage` tool creates self-contained, platform-specific, Java application bundles. These bundles provide a simple solution to distribute your java applications as end-users will rely on the platform's usual approaches to install them (ex. double click on a .exe file on Windows, ...), upgrade them, and un-install them.
 
-## Using `jpackage`
+`jpackage` supports the following platform-specific bundle types:
+
+* Windows: **msi** and **exe**
+* Linux: **deb** and **rpm**
+* macOS: **pkg** and **dmg**
+
+In a nutshell, an application bundle is composed of the Java applications itself with its dependencies, and a Java runtime.
+
+💡 To generate an application bundle, `jpackage` relies on platform-specific tools, ex. it uses `rpm-build` to generate packages for rpm compatible Linux distribution such as Oracle Enterprise Linux.
 
 
-First, create a minimal application and compile it.
+## Prepare your application
+
+
+First, create a minimal Helidon application, and buil it.
 
 
 ```
-mkdir ~/jlink-test && cd ~/jlink-test
-nano Test.java
-javac Test.java
+mkdir ~/jpackage-test && cd ~/jpackage-test
+helidon init
+# keep the default suggested values…
+
+# and build the application
+cd java-devlive
+mvn package
+```
+
+
+Next, you need to isolate the bits that should be part of your bundle, i.e. the application and its dependencies.
+
+```
+mkdir to-bundle
+# Copy the application jar
+cp target/demo.jar to-bundle
+
+# and the application's dependencies
+cp -r target/libs/ to-bundle/libs
+```
+
+
+## Using `jpackage` to create an application bundle
+
+We can now create, using `jpackage` an application bundle that will allow our end-user to easily install it.
+
+```
+jpackage --type rpm \
+         --input to-bundle \
+         --name simple-app \
+         --main-jar demo.jar \
+         --main-class com.devlive.Main \
+         --vendor 'HoL & Co' \
+         --verbose \
+		 --app-version 1.0 \
+         --description 'simple jpackage test'
+```
+
+Producing the bundle will take some times. In the meantime, let's look at the used parameters...
+
+* `--type`, `-t` : The type of package to create
+* `--input`, `-i` : Path of the input directory that contains the files to be packaged
+* `--name`, `-n` : Name of the application and/or package
+* `--main-jar` : The main JAR of the application
+* `--main-class` : Qualified name of the application main class to execute
+* `--vendor` : Vendor of the application (optional) 
+* `--verbose` : Display details while the bundle is being produced (optional) 
+* `--app-version` : Version of the application and/or package (optional) 
+* `--description` : Short description of the application (optional) 
+
+After ~75 seconds, your `rpm` bundle will be generated.
+
+```
+ls -la simple-app-1.0-1.x86_64.rpm
+```
+
+## Use the application bundle
+
+
+You can now use `rpm` as usual...
+
+* Install the application 
+
+```
+sudo rpm -i simple-app-1.0-1.x86_64.rpm
+```
+
+* Check that your application is installed  
+
+```
+rpm -qa | grep simple-app
+```
+
+* Get additional details about your installed application 
+
+```
+rpm -qi simple-app-1.0-1.x86_64
 ```
 
 ```
-class Test {
-   public static void main(String args[]) {
-     System.out.println("Hello jlink!");
-   }
-}
+Name        : simple-app
+Version     : 1.0
+Release     : 1
+Architecture: x86_64
+Install Date: Mon Feb  8 10:41:32 2021
+Group       : Unspecified
+Size        : 143231221
+License     : Unknown
+Signature   : (none)
+Source RPM  : simple-app-1.0-1.src.rpm
+Build Date  : Mon Feb  8 10:36:20 2021
+Build Host  : instance-20210205-1634.sub02010939050.holvcn.oraclevcn.com
+Relocations : /opt
+Vendor      : HoL & Co
+Summary     : simple-app
+Description : simple jpackage test
 ```
 
-You then need to know which module(s) this application requires to run. For that, you will use another JDK tool, `jdeps`.
-
-`jdeps Test.class`
-
-You can see that in this case only the `java.base` module is required. Using this information, you can create a custom runtime by passing to `jlink` the target location of the custom runtime and the list of module(s) to include in it.
+* Invoke the application 
 
 ```
-jlink --output custom-runtime --add-modules java.base
+/opt/simple-app/bin/simple-app
 ```
 
-You can now check the size of the generated Java runtime image.
+* Remove the application 
 
 ```
-du -chs custom-runtime
+sudo rpm -e simple-app-1.0-1.x86_64
 ```
-
-This small (<50MB!) custom Java runtime is limited but it can, nevertheless, runs any application that only requires the `java.base` module such as the example above.
-
-
-## Using `jlink` with Helidon applications 
-
-
-The previous example could not be more simple! As such, it does not reflect the reality as any real application will be way more complex than a simple "Hello World" class. The challenge when creating custom Java runtime mostly comes from the dependencies the application is using as you have to figure out which modules are used, and hence required in your custom runtime image. As you saw, a tool such as `jdpes` can help to identify those modules. The good news is that more and more Java frameworks support `jlink` out-of-the-box! As a developer, you don't have to worry about making sure that you have correctly identified all the modules required by your application and its dependencies as the framework tooling will often take care of that!
-
-To create a jlink based custom Java runtime image, Helidon is using a Maven profile. To use it, simply issue the following Maven command from the project directory.
-
-```
-cd ~/odl-java-hol
-mvn package -Pjlink-image -Djlink.image.defaultJvmOptions="--enable-preview"
-```
-
-![](./images/lab11-1.png " ")
-
-The result are impressive as the total size (JDK, the application and its dependcies) went from ~320MB to ~80MB, a ~75% gain!
-
-💡 The Helidon `jlink` Maven profile also creates, by default, a CDS (Class Data Sharing) archive. CDS is a JDK feature that helps reduce the startup time and memory footprints of Java applications. Check [here]((https://docs.oracle.com/en/java/javase/14/vm/class-data-sharing.html#GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91) from additional details.
-
-A convinent startup script is also created in the process, it handles for example the JVM parameters such as `--enable-preview` in this particular case. To run the application with its custom Java runtime image, simply invoke this script.
-
-```
-target/conference-app/bin/start
-```
-
-To get additional details, just use its help.
-```
-conference-app/bin/start --help
-```
-
-As you can see, using `jlink` with Helidon is simple and straight forward!
 
 
 ## Wrap-up
 
-`jlink` is a tool that can assemble and optimize a set of modules and their dependencies to create a custom, i.e. optimized, run-time Java image. Optimizing the size of a Java runtime is critical when an Java application is embedded with its Java runtime into a container. Reducing the overall container image size will improve the startup time of this container. Moreover, smaller container leads to better resource utilization of the container platform.  It should be mentioned that to use `jlink` the application does not need to be modularized! Moreover, `jlink` is available since JDK 9 so there is no valid reason to not leverage `jlink` today!
+The **`jpackage`** tool creates self-contained, platform-specific, Java application bundles.
 
-**More ressources**
-* [JEP 282: `jlink`](https://openjdk.java.net/jeps/282)
-* [The jlink Command](https://docs.oracle.com/en/java/javase/14/docs/specs/man/jlink.html)
-* [Helidon SE — Custom Runtime Images with `jlink`](https://helidon.io/docs/v2/#/se/guides/37_jlink_image)
-* [Helidon Maven Plugin](https://github.com/oracle/helidon-build-tools/tree/master/helidon-maven-plugin#goal-jlink-image)
-* [Class Data Sharing](https://docs.oracle.com/en/java/javase/14/vm/class-data-sharing.html#GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91)
+
+This is a trivial example. `jpackage` offers many more options such as the ability to create a bundle based on a modularized Java application, let the user customize the installation (ex. where to install the application, ...), etc. See [JEP 392: Packaging Tool](https://openjdk.java.net/jeps/392) for additional details.
+
+💡 It is also possible to pass argument(s) to execute the application, ex. to enable the application to use preview-features. 
+
+One thing you can notice is that the size of the final bundle is relatively big, i.e. ~135 MB for this example. This is because the bundle includes the Java application, its dependencies, but also a Java runtime! That means that to run the application, the end-user will only need the application bundle and nothing else! By default, `jpackage` will pick up the machine's Java runtime but it is possible to specify a different Java runtime. For example, you can use `jpackage` (JDK 16) to create a bundle that will include a JDK 11 based Java runtime. To work around the Java runtime image size issue, `jpackage` can leverage `jlink` to create a custom Java runtime that will only include the modules required to run the application. This will greatly reduce the size of the final bundle. The next Lab will give an overview of `jlink`.
+
+
+
 
 
 

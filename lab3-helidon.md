@@ -4,7 +4,7 @@
 
 In this 5-minutes lab, you will create a simple Microservices exposing a REST endpoint using Helidon SE. The goal is to have some initial exposure to Helidon, gain some high-level understandings of Helidon and its development workflow.
 
-*Helidon* is an open-source Java-based collection of libraries that one can use to develop lightweight Microservices, it offers 2 programming models:
+**Helidon** is an open-source Java-based collection of libraries that one can use to develop lightweight Microservices, it offers 2 programming models:
 - Helidon MP: declarative style, MicroProfile APIs & Java EE/Jakarta EE APIs (JAX-RS, CDI, etc.).
 - Helidon SE: functional style, transparent, "without magic" (ex. injection).
 
@@ -55,9 +55,11 @@ Invoke the endpoint using either `curl` or a web browser and its public IP addre
 
 Let's now try to grasp how things work by checking the sources.
 
-#### _Main.java_
+#### _Main_
 
-`bat src/main/java/com/devlive/Main.java`
+```
+bat src/main/java/com/devlive/Main.java
+```
 
 This is the main class of the application. Amongst other things, its `startServer` method
 * creates and configure a Webserver instance,
@@ -102,7 +104,9 @@ server.start()
 
 Let's now look at the 2nd class:
 
-`bat src/main/java/com/devlive/GreetService.java`
+```
+bat src/main/java/com/devlive/GreetService.java
+```
 
 We can notice that this class implements the [io.helidon.webserver.Service](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Service.html) functional interface which has the `update` method.
 ```Java

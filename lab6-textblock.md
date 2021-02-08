@@ -87,7 +87,9 @@ Routing.builder()
 
 This static content is exposed under the `/public` path, and is served from the `/public` directory in the `/resources` directory of the application. `index.html` is the default file served.
 
-➥ `cat src/main/resources/public/index.html`
+```
+bat src/main/resources/public/index.html
+```
 
 Run the application and access, from your browser, the `/public` url, ex. `http://{public-ip}:8080/public`. You should get a basic UI to list speakers.
 ![](./images/lab5-1.png " ") 
@@ -103,7 +105,9 @@ To fix this, any HTTP request to the `/` path should be forwarded to the `/publi
 1. In the `createRouting` method, define a Text Block that embeds some HTML content that will trigger a client-side forward to the `/public` path.
 
 
-➥ `nano src/main/java/conference/Main.java`
+```
+nano src/main/java/conference/Main.java
+```
 
 ```
 var snippet = 
@@ -204,9 +208,10 @@ message = """
           A single line Text Block?""";
 ```
 
+```
 message = """And what about this?""";
 ```
-```
+
 
 ## Wrap-up
 

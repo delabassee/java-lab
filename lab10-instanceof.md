@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this 10-minutes lab, you will get some hands-on experience with the *pattern Matching for instanceof* feature previewed in JDK 16 (2nd preview). This feature enhances the Java programming language with pattern matching for the instanceof operator. Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely.
+In this 10-minutes lab, you will get some hands-on experience with the **pattern Matching for instanceof** feature previewed in JDK 16 (2nd preview). This feature enhances the Java programming language with pattern matching for the instanceof operator. Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely.
 
 ## Using 'pattern matching for instanceof'
 
@@ -24,7 +24,9 @@ Let's pretend that the displayed details should vary based on the session type.
 
 Add the following `getSessionDetails` method to the "AgendaService".
 
-`nano src/main/java/conference/AgendaService.java`
+```
+nano src/main/java/conference/AgendaService.java
+```
 
 ```
 private void getSessionDetails(final ServerRequest request, final ServerResponse response) {
@@ -165,8 +167,10 @@ if (s instanceof Keynote k) {
 
 If you test the application, you should session details varying depending on the session type.
 
-`curl {public_ip}:8080/sessions/detail/001`
-`curl {public_ip}:8080/sessions/detail/010`
+```
+curl {public_ip}:8080/sessions/detail/001
+curl {public_ip}:8080/sessions/detail/010
+```
 
 
 ## Wrap-up

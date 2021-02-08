@@ -3,9 +3,9 @@
 ## Overview
 
 
-This 10-minute lab will introduce you to the *Switch Expression* feature, a standard and permanent feature of Java 14. 
+This 10-minute lab will introduce you to the **Switch Expression** feature, a standard and permanent feature of Java 14. 
 
-The *Switch Expression* augments the traditional Switch Statement to address some of its irregularities and annoyances including the well known 'fall through' problem, the support for multiple constants per case, the ability to enforce exhaustiveness, an improved scoping, etc.
+The **Switch Expression** augments the traditional Switch Statement to address some of its irregularities and annoyances including the well known 'fall through' problem, the support for multiple constants per case, the ability to enforce exhaustiveness, an improved scoping, etc.
 
 ## Switch Expressions in more details
 
@@ -30,7 +30,7 @@ When browsing conference users, you can notice that the value used for the track
 ![](images/lab9-1.png " ")
 
 
-In this exercise, you will use a Switch Expression to produce more user-friendly track names. You can either continue to modify the previous exercise or start from a clean codebase by checking out the Lab9 branch: `git checkout lab9``
+In this exercise, you will use a Switch Expression to produce more user-friendly track names. You can either continue to modify the previous exercise or start from a clean codebase by checking out the Lab9 branch: `git checkout lab9`
 
 In the `SpeakerService.java` class, add the following `getTrackDetail` method:
 
@@ -166,7 +166,7 @@ var trackDetail = switch (speaker.track()) {
 ```
 ## Wrap-up
 
-In this exercise, you have used Switch Expression, a standard feature since Java 14.
+In this exercise, you have used *Switch Expressions*, a standard feature since Java 14.
 
 Switch expressions complement nicely the traditional Swith statement by enabling to easily write less error-prone Switch cases. Moreover, the produced code is also more readable! For additional details, please check [JEP 361: Switch Expressions (Standard)](https://openjdk.java.net/jeps/361).
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This 5-mintes optional lab will show you how *`jlink`* can greatly improve the size of a Java runtime image.
+This 5-mintes optional lab will show you how **`jlink`** can greatly improve the size of a Java runtime image.
 
 In a nutshell, `jlink` is a tool that can create custom Java runtimes that include only the modules required by an application. Reducing the numbers of modules will reduce the overall size of that custom Java runtime image, a concern especially important when a Java application runs within a container. `jlink` has been part of the JDK since JDK 9.
 
@@ -28,7 +28,9 @@ class Test {
 
 You then need to know which module(s) this application requires to run. For that, you will use another JDK tool, `jdeps`.
 
-`jdeps Test.class`
+```
+jdeps Test.class
+```
 
 You can see that in this case only the `java.base` module is required. Using this information, you can create a custom runtime by passing to `jlink` the target location of the custom runtime and the list of module(s) to include in it.
 
@@ -79,7 +81,7 @@ As you can see, using `jlink` with Helidon is simple and straight forward!
 
 ## Wrap-up
 
-`jlink` is a tool that can assemble and optimize a set of modules and their dependencies to create a custom, i.e. optimized, run-time Java image. Optimizing the size of a Java runtime is critical when an Java application is embedded with its Java runtime into a container. Reducing the overall container image size will improve the startup time of this container. Moreover, smaller container leads to better resource utilization of the container platform.  It should be mentioned that to use `jlink` the application does not need to be modularized! Moreover, `jlink` is available since JDK 9 so there is no valid reason to not leverage `jlink` today!
+**`jlink`** is a tool that can assemble and optimize a set of modules and their dependencies to create a custom, i.e. optimized, run-time Java image. Optimizing the size of a Java runtime is critical when an Java application is embedded with its Java runtime into a container. Reducing the overall container image size will improve the startup time of this container. Moreover, smaller container leads to better resource utilization of the container platform.  It should be mentioned that to use `jlink` the application does not need to be modularized! Moreover, `jlink` is available since JDK 9 so there is no valid reason to not leverage `jlink` today!
 
 **More ressources**
 * [JEP 282: `jlink`](https://openjdk.java.net/jeps/282)

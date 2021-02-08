@@ -2,9 +2,9 @@
 
 ## Overview
 
-In this 10-minutes lab, you will get some hands-on experiences with _Sealed Classes_ (JEP 397), a preview feature (2nd round in Java 16). This new feature enables to create restricted classes hierarchy. , i.e. restrict which other classes or interfaces may extend or implement them. It applies to both classes and interfaces.
+In this 10-minutes lab, you will get some hands-on experiences with **Sealed Classes** (JEP 397), a preview feature (2nd round in Java 16). This new feature enables to create restricted classes hierarchy. , i.e. restrict which other classes or interfaces may extend or implement them. It applies to both classes and interfaces.
 
-💡 Despite its name, the *Sealed Classes* feature applies to both **classes** and **interfaces**.
+💡 Despite its name, the **Sealed Classes** feature applies to both **classes** and **interfaces**.
 
 ## Restricted  Class Hierarchies
 
@@ -12,7 +12,7 @@ In Java, a class hierarchy enables the reuse of code via inheritance: The method
 
 A Sealed Class (or interface) can be extended (or implemented) only by those classes (and interfaces) explicitly permitted to do so.
 
-* A new `sealed` modifier has been introduced to *seal* a class
+* A new `sealed` modifier has been introduced to **seal** a class
 * A new `permits` clause is then used to explicitly specify the class(es) that is(are) permitted to extend the sealed class  
 
 ## Your first Sealed Classes
@@ -32,7 +32,9 @@ All extends the **Session** abstract class
 
 1. Create a `session` directory (`mkdir src/main/java/conference/session/`) and create the abstract sealed `Session.java` superclass.
 
-`nano src/main/java/conference/session/Session.java`
+```
+nano src/main/java/conference/session/Session.java
+```
 
 ```
 package conference.session;
@@ -70,7 +72,10 @@ permits Keynote, Breakout {
 
 2. Now you need to create both `Keynote.java` and `Breakout.java` classes
 
-`nano src/main/java/conference/session/Keynote.java`
+```
+nano src/main/java/conference/session/Keynote.java
+```
+
 
 ```
 package conference.session;
@@ -92,7 +97,9 @@ final public class Keynote extends Session {
 🔎 `Keynote.java` is **final**, it can't be extended.
 
 
-`nano src/main/java/conference/session/Breakout.java`
+```
+nano src/main/java/conference/session/Breakout.java
+```
 
 ```
 package conference.session;
@@ -124,7 +131,9 @@ permits Lab, Lecture {
 
 3. Create the `Lecture.java` and `Lab.java` classes
 
-`nano src/main/java/conference/session/Lecture.java`
+```
+nano src/main/java/conference/session/Lecture.java
+```
 
 ```
 package conference.session;
@@ -144,7 +153,9 @@ final public class Lecture extends Breakout {
 }
 ```
 
-`nano src/main/java/conference/session/Lab.java`
+```
+nano src/main/java/conference/session/Lab.java
+```
 
 ```
 package conference.session;
@@ -167,9 +178,11 @@ final public class Lab extends Breakout {
 🔎 Both classes are `final`.
 
 
-4. Create a fictional 'AgendaRepository.java' class
+4. Create a fictional `AgendaRepository.java` class
 
-`nano src/main/java/conference/AgendaRepository.java`
+```
+nano src/main/java/conference/AgendaRepository.java
+```
 
 ```
 package conference;
@@ -220,7 +233,9 @@ public final class AgendaRepository {
 
 5. Create `AgendaService.java`
 
-`nano src/main/java/conference/AgendaService.java`
+```
+nano src/main/java/conference/AgendaService.java
+```
 
 ```
 package conference;
@@ -265,7 +280,9 @@ public class AgendaService implements Service {
 6. Update the `createRouting` method in `Main.java` to instantiate the AgendaService and register its handler under the "/sessions" path.
 
 
-`nano src/main/java/conference/Main.java`
+```
+nano src/main/java/conference/Main.java
+```
 
 ```
 …
