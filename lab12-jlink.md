@@ -4,12 +4,12 @@
 
 This 5-mintes optional lab will show you how *`jlink`* can greatly improve the size of a Java runtime image.
 
-In a nutshell, `jlink` is a tool that can create custom Java runtime that includes only the modules required by an application. Reducing the numbers of modules will reduce the overall size of that custom Java runtime image, a concern especially important when a Java application runs within a container. `jlink` has been part of the JDK tooling since JDK 9.
+In a nutshell, `jlink` is a tool that can create custom Java runtimes that include only the modules required by an application. Reducing the numbers of modules will reduce the overall size of that custom Java runtime image, a concern especially important when a Java application runs within a container. `jlink` has been part of the JDK since JDK 9.
 
 ## Using `jlink`
 
 
-First create a basic application and compile it.
+First, create a minimal application and compile it.
 
 
 ```
@@ -42,7 +42,7 @@ You can now check the size of the generated Java runtime image.
 du -chs custom-runtime
 ```
 
-This small (<50MB!) custom Java runtime is limited but it can, nevertheless, runs any application that only require the `java.base` module such the example above.
+This small (<50MB!) custom Java runtime is limited but it can, nevertheless, runs any application that only requires the `java.base` module such as the example above.
 
 
 ## Using `jlink` with Helidon applications 

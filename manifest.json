@@ -59,9 +59,14 @@
              "filename": "lab10-instanceof.md"
         },
         {
-            "title": "Lab 11: jlink",
+            "title": "Lab 11: jpackage",
             "publisheddate": "07/30/2020",
-             "filename": "lab11-jlink.md"
+             "filename": "lab11-jpackage.md"
+        },
+        {
+            "title": "Lab 12: jlink",
+            "publisheddate": "02/01/2021",
+             "filename": "lab12-jlink.md"
         }
      ]
 }
