@@ -8,7 +8,7 @@ In this 10-minutes lab, you will prepare your Oracle Cloud environment to run th
  
 ## Create a Virtual Cloud Network
 
-In this step, you will create a *Virtual Cloud Network (VCN)*, i.e. a software-defined private network in the Oracle Cloud Infrastructure. See [here](https://docs.cloud.oracle.com/en-us/iaas/Content/Network/Tasks/managingVCNs.htm) for more details on VCN.
+In this step, you will create a **Virtual Cloud Network (VCN)**, i.e. a software-defined private network in the Oracle Cloud Infrastructure. See [here](https://docs.cloud.oracle.com/en-us/iaas/Content/Network/Tasks/managingVCNs.htm) for more details on VCN.
 
 
 1. Log on the [OCI console](https://cloud.oracle.com/), select **Networking** in **Core Infrastructure** (top-left hamburger button), then **Virtual Cloud Networks**.
@@ -35,7 +35,7 @@ After a couple of seconds, your VCN will be created (including a public and a pr
 
 ![](./images/lab2-4.png " ")
 
-You still need to do one thing, i.e. configure a security rule to allow requests coming from the Internet to reach your Java application(s) running on OCI. For this, you will define an *Ingress Rule* on the VCN public subnet (not the private one!). to open port 8080.
+You still need to do one thing, i.e. configure a security rule to allow requests coming from the Internet to reach your Java application(s) running on OCI. For this, you will define an **Ingress Rule** on the VCN public subnet (not the private one!). to open port 8080.
 
 1. From the top left hamburger menu, select **Core Infrastructure** ➡ **Networking** ➡ **Virtual Cloud Networks**, and click on your newly created VCN to see its details.
 
@@ -58,11 +58,11 @@ You now have a VNC properly configured. You can move on to the next step.
 
 ## Provision a Compute Instance
 
-In this step, you will configure and provision a *Compute Instance* that will be used to test new Java features.
+In this step, you will configure and provision a **Compute Instance** that will be used to test new Java features.
 
 Compute Instances can be physical (bare metal) or virtual, and come in different shapes (memory, CPUs, storage, network, GPUs…). You can also choose between different Operating Systems.
 
-For this lab, you will configure a _VM_ based instance using the _Oracle Linux 7.9_ (OEL) image.
+For this lab, you will configure a **VM** based instance using the **Oracle Linux 7.9** (OEL) image.
 
 1. From the top-left hamburger menu, select **Core Infrastructure** ➡ **Compute** ➡ **Instances**, and then click **Create Instance**.
 
@@ -70,7 +70,7 @@ For this lab, you will configure a _VM_ based instance using the _Oracle Linux 7
 **COMPARTMENT**).
 
 
-2. Keep the default OS image, ex. _Oracle Linux 7.9_, at the time of writing.
+2. Keep the default OS image, ex. **Oracle Linux 7.9**, at the time of writing.
 
 ![](./images/lab2-9A.png " ")
 
