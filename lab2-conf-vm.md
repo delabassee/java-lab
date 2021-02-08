@@ -11,7 +11,7 @@ In this 10-minutes lab, you will prepare your Oracle Cloud environment to run th
 In this step, you will create a *Virtual Cloud Network (VCN)*, i.e. a software-defined private network in the Oracle Cloud Infrastructure. See [here](https://docs.cloud.oracle.com/en-us/iaas/Content/Network/Tasks/managingVCNs.htm) for more details on VCN.
 
 
-1. Log on the OCI console, select **Networking** in **Core Infrastructure** (top-left hamburger button), then **Virtual Cloud Networks**.
+1. Log on the [OCI console](https://cloud.oracle.com/), select **Networking** in **Core Infrastructure** (top-left hamburger button), then **Virtual Cloud Networks**.
 
 ![](./images/lab2-1.png " ")
 
