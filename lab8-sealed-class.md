@@ -237,8 +237,7 @@ public final class AgendaRepository {
 
 
     public List<Session> getAll() {
-        List<Session> allSessions = sessionList.stream()
-                .collect(Collectors.toList());
+        List<Session> allSessions = sessionList.stream().toList();
         return allSessions;
     }
 

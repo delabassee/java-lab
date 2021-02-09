@@ -95,6 +95,8 @@ Compile and run the test class.
 Person[lastname=Doe, firstname=Jane]
 ```
 
+💡 Thanks to [JEP 330: Launch Single-File Source-Code Programs](https://openjdk.java.net/jeps/330) introduced in JDK 11, the above 2 commands (`javac TestRecord.java & java TestRecord`) can be combined and simplifed with `java TestRecord.java`
+
 Do note that the generated implementations can be overridden. For example, change the record as follow...
 
 ```
@@ -111,9 +113,7 @@ public record Person(String lastname, String firstname) {
 Compile and run the test class.
 
 ```
-> javac --enable-preview --source 15 TestRecord.java
-...
-> java --enable-preview TestRecord
+> javac TestRecord.java & java TestRecord
 Person{firstname=Jane, lastname=Doe}
 ```
 
