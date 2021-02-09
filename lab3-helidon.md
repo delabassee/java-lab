@@ -58,7 +58,9 @@ Let's now try to grasp how things work by checking the sources.
 #### _Main_
 
 ```
+<copy>
 bat src/main/java/com/devlive/Main.java
+</copy>
 ```
 
 This is the main class of the application. Amongst other things, its `startServer` method
@@ -105,7 +107,9 @@ server.start()
 Let's now look at the 2nd class:
 
 ```
+<copy>
 bat src/main/java/com/devlive/GreetService.java
+</copy>
 ```
 
 We can notice that this class implements the [io.helidon.webserver.Service](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Service.html) functional interface which has the `update` method.

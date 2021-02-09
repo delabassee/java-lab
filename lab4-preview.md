@@ -18,10 +18,13 @@ The Preview Feature mechanism enables to add non-final, fully specified, and imp
 In a new directory, create a simple _Vehicle.java_ abstract class with 2 auxiliary classes, _Car_ and _Bike_:
 
 ```
+<copy>
 nano Vehicle.java
+</copy>
 ```
 
 ```java
+<copy>
 abstract sealed class Vehicle {
 
 }
@@ -33,6 +36,7 @@ final class Car extends Vehicle {
 final class Bike extends Vehicle {
 
 }
+</copy>
 ```
 
 ⚠️ This example uses the Sealed class feature (see Lab 8) to define a basic sealed classes hierarchy, it's sole purpose is to introduce the concept of Preview Feature.
@@ -40,7 +44,9 @@ final class Bike extends Vehicle {
 2. Compile it
 
 ```
+<copy>
 javac Vehicle.java
+</copy>
 ```
 
 ![](./images/lab4-1.png " ")
@@ -49,7 +55,9 @@ javac Vehicle.java
  This error simply informs you that you are trying to use the Sealed class feature which is a preview feature in Java 16, and that those are disabled by default. To use preview features, you need to explicitly enable them, at compile-time, using the `--enable-preview` flag. Note that, you also need to confirm to the Java compiler which version of the Preview Feature you are using (ex. using the `--release` flag). 
 
 ```
+<copy>
 javac --enable-preview --release 16 Vehicle.java
+</copy>
 ```
 
 Those 2 flags are enforcing a safeguard mechanism that informs you that non-permanent features are used, and hence those might change in a future Java release.
@@ -61,7 +69,9 @@ The compilation now succeeds. Notice that you are still warned that preview feat
 To run code that uses Preview Feature, you would face the same safeguard as Preview Features are also disabled at runtime! To be used, they should be explicitly enabled using the `--enable-preview` flag. The difference is that at runtime, you don't need to use a flag to confirm that version that you are using.
 
 ```
+<copy>
 java --enable-preview SomePreviewTest
+</copy>
 ```
 
 💡 Running this particular example doesn't make sense as it is empty.
@@ -75,7 +85,7 @@ Likewise, to use Preview Feature in Helidon, those should be enabled at both com
 In an Helidon project's `pom.xml`, configure the Java compiler plugin to Java 16 **and** to enable Preview Features.
 
 ```xml
-…
+<copy>
 <plugins>
    …
    <plugin>
@@ -88,20 +98,24 @@ In an Helidon project's `pom.xml`, configure the Java compiler plugin to Java 16
       </configuration>
    </plugin>
 </plugins>
-…
+</copy>
 ```
 #### Runtime configuration
 
 To run the application, use the following command.
 
 ```
+<copy>
 java --enable-preview -jar target/myapp.jar
+</copy>
 ```
 
 Similarly, to use Preview Features via the Helidon CLI 'devloop', you need to pass the same `--enable-preview` argument to the JVM running the application:
 
 ```
+<copy>
 helidon dev --app-jvm-args "--enable-preview"
+</copy>
 ```
 
 ⚠️ If during this lab, Helidon hangs while starting ('devloop'), double-check that you have effectively enabled preview features! 

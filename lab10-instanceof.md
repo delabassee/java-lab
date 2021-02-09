@@ -9,7 +9,9 @@ In this 10-minutes lab, you will get some hands-on experience with the **pattern
 💡 Make sure to checkout the lab10 branch as it introduces 2 new classes to the project: `AgendaRepository.java` and `AgendaService.java`
 
 ```
+<copy>
 git checkout -f lab10
+</copy>
 ```
 
 Check those 2 new classes. `AgendaService.java` introduces a new "/sessions" endpoint that returns the details of the sessions. The sessions are stored in `AgendaRepository.java` using a simple `List<Session>`. The `Session` type has been introduced in Lab 8, it is a sealed abstract class that can only be extended by a given set of classes (check Lab 8 for details).
@@ -25,68 +27,74 @@ Let's pretend that the displayed details should vary based on the session type.
 Add the following `getSessionDetails` method to the "AgendaService".
 
 ```
+<copy>
 nano src/main/java/conference/AgendaService.java
+</copy>
 ```
 
 ```
+<copy>
 private void getSessionDetails(final ServerRequest request, final ServerResponse response) {
-    LOGGER.fine("getSessionDetails");
+   LOGGER.fine("getSessionDetails");
 
-    var sessionId = request.path().param("sessionId").trim();
+   var sessionId = request.path().param("sessionId").trim();
 
-    Optional<Session> session = sessions.getBySessionId(sessionId);
+   Optional<Session> session = sessions.getBySessionId(sessionId);
 
-    if (session.isPresent()) {
+   if (session.isPresent()) {
 
-        record SessionDetail(String title, String speaker, String location, String type) {}
+      record SessionDetail(String title, String speaker, String location, String type) {}
 
-        var detail = "speaker TBC!";
-        var s = session.get();
+      var detail = "speaker TBC!";
+      var s = session.get();
 
-        if (s instanceof Keynote) {
+      if (s instanceof Keynote) {
 
-            Keynote k = (Keynote) s;
+         Keynote k = (Keynote) s;
+         var ks = speakers.getById(k.getKeynoteSpeaker());
 
-            var ks = speakers.getById(k.getKeynoteSpeaker());
             if (ks.isPresent()) {
-                var spk = ks.get();
-                detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+               var spk = ks.get();
+               detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
             } else detail = "Keynote speaker to be announced!";
 
-            var keynote = new SessionDetail("Keynote: " + k.getTitle(), detail, "Virtual Keynote hall", "General session");
+            var keynote = new SessionDetail("Keynote: " + k.getTitle(), detail, "Virtual hall", "General session");
             response.send(keynote);
+        }
+		
+		else if (s instanceof Lecture) {
 
-        } else if (s instanceof Lecture) {
+           Lecture l = (Lecture) s;
+           var speaker = speakers.getById(l.getSpeaker());
 
-            Lecture l = (Lecture) s;
+           if (speaker.isPresent()) {
+              var spk = speaker.get();
+              detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+           }
 
-            var speaker = speakers.getById(l.getSpeaker());
-            if (speaker.isPresent()) {
-                var spk = speaker.get();
-                detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
-            }
+           var lecture = new SessionDetail(l.getTitle(), detail, String.valueOf(l.getVirtualRoom()), "Conference session");
+           response.send(lecture);
+        }
+		
+		else if (s instanceof Lab) {
 
-            var lecture = new SessionDetail(l.getTitle(), detail, String.valueOf(l.getVirtualRoom()), "Conference session");
-            response.send(lecture);
+           Lab l = (Lab) s;
+           var speaker = speakers.getById(l.getSpeaker());
 
-        } else if (s instanceof Lab) {
+           if (speaker.isPresent()) {
+              var spk = speaker.get();
+              detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
+           }
 
-            Lab l = (Lab) s;
-
-            var speaker = speakers.getById(l.getSpeaker());
-            if (speaker.isPresent()) {
-                var spk = speaker.get();
-                detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
-            }
-
-            var lab = new SessionDetail(l.getTitle(), detail, String.valueOf(l.getVirtualRoom()), "Hands on Lab");
-            response.send(lab);
+           var lab = new SessionDetail(l.getTitle(), detail, String.valueOf(l.getVirtualRoom()), "Hands on Lab");
+           response.send(lab);
         }
 
     } else {
         Util.sendError(response, 400, "SessionId not found : " + sessionId);
     }
 }
+</copy>
 ```
 
 
@@ -97,7 +105,7 @@ Update Helidon's routing to add `getSessionDetails` as a handler for the "/detai
 @Override
 public void update(Routing.Rules rules) {
    rules.get("/", this::getAll);
-   rules.get("/detail/{sessionId}", this::getSessionDetails);
+   <copy>rules.get("/detail/{sessionId}", this::getSessionDetails);</copy>
 }
 ```
 
@@ -124,7 +132,7 @@ if (s instanceof Keynote) {
       detail = spk.firstName() + " " + spk.lastName() + " (" + spk.company() + ")";
    } else speakerDetail = "Keynote speaker to be announced!";
 
-   var keynote = new SessionDetail("Keynote: " + k.getTitle(), detail, "Virtual Keynote hall", "General session");
+   var keynote = new SessionDetail("Keynote: " + k.getTitle(), detail, "Virtual hall", "General session");
    response.send(keynote);
 ```
 

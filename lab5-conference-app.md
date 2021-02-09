@@ -16,9 +16,11 @@ This simple application is themed around 'conferences', it provides a simple RES
 The application source is hosted on GitHub, just clone its repository:
 
 ```
+<copy>
 cd ~
 git clone https://github.com/delabassee/odl-java-hol.git
 cd odl-java-hol
+</copy>
 ```
 
 
@@ -37,7 +39,9 @@ The repository has several branches (`git branch -a`).&nbsp;
 Switch to the starting point
 
 ```
+<copy>
 git checkout lab5
+</copy>
 ```
 
 Update the project's `pom.xml` to enable Preview Features as described in the previous section.
@@ -86,7 +90,7 @@ Once the application is running, you can test it.
 
 Here are a few tips that might be useful in the course of this Lab.
 
-* The left bar is used to navigate within the current exercise. The right bar is used to navigate between exercises. If it is too obtrusive, just hide it.
+* If the left navigation bar is too intrusive, just hide it temporarily using the top-left hamburger icon.
 
 * To switch between branches, use `git branch checkout {target-branch}`, ex. `git checkout -f lab10`
 
@@ -116,5 +120,7 @@ Here are a few tips that might be useful in the course of this Lab.
 * If you are using the Helidon `devloop`, make sure to enable preview features!
 
 ```
+<copy>
 helidon dev --app-jvm-args "--enable-preview"
+</copy>
 ```

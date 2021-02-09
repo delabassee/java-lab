@@ -75,20 +75,28 @@ The triple-quote closing delimiter defines how incidental white spaces are handl
 
 In the `Main.java` class, you can notice that the application uses Helidon's Web Server [Static Content support](https://helidon.io/docs/v2/#/se/webserver/06_static-content-support) to expose some static content.
 
-➥ `nano src/main/java/conference/Main.java`
+```
+<copy>
+nano src/main/java/conference/Main.java
+</copy>
+```
 
 ```
+<copy>
 Routing.builder()
-       .register("/public", 
-                 StaticContentSupport.builder("public")
-                 .welcomeFileName("index.html"))
+    .register("/public", 
+        StaticContentSupport.builder("public")
+        .welcomeFileName("index.html"))
+</copy>
 ...
 ```
 
 This static content is exposed under the `/public` path, and is served from the `/public` directory in the `/resources` directory of the application. `index.html` is the default file served.
 
 ```
+<copy>
 bat src/main/resources/public/index.html
+</copy>
 ```
 
 Run the application and access, from your browser, the `/public` url, ex. `http://{public-ip}:8080/public`. You should get a basic UI to list speakers.
@@ -106,10 +114,13 @@ To fix this, any HTTP request to the `/` path should be forwarded to the `/publi
 
 
 ```
+<copy>
 nano src/main/java/conference/Main.java
+</copy>
 ```
 
 ```
+<copy>
 var snippet = 
     """
     <html>
@@ -120,19 +131,22 @@ var snippet =
        </body>
     </html>
     """;
+</copy>	
 ```
 
 2. Update the application routing to also serve that HTML whenever someone hits the root `/` path.
 
 
 ```
+<copy>
 return Routing.builder()
-        .get("/", (req, res) -> { res.send(snippet); } )
-        .register("/public", 
-             StaticContentSupport.builder("public")
-                                 .welcomeFileName("index.html"))
-        .register("/speakers", speakerService)
-        .build();
+    .get("/", (req, res) -> { res.send(snippet); } )
+    .register("/public", 
+        StaticContentSupport.builder("public")
+             .welcomeFileName("index.html"))
+    .register("/speakers", speakerService)
+    .build();
+</copy>		
 ```
 
 Let's check the snippet that was just added.
@@ -158,7 +172,7 @@ You can notice that the HTML formatting has been preserved which is good but tha
 
 
 ```
-> curl -v http://{public-ip}:8080
+> <copy>curl -v http://{public-ip}:8080</copy>
 ...
 < HTTP/1.1 200 OK
 < Content-Type: text/plain
@@ -168,12 +182,14 @@ You can notice that the HTML formatting has been preserved which is good but tha
 You can see that the content type of the HTTP response is set to `text/plain` and not `text/html`! That explains why the HTML is not parsed and rendered by the browser. This can be easily fixed by correctly setting the MediaType header before sending the response. 
 
 ```
-   …
-   .get("/", (req, res) -> {
-           res.headers().contentType(MediaType.TEXT_HTML);
-           res.send(snippet);
-	   })
-   …
+…
+<copy>
+.get("/", (req, res) -> {
+       res.headers().contentType(MediaType.TEXT_HTML);
+       res.send(snippet);
+    })
+</copy>
+…
 ```
 
 💡 Make sure to update the imports to include `import io.helidon.common.http.MediaType`

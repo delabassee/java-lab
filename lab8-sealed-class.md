@@ -34,10 +34,13 @@ All extends the **Session** abstract class
 1. Create a `session` directory (`mkdir src/main/java/conference/session/`) and create the abstract sealed `Session.java` superclass.
 
 ```
+<copy>
 nano src/main/java/conference/session/Session.java
+</copy>
 ```
 
 ```
+<copy>
 package conference.session;
 
 import conference.Track;
@@ -64,6 +67,7 @@ permits Keynote, Breakout {
         return title;
     }
 }
+</copy>
 ```
 
 🔎 `sealed public … class Session` ➞ declares it to be a **sealed** class.
@@ -74,11 +78,14 @@ permits Keynote, Breakout {
 2. Now you need to create both `Keynote.java` and `Breakout.java` classes
 
 ```
+<copy>
 nano src/main/java/conference/session/Keynote.java
+</copy>
 ```
 
 
 ```
+<copy>
 package conference.session;
 
 final public class Keynote extends Session {
@@ -94,15 +101,19 @@ final public class Keynote extends Session {
         this.keynoteSpeaker = keynoteSpeaker;
     }
 }
+</copy>
 ```
 🔎 `Keynote.java` is **final**, it can't be extended.
 
 
 ```
+<copy>
 nano src/main/java/conference/session/Breakout.java
+</copy>
 ```
 
 ```
+<copy>
 package conference.session;
 
 import java.util.Random;
@@ -127,16 +138,20 @@ permits Lab, Lecture {
         return virtualRoom;
     }
 }
+</copy>
 ```
 🔎 `Breakout.java` is also **sealed**, it **permits** both the `Lab` and the `Lecture` classes to extend it.
 
 3. Create the `Lecture.java` and `Lab.java` classes
 
 ```
+<copy>
 nano src/main/java/conference/session/Lecture.java
+</copy>
 ```
 
 ```
+<copy>
 package conference.session;
 
 final public class Lecture extends Breakout {
@@ -152,13 +167,17 @@ final public class Lecture extends Breakout {
         return slidesUrl;
     }
 }
+</copy>
 ```
 
 ```
+<copy>
 nano src/main/java/conference/session/Lab.java
+</copy>
 ```
 
 ```
+<copy>
 package conference.session;
 
 final public class Lab extends Breakout {
@@ -174,6 +193,7 @@ final public class Lab extends Breakout {
         return labUrl;
     }
 }
+</copy>
 ```
 
 🔎 Both classes are `final`.
@@ -182,10 +202,13 @@ final public class Lab extends Breakout {
 4. Create a fictional `AgendaRepository.java` class
 
 ```
+<copy>
 nano src/main/java/conference/AgendaRepository.java
+</copy>
 ```
 
 ```
+<copy>
 package conference;
 
 import conference.session.Keynote;
@@ -202,7 +225,6 @@ public final class AgendaRepository {
     private final List<Session> sessionList;
 
     public AgendaRepository() {
-
         var keynote = new Keynote("001", "007", "The Future of Java Is Now");
         var s1 = new Lecture("005", "Java Language Futures - Mid 2020 Edition", "021", "https://speakerdeck/s1");
         var s2 = new Lecture("006", "ZGC: The Next Generation Low-Latency Garbage Collector", "005", "https://slideshare/s2");
@@ -215,7 +237,6 @@ public final class AgendaRepository {
 
 
     public List<Session> getAll() {
-
         List<Session> allSessions = sessionList.stream()
                 .collect(Collectors.toList());
         return allSessions;
@@ -223,22 +244,25 @@ public final class AgendaRepository {
 
 
     public Optional<Session> getBySessionId(String sessionId) {
-
         Optional<Session> session = sessionList.stream()
                 .filter(s -> s.getId().equals(sessionId))
                 .findFirst();
         return session;
     }
 }
+</copy>
 ```
 
 5. Create `AgendaService.java`
 
 ```
+<copy>
 nano src/main/java/conference/AgendaService.java
+</copy>
 ```
 
 ```
+<copy>
 package conference;
 
 import conference.session.Keynote;
@@ -275,6 +299,7 @@ public class AgendaService implements Service {
      response.send(allSessions);
    }
 }
+</copy>
 ```
 
 
@@ -282,17 +307,19 @@ public class AgendaService implements Service {
 
 
 ```
+<copy>
 nano src/main/java/conference/Main.java
+</copy>
 ```
 
 ```
 …
-AgendaService sessionsService = new AgendaService();
+<copy>AgendaService sessionsService = new AgendaService();</copy>
 
 …
 return Routing.builder()
       …
-      .register("/sessions", sessionsService)
+      <copy>.register("/sessions", sessionsService)</copy>
       .build();
 
 ```

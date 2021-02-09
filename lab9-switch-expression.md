@@ -35,6 +35,7 @@ In this exercise, you will use a Switch Expression to produce more user-friendly
 In the `SpeakerService.java` class, add the following `getTrackDetail` method:
 
 ```
+<copy>
 private String getTrackDetail(Speaker speaker) {
         
    String trackDetail;
@@ -54,6 +55,7 @@ private String getTrackDetail(Speaker speaker) {
    }
    return trackDetail;
 }
+</copy>
 ```
 
 This snippet is straight-forward. It is a traditional Switch statement that, based on an enumeration, returns a more user-friendly track name. Note that there is a default value.
@@ -61,31 +63,33 @@ This snippet is straight-forward. It is a traditional Switch statement that, bas
 Now update the `getSpeakersById` method as follow.
 
 ```
+<copy>
 private void getSpeakersById(ServerRequest request, ServerResponse response) {
-    LOGGER.fine("getSpeakersById");
+   LOGGER.fine("getSpeakersById");
 
-    String id = request.path().param("id").trim();
+   String id = request.path().param("id").trim();
 
-    record SpeakrDetails(String id, String name, String title, String company, String trackName) {}
+   record SpeakrDetails(String id, String name, String title, String company, String trackName) {}
 
-    try {
-        if (Util.isValidQueryStr(response, id)) {
-            var match = this.speakers.getById(id);
-            if (match.isPresent()) {
-                var s = match.get();
-                response.send(new SpeakrDetails(s.id(),
-                                s.firstName() + " " + s.lastName(),
-                                s.title(),
-                                s.company(),
-                                getTrackDetail(match.get())
-                        )
-                );
-            } else Util.sendError(response, 400, "getSpeakersById - not found: " + id);
+   try {
+      if (Util.isValidQueryStr(response, id)) {
+         var match = this.speakers.getById(id);
+         if (match.isPresent()) {
+            var s = match.get();
+            response.send(new SpeakrDetails(s.id(),
+                  s.firstName() + " " + s.lastName(),
+                  s.title(),
+                  s.company(),
+                  getTrackDetail(match.get()))
+               );
         }
-    } catch (Exception e) {
-        Util.sendError(response, 500, "Internal error! getSpeakersById : " + e.getMessage());
-    }
+		else Util.sendError(response, 400, "getSpeakersById not found: " + id);
+      }
+   } catch (Exception e) {
+      Util.sendError(response, 500, "Internal error! getSpeakersById: " + e.getMessage());
+   }
 }
+</copy>
 ```
 
 This method is simple. It first defines a new "SpeakrDetails" local record, and then if a speaker for a given ID is found, it creates a record for that speaker. Note that the new `getTrackDetail` is being used to fill the record track component. Finally, it simply sends the JSON representation of this speaker record back to the client.
@@ -114,6 +118,7 @@ The last problem is tied to the fact that this code is quite repetitive and verb
 You can solve this by replacing that Switch statement with the Swith Expression below.
 
 ```
+<copy>
 private String getTrackDetail(Speaker speaker) {
 
    var trackDetail = switch (speaker.track()) {
@@ -124,6 +129,7 @@ private String getTrackDetail(Speaker speaker) {
 
    return trackDetail + " track";
 }
+</copy>
 ```
 
 A few things to note:

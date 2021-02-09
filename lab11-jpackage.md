@@ -51,6 +51,7 @@ cp -r target/libs/ to-bundle/libs
 We can now create, using `jpackage` an application bundle that will allow our end-user to easily install it.
 
 ```
+<copy>
 jpackage --type rpm \
          --input to-bundle \
          --name simple-app \
@@ -60,6 +61,7 @@ jpackage --type rpm \
          --verbose \
 		 --app-version 1.0 \
          --description 'simple jpackage test'
+</copy>
 ```
 
 Producing the bundle will take some times. In the meantime, let's look at the used parameters...
@@ -77,7 +79,9 @@ Producing the bundle will take some times. In the meantime, let's look at the us
 After ~75 seconds, your `rpm` bundle will be generated.
 
 ```
+<copy>
 ls -la simple-app-1.0-1.x86_64.rpm
+</copy>
 ```
 
 ## Use the application bundle
@@ -88,19 +92,25 @@ You can now use `rpm` as usual...
 * Install the application 
 
 ```
+<copy>
 sudo rpm -i simple-app-1.0-1.x86_64.rpm
+</copy>
 ```
 
 * Check that your application is installed  
 
 ```
+<copy>
 rpm -qa | grep simple-app
+</copy>
 ```
 
 * Get additional details about your installed application 
 
 ```
+<copy>
 rpm -qi simple-app-1.0-1.x86_64
+</copy>
 ```
 
 ```
@@ -125,13 +135,17 @@ Description : simple jpackage test
 * Invoke the application 
 
 ```
+<copy>
 /opt/simple-app/bin/simple-app
+</copy>
 ```
 
 * Remove the application 
 
 ```
+<copy>
 sudo rpm -e simple-app-1.0-1.x86_64
+</copy>
 ```
 
 

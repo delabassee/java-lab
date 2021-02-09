@@ -19,29 +19,37 @@ javac Test.java
 ```
 
 ```
+<copy>
 class Test {
    public static void main(String args[]) {
      System.out.println("Hello jlink!");
    }
 }
+</copy>
 ```
 
 You then need to know which module(s) this application requires to run. For that, you will use another JDK tool, `jdeps`.
 
 ```
+<copy>
 jdeps Test.class
+</copy>
 ```
 
 You can see that in this case only the `java.base` module is required. Using this information, you can create a custom runtime by passing to `jlink` the target location of the custom runtime and the list of module(s) to include in it.
 
 ```
+<copy>
 jlink --output custom-runtime --add-modules java.base
+</copy>
 ```
 
 You can now check the size of the generated Java runtime image.
 
 ```
+<copy>
 du -chs custom-runtime
+</copy>
 ```
 
 This small (<50MB!) custom Java runtime is limited but it can, nevertheless, runs any application that only requires the `java.base` module such as the example above.
@@ -55,8 +63,10 @@ The previous example could not be more simple! As such, it does not reflect the 
 To create a jlink based custom Java runtime image, Helidon is using a Maven profile. To use it, simply issue the following Maven command from the project directory.
 
 ```
+<copy>
 cd ~/odl-java-hol
 mvn package -Pjlink-image -Djlink.image.defaultJvmOptions="--enable-preview"
+</copy>
 ```
 
 ![](./images/lab11-1.png " ")
@@ -68,12 +78,16 @@ The result are impressive as the total size (JDK, the application and its depend
 A convinent startup script is also created in the process, it handles for example the JVM parameters such as `--enable-preview` in this particular case. To run the application with its custom Java runtime image, simply invoke this script.
 
 ```
+<copy>
 target/conference-app/bin/start
+</copy>
 ```
 
 To get additional details, just use its help.
 ```
+<copy>
 conference-app/bin/start --help
+</copy>
 ```
 
 As you can see, using `jlink` with Helidon is simple and straight forward!
@@ -93,10 +107,3 @@ As you can see, using `jlink` with Helidon is simple and straight forward!
 
 
  
-
-
-
-
-
-
-
