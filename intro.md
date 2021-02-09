@@ -17,9 +17,7 @@ It is expected that you have Java knowledge and some basic Linux skills (ex. edi
 
 You will use Helidon as it is easy, simple, and fast but obviously, all the Java features discussed in this HoL can be used with any framework supporting the latest version of Java.
 
-💡 The left bar is used to navigate within the current exercise. The right bar is used to navigate between exercises. If it is too obtrusive, just hide it temporarily.
- 
-
+ 	
 **Acknowledgments**
 
  - Author: [David Delabassee](https://delabassee.com)
