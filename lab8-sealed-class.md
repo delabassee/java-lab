@@ -13,6 +13,7 @@ In Java, a class hierarchy enables the reuse of code via inheritance: The method
 A Sealed Class (or interface) can be extended (or implemented) only by those classes (and interfaces) explicitly permitted to do so.
 
 * A new `sealed` modifier has been introduced to **seal** a class
+
 * A new `permits` clause is then used to explicitly specify the class(es) that is(are) permitted to extend the sealed class  
 
 ## Your first Sealed Classes
