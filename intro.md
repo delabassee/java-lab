@@ -28,7 +28,7 @@ You will use Helidon as it is easy, simple, and fast but obviously, all the Java
 <link href="css/prism.css" rel="stylesheet" />
 <script src="js/prism.js" data-manual></script>
 <body data-prismjs-copy-timeout="500">
-    <pre><code class="language-java" data-prismjs-copy="copy" >public class Main {
+    <pre><code class="language-java" data-prismjs-copy="Copy to clipboard" >public class Main {
     public static void main(String[] args) {
         // do nothing
     }
