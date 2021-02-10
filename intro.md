@@ -22,3 +22,13 @@ You will use Helidon as it is easy, simple, and fast but obviously, all the Java
 
  - Author: [David Delabassee](https://delabassee.com)
  - Last updated By: David Delabassee, February 9th 2021
+
+<link href="css/prism.css" rel="stylesheet" />
+<script src="js/prism.js" data-manual></script>
+<body data-prismjs-copy-timeout="500">
+    <pre><code class="language-java" data-prismjs-copy="Copy to clipboard" >public class Main {
+    public static void main(String[] args) {
+        // do nothing
+    }
+}</code></pre>
+</body>
