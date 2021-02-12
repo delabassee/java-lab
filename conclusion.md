@@ -1,6 +1,5 @@
-# Using OCI to Build a Java Application
+# Wrap-up
 
-## Wrap-up
 
 
 
@@ -27,7 +26,7 @@ For more information on Java 16, and on the Java platform in general, we encoura
 PS: Do not forget that you now have access to the [Oracle Cloud Free Tier (Always Free)](https://www.oracle.com/cloud/free/)!
 
 
-### Resources
+## Resources
 
 
 * [Download JDK 16](https://jdk.java.net/16/)
