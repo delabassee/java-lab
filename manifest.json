@@ -67,6 +67,11 @@
             "title": "Lab 12: jlink",
             "publisheddate": "02/01/2021",
              "filename": "lab12-jlink.md"
-        }
+        },
+        {
+            "title": "Wrap-up",
+            "publisheddate": "02/01/2021",
+             "filename": "conclusion.md"
+        }		
      ]
 }
