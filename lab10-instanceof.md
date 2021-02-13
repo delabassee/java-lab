@@ -183,8 +183,20 @@ curl {public_ip}:8080/sessions/detail/010
 
 ## Wrap-up
 
-In this exercice, you have used the 'pattern matching for instanceof' feature previewed in JDK 15 (2nd preview) and slated to be made standard and permanent in JDK 16. For more details, please check [Pattern Matching for instanceof (Second Preview)](https://openjdk.java.net/jeps/375).
+In this exercise, you have used the **pattern matching for instanceof** feature, previewed in Java 14 and Java 15, and slated to be made standard and permanent in Java 16. For more details, please check [Pattern Matching for instanceof](https://openjdk.java.net/jeps/394).
 
-Do note that although the 'pattern matching for instanceof' feature unarguably simplifies the code, this method is still verbose. For example, the "`if … else if …`" chain makes this code a bit repetitive, wouldn't be nice to use a `switch` instead?  In fact, the 'pattern matching for instanceof' feature along with the Switch Expression (see Lab 9) will enable, in the future, full pattern matching support in the Java platform! 
+The **pattern matching for instanceof** feature unarguably simplifies the code but in this particular scenario, the '`if … else if …`' chain makes this code repetitive and potentially brittle! Wouldn't it be nice to use a `switch` instead of this '`if … else if …`' chain?  In fact, the **pattern matching for instanceof** feature along with the **Switch Expression** feature (see Lab 9) and the **Sealed Class** feature (see Lab 8) will enable, in the near future, powerful pattern matching support in the Java platform, including the ability to do pattern matching with Switch.
 
+
+```
+// Comming soon, a switch on an Object!
+// Exact syntax TBC
+…
+switch(s) {  
+   case Keynote kn -> …
+   case Lecture lc -> …
+   case Lab lb -> …
+}
+…
+```
 
