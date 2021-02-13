@@ -18,7 +18,7 @@ It is expected that you have Java knowledge and some basic Linux skills (ex. edi
 You will use Helidon as it is easy, simple, and fast but obviously, all the Java features discussed in this HoL can be used with any framework supporting the latest version of Java.
 
  	
-**Acknowledgments**
+**Acknowledgment**
 
  - Author: [David Delabassee](https://delabassee.com)
- - Last updated By David Delabassee, February 12nd 2021
+ - Last updated By David Delabassee, Feb 13 2021

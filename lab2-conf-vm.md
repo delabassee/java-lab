@@ -135,7 +135,7 @@ In your instance, run the following command:
 
 ```
 <copy>
-source <(curl -L https://gist.githubusercontent.com/delabassee/a11e09dcf5a85dae87a5fd6a96ce77ea/raw/faf6b00217aa3d3ed655bf6415d3bbb3b37ca4d3/vm-setup.sh)
+source <(curl -L https://gist.githubusercontent.com/delabassee/a11e09dcf5a85dae87a5fd6a96ce77ea/raw/e880cee878760ce32aa14ddfe6289afc6b09dd85/vm-setup.sh)
 </copy>
 ```
 
