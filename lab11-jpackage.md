@@ -1,4 +1,4 @@
-# Lab 12: jpackage
+# Lab 11: jpackage
 
 ## Overview
 

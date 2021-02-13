@@ -1,6 +1,6 @@
-# Using OCI to Build a Java Application
+# Using OCI to Build a Java Application Introduction
 
-## Introduction
+**Introduction**
 
 
 The goal of this Hands-on-Lab is to allow you to discover, on Oracle Cloud, some key features recently added to the Java platform.
