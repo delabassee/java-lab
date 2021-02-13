@@ -132,7 +132,7 @@ Summary     : simple-app
 Description : simple jpackage test
 ```
 
-* Invoke the application 
+* Invoke the application launcher
 
 ```
 <copy>
@@ -140,7 +140,7 @@ Description : simple jpackage test
 </copy>
 ```
 
-* Remove the application 
+* Remove the application
 
 ```
 <copy>
