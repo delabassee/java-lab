@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this 10-minutes lab, you will get some hands-on experiences with **Sealed Classes** (JEP 397), a preview feature (2nd round in Java 16). This new feature enables to create restricted classes hierarchy. , i.e. restrict which other classes or interfaces may extend or implement them. It applies to both classes and interfaces.
+In this 10-minutes lab, you will get some hands-on experiences with **Sealed Classes** (JEP 397), a preview feature (2nd round in Java 16). This new feature enables to create restricted classes hierarchy. , i.e. restrict which other classes or interfaces may extend or implement them.
 
 💡 Despite its name, the **Sealed Classes** feature applies to both **classes** and **interfaces**.
 
@@ -12,26 +12,26 @@ In Java, a class hierarchy enables the reuse of code via inheritance: The method
 
 A Sealed Class (or interface) can be extended (or implemented) only by those classes (and interfaces) explicitly permitted to do so.
 
-* A new `sealed` modifier has been introduced to **seal** a class
+* A new **`sealed` modifier** has been introduced to **seal** a class
 
-* A new `permits` clause is then used to explicitly specify the class(es) that is(are) permitted to extend the sealed class  
+* A new **`permits` clause** is then used to explicitly **specify** the class(es) that is(are) permitted to extend the sealed class  
 
 ## Your first Sealed Classes
 
-💡 "Sealed Classes" is a preview feature in JDK 16 so make sure that preview features are enabled both at compile time and run time.
+💡 "Sealed Classes" is a preview feature in JDK 16 so make sure that preview features are enabled both at compile time and run-time.
 
-For the sake of this exercise, let us suppose that the conference application needs to deal with sessions. 
+For the sake of this exercise, let us suppose that the conference application needs to deal with sessions of different types. 
 
 Broadly speaking, the conference has the following sessions :
 
 * **Breakout** session, each has a virtual room
-	* Lecture: a traditional conference session
-	* Lab: a hands-on lab
+	* **Lecture**: a traditional conference session
+	* **Lab**: a hands-on lab
 * **Keynote** session, a traditional general session
 
 All extends the **Session** abstract class
 
-1. Create a `session` directory (`mkdir src/main/java/conference/session/`) and create the abstract sealed `Session.java` superclass.
+1. Create a `session` directory (`mkdir -p src/main/java/conference/session/`) and create the abstract sealed `Session.java` superclass.
 
 ```
 <copy>
@@ -70,9 +70,9 @@ permits Keynote, Breakout {
 </copy>
 ```
 
-🔎 `sealed public … class Session` ➞ declares it to be a **sealed** class.
+🔎 `sealed public … class Session` ➡ declares it to be a **sealed** class.
 
-🔎 `permits Keynote, Breakout …` ➞ explicitly declares that only the `Keynote` and the `Breakout` classes can extend it.
+🔎 `permits Keynote, Breakout …` ➡ explicitly declares that only the `Keynote` and the `Breakout` classes can extend it.
 
 
 2. Now you need to create both `Keynote.java` and `Breakout.java` classes
@@ -226,7 +226,7 @@ public final class AgendaRepository {
 
     public AgendaRepository() {
         var keynote = new Keynote("001", "007", "The Future of Java Is Now");
-        var s1 = new Lecture("005", "Java Language Futures - Mid 2020 Edition", "021", "https://speakerdeck/s1");
+        var s1 = new Lecture("005", "Java Language Futures - Early 2021 Edition", "021", "https://speakerdeck/s1");
         var s2 = new Lecture("006", "ZGC: The Next Generation Low-Latency Garbage Collector", "005", "https://slideshare/s2");
         var s3 = new Lecture("007", "Continuous Monitoring with JDK Flight Recorder (JFR)", "010", "https://speakerdeck/007");
         var hol1 = new Lab("010", "Building Java Cloud Native Applications with Micronaut and OCI", "030", "https://github.com/micronaut");
@@ -332,11 +332,9 @@ The interesting part of the lab is the restricted Session classes hierarchy that
 
 ## Wrap-up
 
-In this exercise, you have used Sealed Classes. 
+In this exercise, you have used **Sealed Classes**. Sealed Classes is a new feature that enables a developer to define a restricted classes hierarchy, i.e. a developer has now the ability to explicitly states for a given class (or an interface) which classes (or interfaces) may extend (or implement) it. Sealed Classes is a previewed (2nd round) feature in JDK 16.
 
-Sealed Classes is a new feature that enables a developer to define a restricted classes hierarchy, i.e. a developer has now the ability to explicitly states for a given class (or an interface) which classes (or interfaces) may extend (or implement) it. Sealed Classes is a previewed feature in JDK 15.
-
-For more details, please check [JEP 360: Sealed Classes (Preview)](https://openjdk.java.net/jeps/360) and [Java Feature Spotlight: Sealed Classes](https://www.infoq.com/articles/java-sealed-classes/).
+For more details, please check [JEP 397: Sealed Classes (2nd Preview)](https://openjdk.java.net/jeps/397) and the following [Java Feature Spotlight: Sealed Classes](https://www.infoq.com/articles/java-sealed-classes/) article.
 
 
 

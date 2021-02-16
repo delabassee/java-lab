@@ -19,8 +19,10 @@ Oracle Cloud Free Tier allows you to sign up for an Oracle Cloud account which p
 
 In this section, you will sign-up for a free tier OCI account. Fill out the registration form [here](https://bit.ly/DevNexus2021).
 
+💡 The sign-up user interface might be slightly different than the user interface of this guide. It is anyway very intuitive. The key is to sign-up using the **same email address** as the used to register for this Hands-on-lab.
+
 1.  Click on the "Start for free" button and enter the appropriate information to create your account.
-    * Enter the same **email address** you used to register for Oracle Open World / Oracle Code One. A popup should appear recognizing your email. If not, the registration form will ask for additional information later.
+    * Enter the same **email address** you used to register for this event. A popup should appear recognizing your email. If not, the registration form will ask for additional information later.
     * Select your **country/territory**.
     * Click **Next**.
 
@@ -72,6 +74,3 @@ You may now proceed to the next lab.
 
 - **Created By/Date** - Tom McGinn, Sr. Mgr, UA DB Development, March 2020
 - **Last Updated By/Date** - Kay Malcolm, Database Product Management, June 2020
-
-## See an issue?
-Please submit feedback using this [form](https://apexapps.oracle.com/pls/apex/f?p=133:1:::::P1_FEEDBACK:1). Please include the *workshop name*, *lab* and *step* in your request.  If you don't see the workshop name listed, please enter it manually. If you would like for us to follow up with you, enter your email in the *Feedback Comments* section.    Please include the workshop name and lab in your request.

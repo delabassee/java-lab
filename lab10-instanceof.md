@@ -150,7 +150,7 @@ if (s instanceof Keynote) {
 }
 ```
 
-The 'pattern matching for instanceof' feature reduces that verbosity by defining a binding variable, k in this example, that will be created should the type test be true.
+The 'pattern matching for instanceof' feature reduces that verbosity by defining a binding variable, _`k`_ in this example, that will be created should the type test be true.
 
 ```
 if (s instanceof Keynote k) {

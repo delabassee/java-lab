@@ -7,15 +7,15 @@ This  5-minutes lab will give you an introduction to the Java SE **Preview Featu
 
 The Preview Feature mechanism enables to add non-final, fully specified, and implemented features into the Java platform. The goal is to allow developers to use those non-final features, to gather feedback, and to make necessary changes if needed before those features are made final and permanent into the Java platform.
 
-⚠️ **Preview Features** should be confused with **Experimental Features** or with **Incubator Modules**. For more information, please check this [article](https://blogs.oracle.com/javamagazine/the-role-of-previews-in-java-14-java-15-java-16-and-beyond). 
+⚠️ **Preview Features** should not be confused with **Experimental Features** or with **Incubator Modules**. For more information, please check this [article](https://blogs.oracle.com/javamagazine/the-role-of-previews-in-java-14-java-15-java-16-and-beyond). 
 
 
 ## Hello Preview 
 
 
-1. Create a Sealed class hierarchy
+1. Create a sealed classes hierarchy
 
-In a new directory, create a simple _Vehicle.java_ abstract class with 2 auxiliary classes, _Car_ and _Bike_:
+In a new directory, create a simple _Vehicle.java_ abstract class with 2 auxiliary classes in it, _Car_ and _Bike_:
 
 ```
 <copy>
@@ -39,7 +39,7 @@ final class Bike extends Vehicle {
 </copy>
 ```
 
-⚠️ This example uses the Sealed class feature (see Lab 8) to define a basic sealed classes hierarchy, it's sole purpose is to introduce the concept of Preview Feature.
+⚠️ This example uses the Sealed class feature (see Lab 8) to define a basic sealed classes hierarchy, its sole purpose is to introduce the concept of Preview Feature.
 
 2. Compile it
 
@@ -69,9 +69,7 @@ The compilation now succeeds. Notice that you are still warned that preview feat
 To run code that uses Preview Feature, you would face the same safeguard as Preview Features are also disabled at runtime! To be used, they should be explicitly enabled using the `--enable-preview` flag. The difference is that at runtime, you don't need to use a flag to confirm that version that you are using.
 
 ```
-<copy>
 java --enable-preview SomePreviewTest
-</copy>
 ```
 
 💡 Running this particular example doesn't make sense as it is empty.

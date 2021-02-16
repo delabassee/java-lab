@@ -8,15 +8,15 @@ A text block is a multi-line string literal that avoids the need for most escape
 
 ## Text Blocks in more details
 
-Text blocks enable us to easily embed string literals spanning multiple lines (ex. structured languages such as JSON, XML, etc.) into Java source code while preserving the formatting but also the Java code readability.
+Text blocks enable developers to easily embed string literals spanning multiple lines (ex. structured languages such as JSON, XML, etc.) into Java source code while preserving the formatting but also the Java code readability.
 
-For example, imagine that you have to embed in your Java code an HTML snippet that displays '_All I want to see is a "_'. See the double quotes at the end! Before Text Blocks, you would write something like
+For example, imagine that you have to embed in your Java code an HTML snippet that displays '_All I want to see is a "_'. Notice the double quotes at the end! Before Text Blocks, you would write something like this.
 
 ```
 var element = "<p id=\"p1\">All I want to see is a \"</p>";
 ```
 
-Notice that the HTML _id_ element attribute above requires its id value to be enclosed in double-quotes, so those double quotes need to be escaped in the Java code. 
+Notice that the HTML _id_ element attribute above requires its value to be enclosed in double-quotes, so those double quotes need to be escaped in the Java code. 
 
 Things get worst if you want to preserve the readability and the formatting of the snippet. For example, to embed the following basic HTML list in Java code:
 
@@ -36,9 +36,9 @@ var test = "<ul id=\"test\">\n" +
 ```
 
 
-Not only such code is hard to write and hence error-prone, but it is also hard to read! 
+Not only such code is hard to write and hence error-prone, but it is also hard to read, and hence hard to maintain.
 
-Thanks to Text Blocks, it is now a lot easier! A text block is simply a [String](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/String.html) literal that can span over multiple lines. A Text Block is delimited with the new triple-quote delimiter (`"""`) instead of the traditional double-quote delimiter (`"`).
+Thanks to Text Blocks, it is now a lot easier! A text block is simply a [String](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/String.html) literal that can span over multiple lines. A Text Block is delimited with the new **triple-quote delimiter** (`"""`) instead of the traditional double-quote delimiter (`"`).
 
 ```
 var test = """
@@ -51,15 +51,15 @@ var test = """
 
 As you can see from the example below
 - a Text Block starts and ends with a triple-quote delimiter (`"""`)
-- the line after the triple-quote opening delimiter should be empty or blank
-- any double-quote embedded in the string shouldn't be escaped
+- the line after the opening triple-quote delimiter should be empty or blank
+- any double-quote embedded in the string shouldn't be escaped (!)
 - the string literal can span multiple lines without any additional escaping (\n)
-- the original formatting is preserved, it is congtrolled by the closing delimiter
+- the original formatting is preserved, it is controlled by the closing delimiter
 - and last but not least, the code readability is greatly improved!
 
-To preserve formatting while improving code readability, Text Blocks differentiate _incidental white spaces_, from _essential white spaces_. Incidental white spaces are used to improve code readability, they will be stripped away automatically by the Java compiler.
+To preserve formatting while improving code readability, Text Blocks differentiate __incidental white spaces__, from __essential white spaces__. Incidental white spaces are used to improve code readability, they will be stripped away automatically by the Java compiler.
 
-The following example is identical to the previous one but it doesn't use incidental white spaces, this impacts the code formating and its readability.
+The following example is identical to the previous one but it doesn't use incidental white spaces, this impacts the code formating and hence its readability.
 
 ```
 var element = """
@@ -69,7 +69,7 @@ var element = """
 </ul>
 """; 
 ```
-The triple-quote closing delimiter defines how incidental white spaces are handled. Please check the resources at the end of the exervice for more details on those rules.
+The triple-quote closing delimiter defines how incidental white spaces are handled. Please check the resources at the end of the exercice for more details on those rules.
 
 ## Add Text Blocks support
 
@@ -82,12 +82,9 @@ nano src/main/java/conference/Main.java
 ```
 
 ```
-<copy>
 Routing.builder()
     .register("/public", 
-        StaticContentSupport.builder("public")
-        .welcomeFileName("index.html"))
-</copy>
+        StaticContentSupport.builder("public").welcomeFileName("index.html"))
 ...
 ```
 
@@ -104,13 +101,16 @@ Run the application and access, from your browser, the `/public` url, ex. `http:
 
 If you try to access the root path (`http://{public-ip}:8080/`), you will get an error as there is no handler defined to handle this path. 
 
-![](./images/lab5-2.png " ") 
+
+<img src="./images/lab5-2.png" alt="error message" width=50%/>
 
 
 To fix this, any HTTP request to the `/` path should be forwarded to the `/public` path.
 
 
-1. In the `createRouting` method, define a Text Block that embeds some HTML content that will trigger a client-side forward to the `/public` path.
+**1. Define an HTML snippet to trigger a client-side forward**
+
+In the `createRouting` method, define a Text Block that embeds some HTML to trigger a client-side forward to the `/public` path.
 
 
 ```
@@ -134,19 +134,20 @@ var snippet =
 </copy>	
 ```
 
-2. Update the application routing to also serve that HTML whenever someone hits the root `/` path.
+**2. Update the application routing**
+
+Update the application routings to serve that HTML snippet whenever someone hits the root `/` path.
 
 
 ```
-<copy>
 return Routing.builder()
-    .get("/", (req, res) -> { res.send(snippet); } )
+    <copy>.get("/", (req, res) -> { res.send(snippet); } )</copy>
     .register("/public", 
         StaticContentSupport.builder("public")
              .welcomeFileName("index.html"))
     .register("/speakers", speakerService)
     .build();
-</copy>		
+
 ```
 
 Let's check the snippet that was just added.
@@ -161,12 +162,11 @@ It defines a [handler](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/i
 
 
 
-3. Test the application
+**3. Test the application**
 
 Compile, and access the application from a browser, `http://{public-ip}:8080/`
 
-
-![](./images/lab5-3.png " ") 
+<img src="./images/lab5-3.png" alt="raw html" width=60%/>
 
 You can notice that the HTML formatting has been preserved which is good but that is not really what we expected as the HTML is not rendered in the browser! To understand the issue, use `curl` to get more details on the HTTP request/response.
 
@@ -197,7 +197,7 @@ You can see that the content type of the HTTP response is set to `text/plain` an
 Now when you access the root path, your browser should be automatically redirected to the simple HTML UI.
 
 
-4. Understand how Text Block works.
+**4. Understand how Text Block works**
 
 Remove the `res.headers().contentType(MediaType.TEXT_HTML);` line to bypass HTML rendering on the client side. Try mutilple variations by adjusting the closing delimiter to understand how the incidental spaces are handled. 
 
@@ -205,27 +205,35 @@ Remove the `res.headers().contentType(MediaType.TEXT_HTML);` line to bypass HTML
 
 
 ```
+<copy>
 message = """
              Does this one work?
              """;
+</copy>
 ```
 
 ```
+<copy>
 message = """
           And
 		what
 	  about
 	this?
     """;
+</copy>
 ```
 
 ```
+<copy>
 message = """
           A single line Text Block?""";
+</copy>
 ```
 
 ```
+<copy>
 message = """And what about this?""";
+</copy>
 ```
 
 
@@ -234,7 +242,7 @@ message = """And what about this?""";
 
 In this exercise, you have used Text Blocks, a standard Java 15 feature, to easily embed HTML into Java code. 
 
-Simply put, Text Blocks enable developers to easily embed string literals spanning multiple lines into Java source code while preserving the original formatting but also the Java code readability. Text blocks are handy to deal with structured languages (ex. HTML, JSON, XML, etc.) without having to worry about escaping special characters (ex. new line, double quote) nor altering the original formatting. Finaly, the power of the [String API](https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/lang/String.html) remains at our disposal with Text Blocks.
+Simply put, Text Blocks enable developers to easily embed string literals spanning multiple lines into Java source code while preserving the original formatting but also Java code readability. Text blocks are handy to deal with structured languages (ex. XML, JSON, etc.) without having to worry about escaping special characters (ex. new line, double quotes) nor altering the original formatting. Finally, the power of the [String API](https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/lang/String.html) remains at our disposal with Text Blocks.
 
 Check the following resources for more details on Text Blocks.
 

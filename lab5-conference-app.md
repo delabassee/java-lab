@@ -16,15 +16,13 @@ This simple application is themed around 'conferences', it provides a simple RES
 The application source is hosted on GitHub, just clone its repository:
 
 ```
-<copy>
 cd ~
 git clone https://github.com/delabassee/odl-java-hol.git
 cd odl-java-hol
-</copy>
 ```
 
 
-The repository has several branches (`git branch -a`).&nbsp;
+This repository has several branches (`git branch -a`).&nbsp;
 
 * `lab5` : starting point
 * `lab6` : lab 6 starting point, including the lab 5 solution
@@ -74,17 +72,17 @@ helidon dev --app-jvm-args "--enable-preview"
 
 The sample application offers a simple Web user interface (http://{public-ip}:8080/public/), and exposes mutliple REST endpoints to get speaker-related information.
 
-* http://{public-ip}:8080/speakers ➞ Get all speakers
-* http://{public-ip}:8080/speakers/company/{company} ➞ Get speakers for a given company
-* http://{public-ip}:8080/speakers/lastname/{name} ➞ Get speaker by its lastname
-* http://{public-ip}:8080/speakers/track/{track} ➞ Get speakers for a given track
-* http://{public-ip}:8080/speakers/{id} ➞ Get speaker details for a given id
+* http://{public-ip}:8080/speakers ➡ Get all speakers
+* http://{public-ip}:8080/speakers/company/{company} ➡ Get speakers for a given company
+* http://{public-ip}:8080/speakers/lastname/{name} ➡ Get speaker by its lastname
+* http://{public-ip}:8080/speakers/track/{track} ➡ Get speakers for a given track
+* http://{public-ip}:8080/speakers/{id} ➡ Get speaker details for a given id
 
 Once the application is running, you can test it. 
 
 * http://{public_ip}:8080/speakers/lastname/goetz
 * http://{public_ip}:8080/speakers/company/oracle
-* http://{public_ip}:8080/speakers/track/db
+* http://{public_ip}:8080/speakers/track/java
 
 ## Lab Navigation & Tips
 
@@ -116,6 +114,8 @@ Here are a few tips that might be useful in the course of this Lab.
 * For brevity, packages will sometimes be omitted from code snippets, they are obviously required. If you are not sure, simply check the solution.
 
 * To view files, you can use the '`bat`' tool as it offers syntax highlighting.
+
+* Any change made to a `pom.xml` will not be detected by Helidon `devloop`, you need to restart it.
 
 * If you are using the Helidon `devloop`, make sure to enable preview features!
 

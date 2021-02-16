@@ -60,46 +60,47 @@ You now have a VNC properly configured. You can move on to the next step.
 
 In this step, you will configure and provision a **Compute Instance** that will be used to test new Java features.
 
-Compute Instances can be physical (bare metal) or virtual, and come in different shapes (memory, CPUs, storage, network, GPUs…). You can also choose between different Operating Systems.
+Compute Instances can be physical (bare metal) or virtual, and come in different shapes (memory, CPUs, storage, network, GPUs…). In addition, Compute Instances support different Operating Systems.
 
 For this lab, you will configure a **VM** based instance using the **Oracle Linux 7.9** (OEL) image.
 
-1. From the top-left hamburger menu, select **Core Infrastructure** ➡ **Compute** ➡ **Instances**, and then click **Create Instance**.
+From the top-left hamburger menu, select **Core Infrastructure** ➡ **Compute** ➡ **Instances**, and then click on **Create Instance**.
 
-💡 If you don't see **Create Instance** button, make sure that your **root** compartment is selected (check left sidebar **List Scope** - 
-**COMPARTMENT**).
+💡 If you don't see **Create Instance** button, make sure that your **root** compartment is selected. Top-left hamburger menu, select **Core Infrastructure** ➡ **Compute** ➡ **Instances**, and check **List Scope** - **COMPARTMENT** in the left sidebar.
 
+**1. Configure the instance (shape and OS) to create.**
 
-2. Keep the default OS image, ex. **Oracle Linux 7.9**, at the time of writing.
+Click on the **Edit** button of the **'Configure placement and hardware'** box.
 
-![](./images/lab2-9A.png " ")
+In the **Image** box, click on **Change Image**, and select **Oracle Linux 7.9** as the OS Platform image to use.
 
-
-3. Select a Virtual Machine shape by clicking on the **Edit** button of the **'Configure placement and hardware'** box, then click **"Change Shape"**. You can for example select the regular **VM.Standard.E2.1.Micro** shape from the **"Specialty and Legacy"** category.
+If necessary, you can also change the shape of the instance. In the **Shape** box, click **"Change Shape"**. You can for example select the regular **VM.Standard.E2.1.Micro** shape from the **"Specialty and Legacy"** category.
 
 💡 You will not be able to select a shape that does not fit within the limit of your free account.
 
-![](./images/lab2-9bis.png " ")
 
+**2. Check the network settings**
 
-4. Check the network settings. By default, the network should be configured to use your VNC with a public IP address.
+By default, the network should be configured to use your VNC with a public IP address.
 
 ![](./images/lab2-9ter.png " ")
 
 
+**3. Generate SSH keys pairs**
+
+
 ⚠️ OCI will generate the SSH key pair required to authenticate in this new instance.
-You must save the generated private key on your machine. Without it, your instance will be useless as you won't be able to log in! The generated public key will be automatically configured in the instance during its provisioning.
+You **must save the generated private key** on your machine. Without this private key, your instance will be useless as you won't be able to log in! The generated public key will be automatically configured in the instance during its provisioning.
 
 
-5. In the **Add SSH keys** section, select **Generate SSH key pair** and click the **Save Private Key** button. Depending on your browser, the private key will either be downloaded and saved on your machine (ex. in the `~/Downloads` folder) or you might get a prompt asking where it should be saved.
+In the **Add SSH keys** section, select **Generate SSH key pair** and click the **Save Private Key** button. Depending on your browser, the private key will either be downloaded and saved on your machine (ex. in the `~/Downloads` folder) or you might get a prompt asking where it should be saved.
 
 ![](./images/lab2-10.png " ") 
 
-💡 You can safely ignore the **Configure boot volume** section.
 
-6. You can now click **Create**.
+**4. Create the instance** 
 
-After 50~70 seconds, the big square will switch from the (orange) **PROVISIONING** state to the (green) **RUNNING** state. That means that your instance is up and running!
+You can safely ignore the **Configure boot volume** section. Simply click **Create** to effectively start the instance provisioning process. After 50~70 seconds, the big square will switch from the (orange) **PROVISIONING** state to the (green) **RUNNING** state. That means that your instance is now up and running!
 
 ![](./images/lab2-11.png " ") 
 
@@ -109,7 +110,7 @@ Once your instance is up, you can connect to it! In a shell on your computer, us
 
 💡 If you are on Windows, check [here](https://docs.cloud.oracle.com/en-us/iaas/Content/Compute/Tasks/accessinginstance.htm#linux) how to use OpenSSH. 
 
-💡 Regardless of the OS used, if you have other issues related to `ssh` (ex. you are unable to alter key permissions or only have PuTTY, etc.), you might want to try the [Chrome Secure Shell Extension](https://delabassee.com/ssh-OCI-Chrome/).
+💡 Regardless of the OS used, if you have other issues related to `ssh` (ex. you are unable to alter key permissions or only have access to PuTTY, etc.), you might want to try the [Chrome Secure Shell Extension](https://delabassee.com/ssh-OCI-Chrome/).
 
 The default OEL (Oracle Enterprise Linux) username is **opc**. You also need to specify the path of the private key using the `-i` flag, and the public IP address of your OCI instance.
 The final command should look like this:
@@ -120,9 +121,9 @@ The final command should look like this:
 
  `chmod 400 ~/Downloads/ssh-key-2021-xxx.key`
 
-You will get a message saying "The authenticity of host '158.xxx.xxx.xxx' can't be established…", you can ignore it by typing **yes**. You are now connected to your OCI instance!
+You will get a message saying _"The authenticity of host '158.xxx.xxx.xxx' can't be established…"_, you can ignore it by typing **yes**. You are now connected to your OCI instance!
 
-💡 You can ignore the _"LC___CTYPE: cannot change locale…"_ warning, this will be corrected in the next step.
+💡 You can also ignore the _"LC-CTYPE: cannot change locale…"_ warning, it will be fixed shortly
 
 
 
@@ -139,14 +140,14 @@ source <(curl -L https://gist.githubusercontent.com/delabassee/a11e09dcf5a85dae8
 </copy>
 ```
 
-The script should take around ~90 seconds. In the meantime, you can check what it is doing by typing the Gist URL (ex. https://gist.githubusercontent.com/delabassee/…) in a browser. In a nutshell, the script: 
+The script should take around 100~120 seconds. In the meantime, you can check what the script is doing by typing the Gist URL (ex. https://gist.githubusercontent.com/delabassee/…) in a browser. In a nutshell, the script: 
 * fixes the "LC_CTYPE: cannot change locale…" warning,
 * installs various tools (`git`, `tree`, `bat`, …),
 * installs the appropriate OpenJDK version,
 * installs Apache Maven,
 * installs the Helidon CLI,
 * configures the VM firewall to open its 8080 port,
-* handles some miscellaneous details (ex. setting the path). 
+* and handles some miscellaneous details (ex. setting the path). 
 
 Once the script has been executed, you can test your instance by issuing, for example, `java -version`.
 

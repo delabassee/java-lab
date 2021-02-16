@@ -39,13 +39,13 @@ You can now check the project's target directory ('`tree -C target`'), it should
 
 ![](./images/lab3-4.png " ")
 
-To run the application, simply use '`java -jar target/java-devlive.jar`'
+To run the application, simply use '`java -jar target/demo.jar`'.
 
 💡 Make sure to use the actual jar name.
 
 ![](./images/lab3-5.png " ")
 
-The sample service is now accessible on locally port 8080. Given that you have configured the VCN and the instance firewall to allow incoming traffic on port 8080, it should also be accessible via your instance's public IP address. 
+The sample service is now accessible locally on port 8080. Given that you have configured the VCN and the instance firewall to allow incoming traffic on port 8080, it should also be accessible via your instance's public IP address. 
 
 Invoke the endpoint using either `curl` or a web browser and its public IP address (`http://{public-ip}:8080/greet`), it should return the `{"message":"Hello World!"}` json payload.
 
@@ -126,7 +126,7 @@ public void update(Routing.Rules rules) {
 }
 ```
 
-The `getDefaultMessageHandler` simply creates a JSON object and  sends it downstream using the `response.send` method, that's the result of the REST endpoint.
+The `getDefaultMessageHandler` simply creates, using the JSON-P API, a JSON document. It then sends it downstream using the `response.send` method, that's the outcome of the REST endpoint.
 
 ```java
 private void getDefaultMessageHandler(ServerRequest request, ServerResponse response) {
@@ -140,9 +140,9 @@ private void getDefaultMessageHandler(ServerRequest request, ServerResponse resp
 ```
 
 At a very high level, to create REST end-points using Helidon:
-* a webserver needs to be configured and instantiated,
-* using this webserver, route(s) can be defined,
-* each route should have at least one handler that will process the request(s).
+* a [webserver](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/WebServer.html) needs to be configured and instantiated,
+* using this webserver, [route(s)](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Routing.html) can be defined,
+* each route should have at least one [handler](https://helidon.io/docs/v2/apidocs/io.helidon.webserver/io/helidon/webserver/Handler.html) that will process the request(s).
 
 See [here](https://helidon.io/docs/v2/#/se/webserver/01_introduction) for more details. 
 
