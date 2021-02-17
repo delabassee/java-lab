@@ -213,7 +213,6 @@ curl {public_ip}:8080/sessions/detail/010
 
 In this exercise, you have used the **pattern matching for instanceof** feature, previewed in Java 14 and Java 15, and slated to be made standard and permanent in Java 16. 
 
-
 The **pattern matching for instanceof** feature unarguably simplifies the code but in this particular scenario, the '`if … else if …`' chain makes this code repetitive and potentially brittle! Wouldn't it be nice to use a `switch` instead of this '`if … else if …`' chain?  In fact, the **pattern matching for instanceof** feature along with the **Switch Expression** feature (see Lab 9), the traditional Swich statement, the **Records** feature (see Lab 7) and the **Sealed Class** feature (see Lab 8) will enable, in the near future, powerful pattern matching in the Java platform, including the ability to do pattern matching with Switch.
 
 
@@ -229,6 +228,10 @@ switch(s) {
 …
 ```
 
-The **pattern matching for instanceof** feature supports one kind of pattern (type pattern) in one context (instanceof), it might seems limited but it is certainly more than a small nice-to-have improvement to simply save a few keystrokes! It is in fact one of the multiple new Java language feature (more to come!) that together are paving the way for powerful pattern matching in the Java platform!
+The **pattern matching for instanceof** feature supports one kind of pattern (type pattern) in one context (`instanceof`). This might seems limited but it is certainly more than a small nice-to-have improvement to simply save a few keystrokes! It is in fact one of the multiple new Java language features that together are slowly but surely paving the way for powerful pattern matching in the Java platform!
 
-For more details, please check the [Pattern Matching for instanceof](https://openjdk.java.net/jeps/394) JEP and this [Java Feature Spotlight: Pattern Matching](https://www.infoq.com/articles/java-pattern-matching/) article.
+**Resources:**
+
+* [Pattern Matching for instanceof JEP](https://openjdk.java.net/jeps/394)
+* [Java Feature Spotlight: Pattern Matching](https://www.infoq.com/articles/java-pattern-matching/)
+* [Pattern Matching in the Java Object Model](https://github.com/openjdk/amber-docs/blob/master/site/design-notes/pattern-match-object-model.md)
