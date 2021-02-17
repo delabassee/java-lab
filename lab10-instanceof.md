@@ -8,6 +8,32 @@ This feature enhances the Java programming language with pattern matching for th
 
 ## Using 'pattern matching for instanceof'
 
+All Java programmers are familiar with the "instanceof-and-cast" idiom.
+
+```
+if (obj instanceof String) {
+    String s = (String) obj;  // grr!
+	System.out.println(s);
+    …
+}
+```
+
+1. a test: is `obj` a `String`?
+2. a conversion: casting `obj` to `String`
+3. the declaration of a new local variable to use the object value: `s`
+
+Although straightforward and well understood, this idiom is suboptimal and tedious! In Java 16, the `instanceof` operator has been extended to take a **type pattern** instead of just a type. A type pattern consists of a predicate that specifies a type, along with a single pattern variable, ex. `String s`. This pattern is easy to grasp: if `obj` is an instance of `String`, then it is cast to `String` and the value is assigned to the variable `s`.
+
+```
+// pattern matching for instanceof
+if (obj instanceof String s) {
+    System.out.println(s);  // yeah!
+    …
+}
+```
+
+
+
 💡 Make sure to checkout the lab10 branch as it introduces 2 new classes to the project: `AgendaRepository.java` and `AgendaService.java`
 
 ```
@@ -185,14 +211,15 @@ curl {public_ip}:8080/sessions/detail/010
 
 ## Wrap-up
 
-In this exercise, you have used the **pattern matching for instanceof** feature, previewed in Java 14 and Java 15, and slated to be made standard and permanent in Java 16. For more details, please check [Pattern Matching for instanceof](https://openjdk.java.net/jeps/394).
+In this exercise, you have used the **pattern matching for instanceof** feature, previewed in Java 14 and Java 15, and slated to be made standard and permanent in Java 16. 
 
-The **pattern matching for instanceof** feature unarguably simplifies the code but in this particular scenario, the '`if … else if …`' chain makes this code repetitive and potentially brittle! Wouldn't it be nice to use a `switch` instead of this '`if … else if …`' chain?  In fact, the **pattern matching for instanceof** feature along with the **Switch Expression** feature (see Lab 9) and the **Sealed Class** feature (see Lab 8) will enable, in the near future, powerful pattern matching support in the Java platform, including the ability to do pattern matching with Switch.
+
+The **pattern matching for instanceof** feature unarguably simplifies the code but in this particular scenario, the '`if … else if …`' chain makes this code repetitive and potentially brittle! Wouldn't it be nice to use a `switch` instead of this '`if … else if …`' chain?  In fact, the **pattern matching for instanceof** feature along with the **Switch Expression** feature (see Lab 9), the traditional Swich statement, the **Records** feature (see Lab 7) and the **Sealed Class** feature (see Lab 8) will enable, in the near future, powerful pattern matching in the Java platform, including the ability to do pattern matching with Switch.
 
 
 ```
-// Comming soon, a switch on an Object!
-// Exact syntax TBC
+// Comming soon: pattern matching with Switch
+// A switch on an Object! Exact syntax TBC
 …
 switch(s) {  
    case Keynote kn -> …
@@ -202,3 +229,6 @@ switch(s) {
 …
 ```
 
+The **pattern matching for instanceof** feature supports one kind of pattern (type pattern) in one context (instanceof), it might seems limited but it is certainly more than a small nice-to-have improvement to simply save a few keystrokes! It is in fact one of the multiple new Java language feature (more to come!) that together are paving the way for powerful pattern matching in the Java platform!
+
+For more details, please check the [Pattern Matching for instanceof](https://openjdk.java.net/jeps/394) JEP and this [Java Feature Spotlight: Pattern Matching](https://www.infoq.com/articles/java-pattern-matching/) article.

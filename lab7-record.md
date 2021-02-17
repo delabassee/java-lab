@@ -165,7 +165,7 @@ public record Person(String lastname, String firstname) {
 </copy>		
 ```
 
-Finally, records can also implement interface(s), ex. the [`java.io.Serializable`](https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/io/Serializable.html) interface. And regarding that topic, i.e. serialization, it should be mentioned that records use a specific, well defined, serialization protocol that is particularly safe as 
+Finally, records can also implement interfaces, ex. `java.lang.Comparable`, `java.io.Serializable`, etc. And regarding that topic, serialization, it should be mentioned that records are serialized differently than ordinary serializable objects. In fact, records use a specific, well defined, serialization protocol that is particularly safe as 
 * the serialization relies only on the record state components
 * the de-serialization uses only the canonical constructor
 
