@@ -4,7 +4,8 @@
 
 In this 10-minutes lab, you will get some hands-on experience with the **pattern Matching for instanceof** feature previewed in Java 14 and Java 15, and slated to be made standard and permanent in Java 16. 
 
-This feature enhances the Java programming language with pattern matching for the instanceof operator. Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely. For more details, please check [Pattern Matching for instanceof](https://openjdk.java.net/jeps/394).
+Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely. This new feature enhances the Java programming language with an initial form of pattern matching, i.e. **pattern matching for the instanceof operator**. 
+
 
 ## Using 'pattern matching for instanceof'
 
@@ -22,7 +23,7 @@ if (obj instanceof String) {
 2. a conversion: casting `obj` to `String`
 3. the declaration of a new local variable to use the object value: `s`
 
-Although straightforward and well understood, this idiom is suboptimal and tedious! In Java 16, the `instanceof` operator has been extended to take a **type pattern** instead of just a type. A type pattern consists of a predicate that specifies a type, along with a single pattern variable, ex. `String s`. This pattern is easy to grasp: if `obj` is an instance of `String`, then it is cast to `String` and the value is assigned to the variable `s`.
+Although straightforward and well understood, this idiom is suboptimal and tedious! In Java 16, the `instanceof` operator has been extended to take a **type pattern** instead of just a type. A type pattern consists of a **predicate that specifies a type**, along with a **binding variable**, ex. `String s`. Such a pattern is easy to grasp: if `obj` is an instance of type `String`, then its value is assigned to the new `s` variable of type String.
 
 ```
 // pattern matching for instanceof
@@ -164,9 +165,9 @@ if (s instanceof Keynote) {
    response.send(keynote);
 ```
 
-Then, `instanceof` is used to test the actual type of the session, and based on this type, the logic to create the details will be slightly different. So this logic is repeated for the 3 session types, Keynote, Lecture, and Lab using a "`if … else if …`" chain.
+Then, the `instanceof` operator is used to test the actual type of the session object. Based on this type (Keynote, Lecture, or Lab), the logic to create the details will be slightly different, so this logic is repeated multiple times using a "`if … else if …`" chain.
 
-If you zoom on the `instanceof` pattern, you will notice some verbosity as the type, Keynote in this example, is repeated 3 times. First for the actual `instanceof` test and then for the casting when a new intermediate locale variable is created.
+If you zoom on the `instanceof` pattern, you will notice some verbosity as the type, Keynote in this example, is repeated 3 times. First for the actual `instanceof` operator, and then for the casting and the instantiation of the new temporary variable. It's the usual "instanceof-and-cast" idiom.
 
 ```
 if (s instanceof Keynote) {
@@ -176,7 +177,7 @@ if (s instanceof Keynote) {
 }
 ```
 
-The 'pattern matching for instanceof' feature reduces that verbosity by defining a binding variable, _`k`_ in this example, that will be created should the type test be true.
+The **pattern matching for instanceof** feature simplifies that code by introducing a **type pattern** composed of a **type** and a **binding variable**, `Keynote k` in this example. A binding variable that will be created should the `instanceof` type test be true.
 
 ```
 if (s instanceof Keynote k) {
@@ -201,7 +202,7 @@ if (s instanceof Keynote k) {
 }
 ```
 
-If you test the application, you should session details varying depending on the session type.
+If you test the application, you should get session details varying depending on the session type.
 
 ```
 curl {public_ip}:8080/sessions/detail/001
@@ -213,7 +214,7 @@ curl {public_ip}:8080/sessions/detail/010
 
 In this exercise, you have used the **pattern matching for instanceof** feature, previewed in Java 14 and Java 15, and slated to be made standard and permanent in Java 16. 
 
-The **pattern matching for instanceof** feature unarguably simplifies the code but in this particular scenario, the '`if … else if …`' chain makes this code repetitive and potentially brittle! Wouldn't it be nice to use a `switch` instead of this '`if … else if …`' chain?  In fact, the **pattern matching for instanceof** feature along with the **Switch Expression** feature (see Lab 9), the traditional Swich statement, the **Records** feature (see Lab 7) and the **Sealed Class** feature (see Lab 8) will enable, in the near future, powerful pattern matching in the Java platform, including the ability to do pattern matching with Switch.
+The **pattern matching for instanceof** feature unarguably simplifies the code but in this particular scenario, the '`if … else if …`' chain makes this code repetitive and potentially brittle! Wouldn't it be nice to use a `switch` instead of this '`if … else if …`' chain?  In fact, the **pattern matching for instanceof** feature along with the **Switch Expression** feature (see Lab 9), the traditional Switch statement, the **Records** feature (see Lab 7) and the **Sealed Class** feature (see Lab 8) will enable, in the near future, powerful pattern matching in the Java platform, including the ability to do pattern matching with Switch.
 
 
 ```
