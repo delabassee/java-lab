@@ -71,7 +71,7 @@ mvn package -Pjlink-image -Djlink.image.defaultJvmOptions="--enable-preview"
 
 ![](./images/lab11-1.png " ")
 
-The result are impressive as the total size (JDK, the application and its dependcies) went from ~320MB to ~80MB, a ~75% gain!
+The result are impressive as the total size (the Java runtime, the application and its dependcies) went from ~320MB to ~80MB, a ~75% gain!
 
 💡 The Helidon `jlink` Maven profile also creates, by default, a CDS (Class Data Sharing) archive. CDS is a JDK feature that helps reduce the startup time and memory footprints of Java applications. Check [here]((https://docs.oracle.com/en/java/javase/14/vm/class-data-sharing.html#GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91) from additional details.
 
