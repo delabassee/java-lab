@@ -95,6 +95,14 @@ In an Helidon project's `pom.xml`, configure the Java compiler plugin to Java 16
         <compilerArgs>--enable-preview</compilerArgs>
       </configuration>
    </plugin>
+   <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>3.0.0-M5</version>
+      <configuration>
+         <argLine>--enable-preview</argLine>
+      </configuration>
+    </plugin>
 </plugins>
 </copy>
 ```

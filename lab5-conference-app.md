@@ -16,7 +16,7 @@ This simple application is themed around 'conferences', it provides a simple RES
 The application source is hosted on GitHub, just clone its repository:
 
 ```
-cd ~
+cd ~ 
 git clone https://github.com/delabassee/odl-java-hol.git
 cd odl-java-hol
 ```

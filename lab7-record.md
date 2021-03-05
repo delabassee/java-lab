@@ -8,7 +8,6 @@ Records provide a compact syntax for declaring classes which are transparent hol
 
 ## A simple Record
 
-
 Similar to enums, records are technically a special form of classes optimized for a specific situation, i.e. modeling data aggregates in the case of records.
 
 **1. Declaring a record**

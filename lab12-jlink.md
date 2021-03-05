@@ -15,7 +15,6 @@ First, create a minimal application and compile it.
 ```
 mkdir ~/jlink-test && cd ~/jlink-test
 nano Test.java
-javac Test.java
 ```
 
 ```
@@ -26,6 +25,10 @@ class Test {
    }
 }
 </copy>
+```
+
+```
+javac Test.java
 ```
 
 You then need to know which module(s) this application requires to run. For that, you will use another JDK tool, `jdeps`.
