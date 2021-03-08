@@ -72,7 +72,11 @@ From the top-left hamburger menu, select **Core Infrastructure** ➡ **Compute**
 
 Click on the **Edit** button of the **'Configure placement and hardware'** box.
 
+![](./images/lab2-9vm.png " ")
+
 In the **Image** box, click on **Change Image**, and select **Oracle Linux 7.9** as the OS Platform image to use.
+
+💡 **Oracle Linux 7.9** might already be selected.
 
 If necessary, you can also change the shape of the instance. In the **Shape** box, click **"Change Shape"**. You can for example select the regular **VM.Standard.E2.1.Micro** shape from the **"Specialty and Legacy"** category.
 
@@ -106,7 +110,9 @@ You can safely ignore the **Configure boot volume** section. Simply click **Crea
 
 ⚠️ Make sure to write down the **Public IP Address** of your instance as you will need it!
 
-Once your instance is up, you can connect to it! In a shell on your computer, use `ssh` to connect to the instance on OCI: `ssh {username}@{public_ip}`.
+**5. Connecting via SSH** 
+
+Once your instance is up, you can connect to it! 
 
 💡 If you are on Windows, check [here](https://docs.cloud.oracle.com/en-us/iaas/Content/Compute/Tasks/accessinginstance.htm#linux) how to use OpenSSH. 
 
@@ -124,7 +130,6 @@ The final command should look like this:
 You will get a message saying _"The authenticity of host '158.xxx.xxx.xxx' can't be established…"_, you can ignore it by typing **yes**. You are now connected to your OCI instance!
 
 💡 You can also ignore the _"LC-CTYPE: cannot change locale…"_ warning, it will be fixed shortly
-
 
 
 ## Configure the instance for Java development

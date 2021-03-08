@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this 10-minutes lab, you will get some hands-on experience with the **pattern Matching for instanceof** feature previewed in Java 14 and Java 15, and slated to be made standard and permanent in Java 16. 
+In this 10-minutes lab, you will get some hands-on experience with the **pattern Matching for instanceof** (JEP 394) feature previewed in Java 14 and Java 15, and slated to be made standard and permanent in Java 16. 
 
 Pattern matching allows common logic in a program, namely the conditional extraction of components from objects, to be expressed more concisely and safely. This new feature enhances the Java programming language with an initial form of pattern matching, i.e. **pattern matching for the instanceof operator**. 
 
